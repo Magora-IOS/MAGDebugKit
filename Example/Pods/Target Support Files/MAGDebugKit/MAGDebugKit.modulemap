@@ -1,0 +1,6 @@
+framework module MAGDebugKit {
+  umbrella header "MAGDebugKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

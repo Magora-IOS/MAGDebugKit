@@ -1,0 +1,16 @@
+PODS:
+  - MAGDebugKit (0.1.0)
+
+DEPENDENCIES:
+  - MAGDebugKit (from `../`)
+
+EXTERNAL SOURCES:
+  MAGDebugKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  MAGDebugKit: 91a0955a9a94e84b8c2cc5e8356a746ff271015a
+
+PODFILE CHECKSUM: 34c8267daa4562d6e685eebaf2b0a8bd12688700
+
+COCOAPODS: 1.0.1
