@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MAGDebugKit_Example' do
+  pod 'MAGDebugKit', :path => '../'
+
+  target 'MAGDebugKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
