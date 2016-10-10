@@ -41,7 +41,9 @@
     static DebugOverview *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [DebugOverview mag_loadFromNib];// [[self alloc] init];
+        //sharedInstance = [DebugOverview mag_loadFromNib];// [[self alloc] init];
+        NSBundle *bundle = [NSBundle bundleForClass:self.class];
+        sharedInstance = [bundle loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
     });
     return sharedInstance;
 }
