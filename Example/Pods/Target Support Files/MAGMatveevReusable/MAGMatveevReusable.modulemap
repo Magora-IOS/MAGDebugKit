@@ -1,0 +1,6 @@
+framework module MAGMatveevReusable {
+  umbrella header "MAGMatveevReusable-umbrella.h"
+
+  export *
+  module * { export * }
+}

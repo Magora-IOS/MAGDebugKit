@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,14 +15,42 @@
                         <viewControllerLayoutGuide type="bottom" id="Mvr-aV-6Um"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SHq-PB-7gl">
+                                <rect key="frame" x="16" y="28" width="343" height="222"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="222" id="NEg-L6-DRF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzS-Ju-vFI">
+                                <rect key="frame" x="114" y="315" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bse-cE-s0r">
+                                <rect key="frame" x="215" y="311" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SHq-PB-7gl" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leadingMargin" id="1LG-eU-Sva"/>
+                            <constraint firstItem="tzS-Ju-vFI" firstAttribute="top" secondItem="SHq-PB-7gl" secondAttribute="bottom" constant="65" id="6Fe-6M-zHr"/>
+                            <constraint firstItem="Bse-cE-s0r" firstAttribute="top" secondItem="SHq-PB-7gl" secondAttribute="bottom" constant="61" id="bJY-Ac-IXy"/>
+                            <constraint firstItem="SHq-PB-7gl" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="8" id="ehF-zk-DGh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bse-cE-s0r" secondAttribute="trailing" constant="98" id="h37-FA-7om"/>
+                            <constraint firstItem="tzS-Ju-vFI" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leadingMargin" constant="98" id="iSr-z3-SOE"/>
+                            <constraint firstItem="SHq-PB-7gl" firstAttribute="trailing" secondItem="TpU-gO-2f1" secondAttribute="trailingMargin" id="z9P-cl-Z7L"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="433"/>
+            <point key="canvasLocation" x="304.5" y="432.5"/>
         </scene>
     </scenes>
 </document>

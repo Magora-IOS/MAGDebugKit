@@ -34,7 +34,11 @@ Pod::Spec.new do |s|
   #   'MAGDebugKit' => ['MAGDebugKit/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.public_header_files = 'Pod/Classes/**/*.h'
+  s.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+
+  s.dependency 'MAGMatveevReusable', '0.1.6'
+  s.dependency 'libextobjc', '0.4.1'
+
 end
