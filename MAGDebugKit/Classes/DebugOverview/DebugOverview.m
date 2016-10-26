@@ -86,7 +86,9 @@
     
     __weak typeof(self) wSelf = self;
     self.doubleTapDetector.didTappedBlock = ^() {
-        [wSelf startRentgen];
+		if (!wSelf.rentgenTimer) {
+			[wSelf startRentgen];
+		}
     };
 }
 
