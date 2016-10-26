@@ -45,7 +45,6 @@
 		A832963F00AC6BEEDA4B975752102CE1 /* EXTSelectorChecking.h in Headers */ = {isa = PBXBuildFile; fileRef = C6EDBBCC3959AA2CE2919DBE048A8CF4 /* EXTSelectorChecking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8FF687AA40A1CA60CC45BE647091990 /* extobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2870F5D3CB71B82BC2E4CA8C88484FEB /* extobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD837B7C700FDF86832A66C091BE80E6 /* NSMethodSignature+EXT.h in Headers */ = {isa = PBXBuildFile; fileRef = 00AC76A822E59BF96A44F9CD2DAD5024 /* NSMethodSignature+EXT.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AF3783E3F053B1923D4D9B9B79CAB4BF /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB16E9E9EAC995758A126CACA7C7757 /* ReplaceMe.m */; };
 		B201335966D662A3D197121FCAE284A4 /* EXTConcreteProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A776838DC1263A7C602C304C79449A87 /* EXTConcreteProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2599414A5D947B311C92D660A167457 /* NSObject+MAGMore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8D11222675F5CB2B2F8BDBF5C9253 /* NSObject+MAGMore.m */; };
 		B451737B9CB8B6DEA1DF49345EDDFC46 /* NSObject+MAGMore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CC3563B94524984C327C83A72E7381D /* NSObject+MAGMore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -191,7 +190,6 @@
 		E9B3356F13E96A28E26FD98536EAB406 /* libextobjc-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "libextobjc-prefix.pch"; sourceTree = "<group>"; };
 		EAE953567D03E821A4A7B41195D2C9A3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBF8BFE8946B7FC92161559B9E4F8465 /* libextobjc-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "libextobjc-umbrella.h"; sourceTree = "<group>"; };
-		EFB16E9E9EAC995758A126CACA7C7757 /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ReplaceMe.m; sourceTree = "<group>"; };
 		F2F22F701E2CCFAC9A91C4B60529EA32 /* MAGDebugKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MAGDebugKit.xcconfig; sourceTree = "<group>"; };
 		F458C07F6DE58AB14A914AD5FA495808 /* Pods_MAGDebugKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MAGDebugKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6AAF1493E9B98A3FBF91A915C032EC8 /* NSInvocation+EXT.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+EXT.h"; path = "extobjc/NSInvocation+EXT.h"; sourceTree = "<group>"; };
@@ -452,7 +450,6 @@
 			isa = PBXGroup;
 			children = (
 				8AA356E9AD44BBD760C6A75681C9097D /* MAGDebugKit.h */,
-				EFB16E9E9EAC995758A126CACA7C7757 /* ReplaceMe.m */,
 				C00271DAFB62B7E510D020B144BD11DB /* DebugOverview */,
 			);
 			path = Classes;
@@ -793,7 +790,6 @@
 				C434D436AE933761D48744592401BCDA /* MAGDebugKit-dummy.m in Sources */,
 				1E06220407756F95B489031215D93010 /* RCDoubleTapDetector.m in Sources */,
 				C9643217C371CE948C25466534677692 /* RCTapDetector.m in Sources */,
-				AF3783E3F053B1923D4D9B9B79CAB4BF /* ReplaceMe.m in Sources */,
 				7393F4271DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
