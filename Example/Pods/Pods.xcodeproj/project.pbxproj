@@ -26,6 +26,8 @@
 		6E8043023021FA3BBF6C0789FA2CEE9D /* Pods-MAGDebugKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 11779387565E81C16BCC80CE2193F99F /* Pods-MAGDebugKit_Example-dummy.m */; };
 		6EDB42E9DE0E16101783BAA187CB677A /* UIView+MAGMore.h in Headers */ = {isa = PBXBuildFile; fileRef = BC6EF54093E499FF82036619BEFD6C41 /* UIView+MAGMore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		725F1B12F7D09E8B4DD1A2581307C785 /* EXTConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 50909287E02FDE43380B27FDAFF30218 /* EXTConcreteProtocol.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7393F4261DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4241DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h */; };
+		7393F4271DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4251DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m */; };
 		73A63F9D90E8740A3A6B62754D5F889E /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B67F22F2A85C157FC4A85954E18E2288 /* EXTRuntimeExtensions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		74066BE46CF6ABB3BA19F208D13F97D8 /* MAGCommonDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = B44B2658526B49A5F6F7B295A0C9D646 /* MAGCommonDefines.m */; };
 		7A847C06CC20A29612A5EABF2CB38083 /* MAGDebugKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -139,6 +141,8 @@
 		69DFDE0E89A1F5301F90C349785DC8D5 /* EXTScope.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXTScope.m; path = extobjc/EXTScope.m; sourceTree = "<group>"; };
 		6AB43636D0F649DB91B39B0E762176EA /* DebugOverview.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = DebugOverview.xib; sourceTree = "<group>"; };
 		6FEE31B1595441AC2FABE486896AE4E7 /* libextobjc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libextobjc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7393F4241DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MAGAnimatedBorder.h"; sourceTree = "<group>"; };
+		7393F4251DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MAGAnimatedBorder.m"; sourceTree = "<group>"; };
 		79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MAGDebugKit-umbrella.h"; sourceTree = "<group>"; };
 		80ED974E62310B2DFAD07622D3A5C333 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AA356E9AD44BBD760C6A75681C9097D /* MAGDebugKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MAGDebugKit.h; sourceTree = "<group>"; };
@@ -438,6 +442,8 @@
 				BBB397210ED2795E657217B9679BE917 /* RCDoubleTapDetector.m */,
 				D8E01A72EBC3798A9F20A780B2C21222 /* RCTapDetector.h */,
 				AE0B9FB7EB377C45CB3F0FCA6EC312E9 /* RCTapDetector.m */,
+				7393F4241DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h */,
+				7393F4251DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m */,
 			);
 			path = DebugOverview;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7393F4261DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */,
 				B4779A06F6F6C19C0AA27E83EFF58989 /* DebugOverview.h in Headers */,
 				9363562CCFEFF00610A4ACDC168208D0 /* DragDetector.h in Headers */,
 				7A847C06CC20A29612A5EABF2CB38083 /* MAGDebugKit-umbrella.h in Headers */,
@@ -787,6 +794,7 @@
 				1E06220407756F95B489031215D93010 /* RCDoubleTapDetector.m in Sources */,
 				C9643217C371CE948C25466534677692 /* RCTapDetector.m in Sources */,
 				AF3783E3F053B1923D4D9B9B79CAB4BF /* ReplaceMe.m in Sources */,
+				7393F4271DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
