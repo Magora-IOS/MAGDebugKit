@@ -30,6 +30,7 @@
 		7393F4271DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4251DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m */; };
 		7393F4361DC0859200EAEE21 /* MAGDebugPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4331DC0859200EAEE21 /* MAGDebugPanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7393F4371DC0859200EAEE21 /* MAGDebugPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4341DC0859200EAEE21 /* MAGDebugPanel.m */; };
+		7393F4381DC09F4500EAEE21 /* MAGDebugPanel.xib in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4351DC0859200EAEE21 /* MAGDebugPanel.xib */; };
 		73A63F9D90E8740A3A6B62754D5F889E /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B67F22F2A85C157FC4A85954E18E2288 /* EXTRuntimeExtensions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		74066BE46CF6ABB3BA19F208D13F97D8 /* MAGCommonDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = B44B2658526B49A5F6F7B295A0C9D646 /* MAGCommonDefines.m */; };
 		7A847C06CC20A29612A5EABF2CB38083 /* MAGDebugKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -771,9 +772,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7F2461A9D9724998746452861A76414F /* libextobjc */,
 				DC976CEA9148FF535FAC7B95A2615DF6 /* MAGDebugKit */,
 				F4FA06FF371C314424BBDE6BBE364635 /* MAGMatveevReusable */,
+				7F2461A9D9724998746452861A76414F /* libextobjc */,
 				7171ABA9F8489A6D17BD96A35B38E0C8 /* Pods-MAGDebugKit_Example */,
 				8BD63CD04D01BC2FC1D666AF9933316A /* Pods-MAGDebugKit_Tests */,
 			);
@@ -802,8 +803,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6524DB09D0C74BD96CC03EF67F1BB3C9 /* DebugOverview.m in Sources */,
-				7393F4371DC0859200EAEE21 /* MAGDebugPanel.m in Sources */,
 				CAAEADA410F4E512B9BF1C4E035E65F8 /* DebugOverview.xib in Sources */,
+				7393F4371DC0859200EAEE21 /* MAGDebugPanel.m in Sources */,
+				7393F4381DC09F4500EAEE21 /* MAGDebugPanel.xib in Sources */,
 				D1527299639DF4BBAE435A5B197B9DF2 /* DragDetector.m in Sources */,
 				C434D436AE933761D48744592401BCDA /* MAGDebugKit-dummy.m in Sources */,
 				1E06220407756F95B489031215D93010 /* RCDoubleTapDetector.m in Sources */,

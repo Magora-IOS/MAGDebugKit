@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, MAGDebugPanelAppearanceStyle) {
 + (instancetype)rightPanel;
 
 // Add panel to window, and setup gesture recognizer according to appearance style.
-- (void)integrate;
+- (void)integrateAboveWindow:(UIWindow *)appWindow;
+- (void)desintegrate;
 
 @end
