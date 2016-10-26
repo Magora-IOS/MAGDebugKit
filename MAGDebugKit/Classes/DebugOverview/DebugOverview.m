@@ -15,6 +15,7 @@
 #import "UIView+MAGMore.h"
 #import "NSObject+MAGMore.h"
 #import "MAGCommonDefines.h"
+#import "UIView+MAGAnimatedBorder.h"
 
 #import "extobjc.h"
 
@@ -129,7 +130,7 @@
             //        view.alpha = 0.3;
         }
         if ([view isKindOfClass:[UIImageView class]]) {
-            [view mag_setBorderColor:[UIColor redColor] borderWidth:1 cornerRadius:0];
+			[view mag_addAnimatedDashedBorderColor:[UIColor redColor] borderWidth:1 cornerRadius:0];
             //        view.backgroundColor = RGBA(255,210,249,1);
             //        view.alpha = 0.3;
         }
@@ -312,12 +313,12 @@
         
         __block CGColorRef borderColor = view.layer.borderColor;
         __block NSInteger borderWidth = view.layer.borderWidth;
-        
-        [view mag_setBorderColor:[UIColor orangeColor] borderWidth:5 cornerRadius:view.layer.cornerRadius];
+		
+        [view mag_addAnimatedDashedBorderColor:[UIColor orangeColor] borderWidth:5 cornerRadius:view.layer.cornerRadius];
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UIColor *color = [UIColor colorWithCGColor:borderColor];
-            [view mag_setBorderColor:color borderWidth:borderWidth cornerRadius:view.layer.cornerRadius];
+            [view mag_removeAnimatedDashedBorder];
         });
 
         NSString *className = NSStringFromClass([view class]);
