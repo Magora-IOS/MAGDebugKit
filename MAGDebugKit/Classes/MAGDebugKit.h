@@ -10,5 +10,6 @@
 #define MAGDebugKit_h
 
 #import "DebugOverview.h"
+#import "MAGDebugPanel.h"
 
 #endif /* MAGDebugKit_h */

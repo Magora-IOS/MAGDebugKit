@@ -4,6 +4,8 @@
 #import "DragDetector.h"
 #import "RCDoubleTapDetector.h"
 #import "RCTapDetector.h"
+#import "MAGDebugPanel.h"
+
 #import "MAGDebugKit.h"
 
 FOUNDATION_EXPORT double MAGDebugKitVersionNumber;

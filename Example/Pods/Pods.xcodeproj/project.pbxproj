@@ -28,6 +28,8 @@
 		725F1B12F7D09E8B4DD1A2581307C785 /* EXTConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 50909287E02FDE43380B27FDAFF30218 /* EXTConcreteProtocol.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		7393F4261DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4241DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h */; };
 		7393F4271DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4251DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m */; };
+		7393F4361DC0859200EAEE21 /* MAGDebugPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4331DC0859200EAEE21 /* MAGDebugPanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7393F4371DC0859200EAEE21 /* MAGDebugPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4341DC0859200EAEE21 /* MAGDebugPanel.m */; };
 		73A63F9D90E8740A3A6B62754D5F889E /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B67F22F2A85C157FC4A85954E18E2288 /* EXTRuntimeExtensions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		74066BE46CF6ABB3BA19F208D13F97D8 /* MAGCommonDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = B44B2658526B49A5F6F7B295A0C9D646 /* MAGCommonDefines.m */; };
 		7A847C06CC20A29612A5EABF2CB38083 /* MAGDebugKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -142,6 +144,9 @@
 		6FEE31B1595441AC2FABE486896AE4E7 /* libextobjc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libextobjc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7393F4241DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MAGAnimatedBorder.h"; sourceTree = "<group>"; };
 		7393F4251DC0690400EAEE21 /* UIView+MAGAnimatedBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MAGAnimatedBorder.m"; sourceTree = "<group>"; };
+		7393F4331DC0859200EAEE21 /* MAGDebugPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGDebugPanel.h; sourceTree = "<group>"; };
+		7393F4341DC0859200EAEE21 /* MAGDebugPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGDebugPanel.m; sourceTree = "<group>"; };
+		7393F4351DC0859200EAEE21 /* MAGDebugPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAGDebugPanel.xib; sourceTree = "<group>"; };
 		79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MAGDebugKit-umbrella.h"; sourceTree = "<group>"; };
 		80ED974E62310B2DFAD07622D3A5C333 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AA356E9AD44BBD760C6A75681C9097D /* MAGDebugKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MAGDebugKit.h; sourceTree = "<group>"; };
@@ -354,6 +359,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7393F4321DC0859200EAEE21 /* DebugPanel */ = {
+			isa = PBXGroup;
+			children = (
+				7393F4331DC0859200EAEE21 /* MAGDebugPanel.h */,
+				7393F4341DC0859200EAEE21 /* MAGDebugPanel.m */,
+				7393F4351DC0859200EAEE21 /* MAGDebugPanel.xib */,
+			);
+			path = DebugPanel;
+			sourceTree = "<group>";
+		};
 		765C3D90D19EA6A195CFBCFB9D1AC122 /* NSMethodSignature+EXT */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +466,7 @@
 			children = (
 				8AA356E9AD44BBD760C6A75681C9097D /* MAGDebugKit.h */,
 				C00271DAFB62B7E510D020B144BD11DB /* DebugOverview */,
+				7393F4321DC0859200EAEE21 /* DebugPanel */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -583,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7393F4261DC0690400EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */,
+				7393F4361DC0859200EAEE21 /* MAGDebugPanel.h in Headers */,
 				B4779A06F6F6C19C0AA27E83EFF58989 /* DebugOverview.h in Headers */,
 				9363562CCFEFF00610A4ACDC168208D0 /* DragDetector.h in Headers */,
 				7A847C06CC20A29612A5EABF2CB38083 /* MAGDebugKit-umbrella.h in Headers */,
@@ -785,6 +802,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6524DB09D0C74BD96CC03EF67F1BB3C9 /* DebugOverview.m in Sources */,
+				7393F4371DC0859200EAEE21 /* MAGDebugPanel.m in Sources */,
 				CAAEADA410F4E512B9BF1C4E035E65F8 /* DebugOverview.xib in Sources */,
 				D1527299639DF4BBAE435A5B197B9DF2 /* DragDetector.m in Sources */,
 				C434D436AE933761D48744592401BCDA /* MAGDebugKit-dummy.m in Sources */,
