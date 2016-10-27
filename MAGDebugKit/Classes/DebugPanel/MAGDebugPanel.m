@@ -91,7 +91,7 @@
 
 - (void)stickToNearestEdge {
 	CGFloat finalPosition = NAN;
-	if (self.window.frame.origin.x > self.window.frame.size.width/2) {
+	if (self.window.frame.origin.x < self.window.frame.size.width/2) {
 		finalPosition = 0;
 	} else {
 		finalPosition = self.window.frame.size.width;
