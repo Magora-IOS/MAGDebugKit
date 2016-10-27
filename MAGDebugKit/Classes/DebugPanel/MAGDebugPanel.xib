@@ -20,20 +20,6 @@
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SBo-18-VQG">
                         <frame key="frameInset"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9j-bC-kUZ">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="VKh-6Q-BxO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="Close"/>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="c9j-bC-kUZ" firstAttribute="leading" secondItem="SBo-18-VQG" secondAttribute="leading" id="aPa-5b-gpI"/>
-                            <constraint firstAttribute="bottom" secondItem="c9j-bC-kUZ" secondAttribute="bottom" id="nl5-hR-lEu"/>
-                            <constraint firstAttribute="trailing" secondItem="c9j-bC-kUZ" secondAttribute="trailing" id="o1s-dY-N6U"/>
-                        </constraints>
                     </view>
                     <blurEffect style="light"/>
                 </visualEffectView>
@@ -45,6 +31,7 @@
                 <constraint firstItem="xm1-uf-ezX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TVl-WE-4qb"/>
                 <constraint firstAttribute="trailing" secondItem="xm1-uf-ezX" secondAttribute="trailing" id="Ttj-56-TEF"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>

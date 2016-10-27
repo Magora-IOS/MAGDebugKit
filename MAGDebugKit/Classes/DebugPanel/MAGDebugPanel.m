@@ -37,14 +37,18 @@
 #pragma mark - Public methods
 
 - (void)integrateAboveWindow:(UIWindow *)appWindow {
+	UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self];
+
 	CGRect screenRect = [UIScreen mainScreen].bounds;
 	screenRect.origin.x = screenRect.size.width;
 	self.window = [[UIWindow alloc] initWithFrame:screenRect];
-	self.window.rootViewController = self;
+	self.window.rootViewController = nc;
 	self.window.windowLevel = appWindow.windowLevel + 1;
 	[self.window makeKeyAndVisible];
 	
 	[self setupAppearanceFromWindow:appWindow];
+	
+	[self setupCloseButton];
 }
 
 #pragma mark - UI actions
@@ -62,6 +66,10 @@
 	} else {
 		[self stickToNearestEdge];
 	}
+}
+
+- (void)closeButtonTap:(id)sender {
+	[self hideAnimated:YES];
 }
 
 #pragma mark - Private methods
@@ -103,6 +111,26 @@
 	[UIView animateWithDuration:0.25 animations:^{
 			self.window.frame = finalRect;
 		}];
+}
+
+- (void)hideAnimated:(BOOL)animated {
+	CGRect finalRect = self.window.frame;
+	finalRect.origin.x = self.window.frame.size.width;
+
+	if (animated) {
+		[UIView animateWithDuration:0.25 animations:^{
+				self.window.frame = finalRect;
+			}];
+	} else {
+		self.window.frame = finalRect;	
+	}
+}
+
+- (void)setupCloseButton {
+	UIBarButtonItem *closeButton = [[UIBarButtonItem alloc]
+		initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+		target:self action:@selector(closeButtonTap:)];
+	self.navigationItem.leftBarButtonItem = closeButton;
 }
 
 @end
