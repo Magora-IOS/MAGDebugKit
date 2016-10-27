@@ -7,9 +7,13 @@ typedef NS_ENUM(NSUInteger, MAGDebugPanelAppearanceStyle) {
 };
 
 
+@class MAGMenuVC;
+
+
 @interface MAGDebugPanel : UIViewController
 
 @property (nonatomic, readonly) MAGDebugPanelAppearanceStyle appearanceStyle;
+@property (nonatomic, readonly) MAGMenuVC *menu;
 
 // Must be initialized with predefined appearance style.
 - (instancetype)init NS_UNAVAILABLE;
