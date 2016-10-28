@@ -154,7 +154,6 @@
 		7393F4351DC0859200EAEE21 /* MAGDebugPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAGDebugPanel.xib; sourceTree = "<group>"; };
 		7393F43A1DC2247800EAEE21 /* MAGMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGMenuVC.h; sourceTree = "<group>"; };
 		7393F43B1DC2247800EAEE21 /* MAGMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGMenuVC.m; sourceTree = "<group>"; };
-		7393F43C1DC2247800EAEE21 /* MAGMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAGMenuVC.xib; sourceTree = "<group>"; };
 		7393F43F1DC326A500EAEE21 /* MAGMenuAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGMenuAction.h; sourceTree = "<group>"; };
 		7393F4401DC326A500EAEE21 /* MAGMenuAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGMenuAction.m; sourceTree = "<group>"; };
 		79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MAGDebugKit-umbrella.h"; sourceTree = "<group>"; };
@@ -384,7 +383,6 @@
 			children = (
 				7393F43A1DC2247800EAEE21 /* MAGMenuVC.h */,
 				7393F43B1DC2247800EAEE21 /* MAGMenuVC.m */,
-				7393F43C1DC2247800EAEE21 /* MAGMenuVC.xib */,
 				7393F43F1DC326A500EAEE21 /* MAGMenuAction.h */,
 				7393F4401DC326A500EAEE21 /* MAGMenuAction.m */,
 			);
