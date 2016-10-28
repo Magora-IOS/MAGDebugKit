@@ -1,16 +1,15 @@
 #import "MAGDebugPanel.h"
-#import "MAGMenuVC.h"
 #import "MAGDebugOverviewSettingsVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
+#import <Bohr/Bohr.h>
 
 
 @interface MAGDebugPanel ()
 
 @property (nonatomic) MAGDebugPanelAppearanceStyle appearanceStyle;
 @property (nonatomic) UIWindow *window;
-@property (nonatomic) MAGMenuVC *menu;
 
 @end
 
@@ -22,7 +21,7 @@
 - (instancetype)initWithAppearanceStyle:(MAGDebugPanelAppearanceStyle)appearanceStyle {
 	NSAssert(appearanceStyle != MAGDebugPanelAppearanceStyleUnknown, @"Appearance style must be defined.");
 
-	self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle bundleForClass:self.class]];
+	self = [super init];
 	if (!self) {
 		return nil;
 	}
@@ -144,30 +143,31 @@
 }
 
 - (void)setupMenuVC {
-	self.menu = [[MAGMenuVC alloc] init];
-	[self.view addSubview:self.menu.view];
-	[self addChildViewController:self.menu];
-	[self.menu didMoveToParentViewController:self];
-	
-	[self.menu.view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self.view);
-		}];
 	[self setupMenuActions];
 }
 
 - (void)setupMenuActions {
-	[self setupOverviewSettingsItem];
+	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
+		handler:^(BOTableViewSection *section) {
+			[self setupOverviewSettingsItemInSection:section];
+			[self setupRentgenSettingsItemInSection:section];
+		}]];
 }
 
-- (void)setupOverviewSettingsItem {
-	@weakify(self);
-	[self.menu addBlockAction:^{
-			@strongify(self);
-			MAGDebugOverviewSettingsVC *vc = [[MAGDebugOverviewSettingsVC alloc]
-				initWithNibName:NSStringFromClass([MAGDebugOverviewSettingsVC class])
-				bundle:[NSBundle bundleForClass:[MAGDebugOverviewSettingsVC class]]];
-			[self.navigationController pushViewController:vc animated:YES];
-		} withTitle:@"Overview settings"];
+- (void)setupOverviewSettingsItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOTableViewCell cellWithTitle:@"Overview" key:nil
+		handler:^(BOTableViewCell *cell) {
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.destinationViewController = [[MAGDebugOverviewSettingsVC alloc] init];
+		}]];
+}
+
+- (void)setupRentgenSettingsItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOTableViewCell cellWithTitle:@"Rentgen mode" key:nil
+		handler:^(BOTableViewCell *cell) {
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.destinationViewController = [[MAGDebugOverviewSettingsVC alloc] init];
+		}]];
 }
 
 @end

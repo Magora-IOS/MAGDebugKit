@@ -1,5 +1,5 @@
-#import <UIKit/UIKit.h>
+#import <Bohr/Bohr.h>
 
 
-@interface MAGDebugOverviewSettingsVC : UIViewController
+@interface MAGDebugOverviewSettingsVC : BOTableViewController
 @end
