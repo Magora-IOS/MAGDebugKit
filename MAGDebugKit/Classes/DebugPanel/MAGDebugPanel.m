@@ -1,7 +1,9 @@
 #import "MAGDebugPanel.h"
 #import "MAGMenuVC.h"
+#import "MAGDebugOverviewSettingsVC.h"
 
 #import <Masonry/Masonry.h>
+#import <libextobjc/extobjc.h>
 
 
 @interface MAGDebugPanel ()
@@ -37,18 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.menu = [[MAGMenuVC alloc] init];
-	[self.view addSubview:self.menu.view];
-	[self addChildViewController:self.menu];
-	[self.menu didMoveToParentViewController:self];
-	
-	[self.menu.view mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self.view);
-		}];
-
-	[self.menu addBlockAction:^{
-		NSLog(@"ABC ABC");
-	} withTitle:@"ABC"];
+	self.title = @"Settings";
+	[self setupMenuVC];
 }
 
 #pragma mark - Public methods
@@ -149,6 +141,33 @@
 		initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 		target:self action:@selector(closeButtonTap:)];
 	self.navigationItem.leftBarButtonItem = closeButton;
+}
+
+- (void)setupMenuVC {
+	self.menu = [[MAGMenuVC alloc] init];
+	[self.view addSubview:self.menu.view];
+	[self addChildViewController:self.menu];
+	[self.menu didMoveToParentViewController:self];
+	
+	[self.menu.view mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self.view);
+		}];
+	[self setupMenuActions];
+}
+
+- (void)setupMenuActions {
+	[self setupOverviewSettingsItem];
+}
+
+- (void)setupOverviewSettingsItem {
+	@weakify(self);
+	[self.menu addBlockAction:^{
+			@strongify(self);
+			MAGDebugOverviewSettingsVC *vc = [[MAGDebugOverviewSettingsVC alloc]
+				initWithNibName:NSStringFromClass([MAGDebugOverviewSettingsVC class])
+				bundle:[NSBundle bundleForClass:[MAGDebugOverviewSettingsVC class]]];
+			[self.navigationController pushViewController:vc animated:YES];
+		} withTitle:@"Overview settings"];
 }
 
 @end
