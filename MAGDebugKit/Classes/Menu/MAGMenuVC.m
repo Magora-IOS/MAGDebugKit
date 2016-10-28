@@ -70,6 +70,7 @@ static NSString *const cellReuseID = @"StandardCell";
 	MAGMenuActionBlock *action = [[MAGMenuActionBlock alloc] init];
 	action.block = actionBlock;
 	action.title = actionTitle;
+	action.enabled = YES;
 	
 	[self addAction:action];
 	[self.tableView reloadData];
@@ -99,14 +100,24 @@ static NSString *const cellReuseID = @"StandardCell";
 	cell.textLabel.text = action.title;
 	cell.detailTextLabel.text = action.subtitle;
 	
+	cell.textLabel.textColor = action.enabled ? [UIColor blackColor] : [UIColor lightGrayColor];
+	cell.detailTextLabel.textColor = action.enabled ? [UIColor blackColor] : [UIColor lightGrayColor];
+	
 	return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+	id<MAGMenuAction> action = self.actions[indexPath.row];
+	return action.enabled;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	id<MAGMenuAction> action = self.actions[indexPath.row];
-	[action perform];
+	if (action.enabled) {
+		[action perform];
+	}
 }
 
 @end
