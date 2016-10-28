@@ -2,6 +2,7 @@
 
 #import "DebugOverview.h"
 #import "DragDetector.h"
+#import "MAGDebugOverviewSettingsVC.h"
 #import "RCDoubleTapDetector.h"
 #import "RCTapDetector.h"
 #import "UIView+MAGAnimatedBorder.h"

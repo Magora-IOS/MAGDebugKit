@@ -1,4 +1,5 @@
 PODS:
+  - Bohr (3.0.0)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
     - libextobjc/EXTConcreteProtocol (= 0.4.1)
@@ -34,7 +35,8 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
-  - MAGDebugKit (0.1.1):
+  - MAGDebugKit (0.1.2):
+    - Bohr (= 3.0.0)
     - libextobjc (= 0.4.1)
     - MAGMatveevReusable (= 0.1.6)
     - Masonry (= 1.0.2)
@@ -49,8 +51,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Bohr: 17b150766e54e1fb8ff417d85b830c7caafa8b4a
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  MAGDebugKit: 6c94bd1ff70d53974036f22b6d88ebdaa2f4c5dd
+  MAGDebugKit: 72728dc79e6f54575742119f2add2f46e4ef65cf
   MAGMatveevReusable: ae165bb0d72af8087da427ee0ec5ae9e42e2eba6
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
 
