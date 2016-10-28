@@ -1,11 +1,4 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
-
-#import "UIView+MAGMore.h"
-#import "NSObject+MAGMore.h"
-#import "MAGCommonDefines.h"
-
-#import "extobjc.h"
-
 #endif
 

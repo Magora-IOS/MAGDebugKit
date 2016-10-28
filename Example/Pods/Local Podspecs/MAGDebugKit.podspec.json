@@ -1,6 +1,6 @@
 {
   "name": "MAGDebugKit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "Developers Kit for convenient testing and QA.",
   "description": "Developers Kit for convenient iOS App testing and QA.",
   "homepage": "https://github.com/Magora-IOS/MAGDebugKit",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/Magora-IOS/MAGDebugKit.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "8.0"
@@ -27,6 +27,9 @@
     ],
     "libextobjc": [
       "0.4.1"
+    ],
+    "Masonry": [
+      "1.0.2"
     ]
   }
 }

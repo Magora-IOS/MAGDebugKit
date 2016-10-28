@@ -34,22 +34,25 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
-  - MAGDebugKit (0.1.0):
+  - MAGDebugKit (0.1.1):
     - libextobjc (= 0.4.1)
     - MAGMatveevReusable (= 0.1.6)
+    - Masonry (= 1.0.2)
   - MAGMatveevReusable (0.1.6)
+  - Masonry (1.0.2)
 
 DEPENDENCIES:
   - MAGDebugKit (from `../`)
 
 EXTERNAL SOURCES:
   MAGDebugKit:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  MAGDebugKit: 0128bbc4812da4b06bcf862e50c47809941d2082
+  MAGDebugKit: 6c94bd1ff70d53974036f22b6d88ebdaa2f4c5dd
   MAGMatveevReusable: ae165bb0d72af8087da427ee0ec5ae9e42e2eba6
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
 
 PODFILE CHECKSUM: 34c8267daa4562d6e685eebaf2b0a8bd12688700
 

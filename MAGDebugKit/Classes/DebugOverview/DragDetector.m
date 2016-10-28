@@ -8,6 +8,8 @@
 
 
 #import "DragDetector.h"
+#import "MAGCommonDefines.h"
+
 
 @interface DragDetector () <UIGestureRecognizerDelegate> {
     UILongPressGestureRecognizer *_touchDownRecognizer;
