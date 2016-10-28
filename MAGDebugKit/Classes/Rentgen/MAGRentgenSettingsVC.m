@@ -1,5 +1,9 @@
 #import "MAGRentgenSettingsVC.h"
 #import "MAGDebugPanelSettingsKeys.h"
+#import "MAGRentgen.h"
+
+#import <Bohr/BOTableViewCell+Subclass.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 
 @implementation MAGRentgenSettingsVC
@@ -26,6 +30,13 @@
 	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Enabled"
 		key:MAGDebugPanelSettingKeyRentgenEnabled
 		handler:^(BOSwitchTableViewCell *cell) {
+				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					if (enabled.boolValue) {
+						[[MAGRentgen sharedInstance] start];
+					} else {
+						[[MAGRentgen sharedInstance] stop];
+					}
+				}];
 			}]];
 }
 
