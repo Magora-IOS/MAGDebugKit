@@ -33,6 +33,8 @@
 		7393F4381DC09F4500EAEE21 /* MAGDebugPanel.xib in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4351DC0859200EAEE21 /* MAGDebugPanel.xib */; };
 		7393F43D1DC2247800EAEE21 /* MAGMenuVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F43A1DC2247800EAEE21 /* MAGMenuVC.h */; };
 		7393F43E1DC2247800EAEE21 /* MAGMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F43B1DC2247800EAEE21 /* MAGMenuVC.m */; };
+		7393F4411DC326A500EAEE21 /* MAGMenuAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F43F1DC326A500EAEE21 /* MAGMenuAction.h */; };
+		7393F4421DC326A500EAEE21 /* MAGMenuAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4401DC326A500EAEE21 /* MAGMenuAction.m */; };
 		73A63F9D90E8740A3A6B62754D5F889E /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B67F22F2A85C157FC4A85954E18E2288 /* EXTRuntimeExtensions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		74066BE46CF6ABB3BA19F208D13F97D8 /* MAGCommonDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = B44B2658526B49A5F6F7B295A0C9D646 /* MAGCommonDefines.m */; };
 		7A847C06CC20A29612A5EABF2CB38083 /* MAGDebugKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -153,6 +155,8 @@
 		7393F43A1DC2247800EAEE21 /* MAGMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGMenuVC.h; sourceTree = "<group>"; };
 		7393F43B1DC2247800EAEE21 /* MAGMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGMenuVC.m; sourceTree = "<group>"; };
 		7393F43C1DC2247800EAEE21 /* MAGMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAGMenuVC.xib; sourceTree = "<group>"; };
+		7393F43F1DC326A500EAEE21 /* MAGMenuAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGMenuAction.h; sourceTree = "<group>"; };
+		7393F4401DC326A500EAEE21 /* MAGMenuAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGMenuAction.m; sourceTree = "<group>"; };
 		79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MAGDebugKit-umbrella.h"; sourceTree = "<group>"; };
 		80ED974E62310B2DFAD07622D3A5C333 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AA356E9AD44BBD760C6A75681C9097D /* MAGDebugKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MAGDebugKit.h; sourceTree = "<group>"; };
@@ -381,6 +385,8 @@
 				7393F43A1DC2247800EAEE21 /* MAGMenuVC.h */,
 				7393F43B1DC2247800EAEE21 /* MAGMenuVC.m */,
 				7393F43C1DC2247800EAEE21 /* MAGMenuVC.xib */,
+				7393F43F1DC326A500EAEE21 /* MAGMenuAction.h */,
+				7393F4401DC326A500EAEE21 /* MAGMenuAction.m */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -622,6 +628,7 @@
 				9363562CCFEFF00610A4ACDC168208D0 /* DragDetector.h in Headers */,
 				7A847C06CC20A29612A5EABF2CB38083 /* MAGDebugKit-umbrella.h in Headers */,
 				956A225236F890D3EB27CB8E46303FC8 /* MAGDebugKit.h in Headers */,
+				7393F4411DC326A500EAEE21 /* MAGMenuAction.h in Headers */,
 				D6327A3C80C8B005757DF54A913086D9 /* RCDoubleTapDetector.h in Headers */,
 				C7D8ACA084A60110CF23488823519505 /* RCTapDetector.h in Headers */,
 			);
@@ -822,6 +829,7 @@
 				6524DB09D0C74BD96CC03EF67F1BB3C9 /* DebugOverview.m in Sources */,
 				7393F43E1DC2247800EAEE21 /* MAGMenuVC.m in Sources */,
 				CAAEADA410F4E512B9BF1C4E035E65F8 /* DebugOverview.xib in Sources */,
+				7393F4421DC326A500EAEE21 /* MAGMenuAction.m in Sources */,
 				7393F4371DC0859200EAEE21 /* MAGDebugPanel.m in Sources */,
 				7393F4381DC09F4500EAEE21 /* MAGDebugPanel.xib in Sources */,
 				D1527299639DF4BBAE435A5B197B9DF2 /* DragDetector.m in Sources */,

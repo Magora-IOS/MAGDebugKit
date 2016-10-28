@@ -1,11 +1,13 @@
 #import <UIKit/UIKit.h>
 
 
-@interface MAGMenuVC : UIViewController
+@protocol MAGMenuAction;
 
-- (void)addAction:(void(^)(void))action withTitle:(NSString *)actionTitle;
-- (void)addAction:(void(^)(void))action withTitle:(NSString *)actionTitle description:(NSString *)description;
-- (void)addSubscreen:(UIViewController *)subscreen withTitle:(NSString *)actionTitle;
-- (void)addSubscreen:(UIViewController *)subscreen withTitle:(NSString *)actionTitle description:(NSString *)description;
+
+@interface MAGMenuVC : UITableViewController
+
+- (void)addAction:(id<MAGMenuAction>)action;
+- (id<MAGMenuAction>)addBlockAction:(void(^)(void))actionBlock withTitle:(NSString *)actionTitle;
+- (id<MAGMenuAction>)addSubscreen:(UIViewController *)subscreen withTitle:(NSString *)actionTitle;
 
 @end
