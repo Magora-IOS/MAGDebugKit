@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MAGDebugKit'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'Developers Kit for convenient testing and QA.'
 
 # This description is used to generate tags and improve search results.
@@ -42,5 +42,6 @@ Pod::Spec.new do |s|
   s.dependency 'libextobjc', '0.4.1'
   s.dependency 'Masonry', '1.0.2'
   s.dependency 'Bohr', '3.0.0'
+  s.dependency 'ReactiveCocoa', '~> 2.5'
 
 end
