@@ -13,7 +13,6 @@
 		099B2794613417BABABB84EEA97D79D5 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F15A8D7905CC34D0E0194945C688B817 /* MASViewAttribute.m */; };
 		0CB380D43485EDA9047055D62156A35B /* NSInvocation+EXT.h in Headers */ = {isa = PBXBuildFile; fileRef = 967AB749CE1007FB2867F8A804E48C97 /* NSInvocation+EXT.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F6723C1CB6E9E4B191109B3B31B664F /* MASLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 46E36649C6BD0A3E776847826303DA49 /* MASLayoutConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		105E522E38A0CCDB6C2F3D8034B27FB1 /* RCDoubleTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2B95FE151309F97FE1E1A817B25242 /* RCDoubleTapDetector.m */; };
 		10FD2A777CAEEE52E5A1A8E4D5EE3C80 /* EXTSafeCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F6BAB63C243D3908E51BBFA62FFE0C9 /* EXTSafeCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		111369F307EBCC29CF962581EE4B915A /* BODateTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = D6349A3B595B762281A2BF8A42143332 /* BODateTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		130FFA546258FB231075E5136F05BE42 /* EXTSelectorChecking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E75D55A96FCDF7D9382C9CF46F02AC8 /* EXTSelectorChecking.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -26,12 +25,10 @@
 		224C7C297FA8939C8CD6B05159C85A65 /* BOTableViewController+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756F16596917A5D4ADB2880174396CB /* BOTableViewController+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2303F8456CE0C15093331B9A26A1A149 /* BONumberTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A59F0C3C608CEF857831C7A11CB57BA /* BONumberTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24152E8939DC23FF0E16606E61CD1134 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F76D31EF434442D4D37EBECF424F6809 /* Foundation.framework */; };
-		26EEA16FF75F34794AB510078AF0D8E9 /* UIView+MAGAnimatedBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 89F6D457B8C9383A11803C4B5F5F081D /* UIView+MAGAnimatedBorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EF3BAA7DFF680766A0566EC69A457F /* BOTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BD7C5377109C0C5D3413E3B0062F3811 /* BOTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28A6A493151E77F42349D315CF72C362 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B809F3F397CE0FAE96A7AAC05DA7B81F /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		29B01CF5AEE565061659F09F127C028E /* UIView+MAGMore.h in Headers */ = {isa = PBXBuildFile; fileRef = 507F94742516400C5816D95173A1691F /* UIView+MAGMore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29BB15506FE9EE377ECAEF6284458124 /* Bohr.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B4CBF472EABA0BC60ABDE32D7076BC8 /* Bohr.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2A479EB0F11CA3939BFD9C464BA4F142 /* DragDetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BB6F4E4021950C1749263328320B5BB /* DragDetector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C68B823AEAF63BF92EB03C6289FA7F7 /* MAGDebugKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3238FC5479B0D69C3C16B0A99824023B /* BOTableViewCell+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B524F4A2123A4468B7515EBAF88552E /* BOTableViewCell+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3307B19ADFC7ADF7C11574A76F1E0918 /* MAGDebugPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76789E21932E7F6E3D0369E75A3485F7 /* MAGDebugPanel.m */; };
@@ -65,6 +62,14 @@
 		714804AE0C1CB6A472B78F8DFD2F7037 /* MASViewConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = E6339267036EBC889E14766F98A664BA /* MASViewConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		720D53F482EADB3747DC6C93723E6F06 /* BOTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAEAFF9095F0548E01049D03643A6BC /* BOTextTableViewCell.m */; };
 		725F1B12F7D09E8B4DD1A2581307C785 /* EXTConcreteProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B14E1EAA84AB5810B430EBB781B33733 /* EXTConcreteProtocol.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7393F4581DC35F7900EAEE21 /* DragDetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4501DC35F7900EAEE21 /* DragDetector.h */; };
+		7393F4591DC35F7900EAEE21 /* DragDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4511DC35F7900EAEE21 /* DragDetector.m */; };
+		7393F45A1DC35F7900EAEE21 /* RCDoubleTapDetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4521DC35F7900EAEE21 /* RCDoubleTapDetector.h */; };
+		7393F45B1DC35F7900EAEE21 /* RCDoubleTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4531DC35F7900EAEE21 /* RCDoubleTapDetector.m */; };
+		7393F45C1DC35F7900EAEE21 /* RCTapDetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4541DC35F7900EAEE21 /* RCTapDetector.h */; };
+		7393F45D1DC35F7900EAEE21 /* RCTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4551DC35F7900EAEE21 /* RCTapDetector.m */; };
+		7393F45E1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4561DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h */; };
+		7393F45F1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4571DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m */; };
 		73A63F9D90E8740A3A6B62754D5F889E /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1B667C4EEB0CA48F023770ED2EAD6 /* EXTRuntimeExtensions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		7558160AE98FB283CED3C9B51086710B /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE17201642708B557EF936F8E91A2FA /* Masonry.framework */; };
 		770E66540AA9F183DD74B10B42C6FC1D /* UILabel+DatePickerCustomization.h in Headers */ = {isa = PBXBuildFile; fileRef = 28E27E721F218A66D7C220BB228B1F72 /* UILabel+DatePickerCustomization.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -84,7 +89,6 @@
 		9703B0FB4D9632B3C0BAC85B844FCE2D /* NSMethodSignature+EXT.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D1060A0376AB5F215F4C59B47E1934 /* NSMethodSignature+EXT.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		9B35327FE32B7F7A251DF7218DD26129 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F76D31EF434442D4D37EBECF424F6809 /* Foundation.framework */; };
 		9BFBA4CF3A2CAED92B10CAE4888B2762 /* MAGCommonDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 227A256AC6AE305125C634CB5CBDA41E /* MAGCommonDefines.m */; };
-		A0212B885319C825C7B5987A610AD328 /* RCTapDetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 72E68FB9679A7DD7C13364D1A77D712F /* RCTapDetector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A39A96B2DD523485E5268A426723A549 /* MAGCommonDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 4044133618AC6E53F9797299BF952C82 /* MAGCommonDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A493ECDCEC4EBE70989D5D1FC716D98F /* MAGDebugOverviewSettingsVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 00E0B80ABF278B71562A1122D0DEFB6D /* MAGDebugOverviewSettingsVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A508AEFF0B20726D997DBCD7B4E1E83E /* BONumberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FFE8E3152A5FA08192AEB518DA657F /* BONumberTableViewCell.m */; };
@@ -102,9 +106,7 @@
 		B53D8C01C4AB9A55D558A253E1160178 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 82164D837AB605C3C938274DCA7E02DD /* MASConstraint.m */; };
 		B5D0C892C4636E7C724B8659E43C912E /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A094B20284F2F0F1A5C1CFB5652F83A /* NSArray+MASAdditions.m */; };
 		B6DE6350509BF53BDFA4A6B9EA27A234 /* BOTableViewSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 148CE48EE12AF6010238CBFB1FA2CFCD /* BOTableViewSection.m */; };
-		B7B1368BEB19EFAE21FAE144F99CF580 /* UIView+MAGAnimatedBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DAFADF9FCF4A648878F3925116F7A /* UIView+MAGAnimatedBorder.m */; };
 		B880A110CF5548313EC5E79894DDAD47 /* MASViewAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AC4ED11882404D4FF1D398FFA17754 /* MASViewAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8B3E4DD8AA0465C2BBF165CCEB7697F /* DragDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 933C1C0101908478B93C5C3914A58241 /* DragDetector.m */; };
 		B8D924627F1995BB0F1E82F3C89D5F1A /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 622EB290AC1BCDC4FEC7E04A30D1E559 /* EXTScope.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B91D4A3B918B6E91BF0B876C754B3385 /* DebugOverview.xib in Sources */ = {isa = PBXBuildFile; fileRef = FD07A092DE20FC0231C873139C54D1A7 /* DebugOverview.xib */; };
 		BB3B536B2C93A99724060672F5B6056D /* MAGDebugOverviewSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2A4FA0C6278323D525970A2A34F8D2 /* MAGDebugOverviewSettingsVC.m */; };
@@ -126,8 +128,6 @@
 		E732D5B48FD92BF13A86139C98D048C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F14367E7A1A0AB10DCD78EE2ED69F6 /* UIKit.framework */; };
 		EA443A171F8FA181413A80CD9DD63C16 /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 11B595996C2B85607D27D23E1283417C /* metamacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EABE2B435D1478C0545CC6C0418E2372 /* EXTScope.m in Sources */ = {isa = PBXBuildFile; fileRef = E17F29381398EA43516E7A0CD0926D7A /* EXTScope.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		EAE070E885980B6DE86939C460C0D2A4 /* RCDoubleTapDetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 1382EC5F0C8F4D9105BD1E00A477D866 /* RCDoubleTapDetector.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED47E51D124CAE34AC5614277BC2CF93 /* RCTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB75FC773A0D4A477D849A1FC2A42 /* RCTapDetector.m */; };
 		EE28666388C5509C205CCC5941DD2A63 /* BOTimeTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A8E4533AC1A118FAFE72D1730A23D8F2 /* BOTimeTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE8BA997A5878317BB8F3CFC57DEAED6 /* BOOptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A211000221F81FB1A1A79D22BBDF2244 /* BOOptionTableViewCell.m */; };
 		EEFCC0555FDA17D43B8F47B571D565C9 /* MASConstraint+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 81B5EACEE924CCC11B439A1AB6CE40AF /* MASConstraint+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -228,11 +228,9 @@
 		1182AA7695DC46E13A05A2084DF37AC6 /* EXTConcreteProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXTConcreteProtocol.h; path = extobjc/EXTConcreteProtocol.h; sourceTree = "<group>"; };
 		11B595996C2B85607D27D23E1283417C /* metamacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = metamacros.h; path = extobjc/metamacros.h; sourceTree = "<group>"; };
 		137FB2155B87135C270BD4AE92C4951C /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		1382EC5F0C8F4D9105BD1E00A477D866 /* RCDoubleTapDetector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCDoubleTapDetector.h; sourceTree = "<group>"; };
 		13C81A6FC46C14C55645F0A73064BF58 /* MAGMatveevReusable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MAGMatveevReusable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		148CE48EE12AF6010238CBFB1FA2CFCD /* BOTableViewSection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BOTableViewSection.m; path = Bohr/BOTableViewSection.m; sourceTree = "<group>"; };
 		162986CD9DAFE787A51F2D3B83B0D80F /* EXTKeyPathCoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXTKeyPathCoding.h; path = extobjc/EXTKeyPathCoding.h; sourceTree = "<group>"; };
-		174DAFADF9FCF4A648878F3925116F7A /* UIView+MAGAnimatedBorder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+MAGAnimatedBorder.m"; sourceTree = "<group>"; };
 		17AC4ED11882404D4FF1D398FFA17754 /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
 		186D8ED20637819993863662411194F3 /* NSInvocation+Copy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+Copy.m"; path = "Bohr/NSInvocation+Copy.m"; sourceTree = "<group>"; };
 		1A577F3E73FC1DBFD6C745D21F47CEA4 /* libextobjc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libextobjc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,7 +243,6 @@
 		2756F16596917A5D4ADB2880174396CB /* BOTableViewController+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "BOTableViewController+Private.h"; path = "Bohr/BOTableViewController+Private.h"; sourceTree = "<group>"; };
 		28E27E721F218A66D7C220BB228B1F72 /* UILabel+DatePickerCustomization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UILabel+DatePickerCustomization.h"; path = "Bohr/UILabel+DatePickerCustomization.h"; sourceTree = "<group>"; };
 		2A67025052E2BC16914D6F1A2BAAC9EE /* BOSetting+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "BOSetting+Private.h"; path = "Bohr/BOSetting+Private.h"; sourceTree = "<group>"; };
-		2B2EB75FC773A0D4A477D849A1FC2A42 /* RCTapDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTapDetector.m; sourceTree = "<group>"; };
 		2B4CBF472EABA0BC60ABDE32D7076BC8 /* Bohr.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Bohr.h; path = Bohr/Bohr.h; sourceTree = "<group>"; };
 		2B524F4A2123A4468B7515EBAF88552E /* BOTableViewCell+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "BOTableViewCell+Private.h"; path = "Bohr/BOTableViewCell+Private.h"; sourceTree = "<group>"; };
 		2BAEAFF9095F0548E01049D03643A6BC /* BOTextTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BOTextTableViewCell.m; path = Bohr/BOTextTableViewCell.m; sourceTree = "<group>"; };
@@ -292,28 +289,32 @@
 		718369E8D710A2E8210ADA48D1F266B5 /* Masonry.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.xcconfig; sourceTree = "<group>"; };
 		71E432C65E65B4E1B3AE338A6F633427 /* BOTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BOTableViewController.m; path = Bohr/BOTableViewController.m; sourceTree = "<group>"; };
 		728D9D62E72497BD67ADF48722EDA01A /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
-		72E68FB9679A7DD7C13364D1A77D712F /* RCTapDetector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTapDetector.h; sourceTree = "<group>"; };
+		7393F4501DC35F7900EAEE21 /* DragDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragDetector.h; sourceTree = "<group>"; };
+		7393F4511DC35F7900EAEE21 /* DragDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragDetector.m; sourceTree = "<group>"; };
+		7393F4521DC35F7900EAEE21 /* RCDoubleTapDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDoubleTapDetector.h; sourceTree = "<group>"; };
+		7393F4531DC35F7900EAEE21 /* RCDoubleTapDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDoubleTapDetector.m; sourceTree = "<group>"; };
+		7393F4541DC35F7900EAEE21 /* RCTapDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTapDetector.h; sourceTree = "<group>"; };
+		7393F4551DC35F7900EAEE21 /* RCTapDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTapDetector.m; sourceTree = "<group>"; };
+		7393F4561DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MAGAnimatedBorder.h"; sourceTree = "<group>"; };
+		7393F4571DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MAGAnimatedBorder.m"; sourceTree = "<group>"; };
 		7644CD1B47110D75E9438A8E3CD4ECB7 /* MAGDebugPanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MAGDebugPanel.h; sourceTree = "<group>"; };
 		76789E21932E7F6E3D0369E75A3485F7 /* MAGDebugPanel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MAGDebugPanel.m; sourceTree = "<group>"; };
 		76D3E4B79A549988CC2FB703AE5BAEF4 /* MAGDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MAGDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7715BE2B31C0E63DA8A26F3EF1B40F5A /* DebugOverview.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = DebugOverview.m; sourceTree = "<group>"; };
 		77CF792E5923489FA253D324F4D46ECA /* NSObject+MAGMore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+MAGMore.h"; path = "MAGMatveevReusable/Classes/NSObject+MAGMore.h"; sourceTree = "<group>"; };
 		79A1EBF4E44C31A68D5D5C8C4BB77C86 /* MAGDebugKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MAGDebugKit-umbrella.h"; sourceTree = "<group>"; };
-		7BB6F4E4021950C1749263328320B5BB /* DragDetector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DragDetector.h; sourceTree = "<group>"; };
 		7E0AC11ABE82DB59411F5378B9038285 /* Pods_MAGDebugKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MAGDebugKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E75D55A96FCDF7D9382C9CF46F02AC8 /* EXTSelectorChecking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXTSelectorChecking.m; path = extobjc/EXTSelectorChecking.m; sourceTree = "<group>"; };
 		81B5EACEE924CCC11B439A1AB6CE40AF /* MASConstraint+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MASConstraint+Private.h"; path = "Masonry/MASConstraint+Private.h"; sourceTree = "<group>"; };
 		82164D837AB605C3C938274DCA7E02DD /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
 		86B458D0081634ACC47052241F6CBA64 /* BOTableViewCell+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "BOTableViewCell+Subclass.h"; path = "Bohr/BOTableViewCell+Subclass.h"; sourceTree = "<group>"; };
 		876247B354EC306A78ECEF746CE7F9F2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		89F6D457B8C9383A11803C4B5F5F081D /* UIView+MAGAnimatedBorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+MAGAnimatedBorder.h"; sourceTree = "<group>"; };
 		8A412AE5924BA7FB3E7DBBBA83E659CC /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
 		8C68CAB40EB102134741C631C2ECEDFB /* EXTRuntimeExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXTRuntimeExtensions.h; path = extobjc/EXTRuntimeExtensions.h; sourceTree = "<group>"; };
 		8D06DF0886A526DFD2C2B72608A6A5AC /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
 		8F1AD29003D6C0841465A89F4BDF3E77 /* MAGDebugKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MAGDebugKit-prefix.pch"; sourceTree = "<group>"; };
 		8F6BAB63C243D3908E51BBFA62FFE0C9 /* EXTSafeCategory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXTSafeCategory.h; path = extobjc/EXTSafeCategory.h; sourceTree = "<group>"; };
 		91E716BC03FFC755DFBFE1509DA86A71 /* BOSwitchTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BOSwitchTableViewCell.m; path = Bohr/BOSwitchTableViewCell.m; sourceTree = "<group>"; };
-		933C1C0101908478B93C5C3914A58241 /* DragDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = DragDetector.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		967AB749CE1007FB2867F8A804E48C97 /* NSInvocation+EXT.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+EXT.h"; path = "extobjc/NSInvocation+EXT.h"; sourceTree = "<group>"; };
 		967DA0A71889755CD0A0C3C85778DF9E /* libextobjc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = libextobjc.xcconfig; sourceTree = "<group>"; };
@@ -365,7 +366,6 @@
 		E69E6FFADAF899CD0420E89B05B5CF90 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
 		E75A1069F5EB807BEC0D5D65438B6CF6 /* NSInvocation+EXT.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+EXT.m"; path = "extobjc/NSInvocation+EXT.m"; sourceTree = "<group>"; };
 		EAE953567D03E821A4A7B41195D2C9A3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC2B95FE151309F97FE1E1A817B25242 /* RCDoubleTapDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCDoubleTapDetector.m; sourceTree = "<group>"; };
 		EDE91DF3E13F9BF1FAB320CD39E85C31 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
 		F05C9A23F474F22C8AF602F8C91258E9 /* MAGMatveevReusable-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MAGMatveevReusable-umbrella.h"; sourceTree = "<group>"; };
 		F15A8D7905CC34D0E0194945C688B817 /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
@@ -655,6 +655,21 @@
 			name = EXTSynthesize;
 			sourceTree = "<group>";
 		};
+		7393F44F1DC35F4300EAEE21 /* UIViewAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				7393F4501DC35F7900EAEE21 /* DragDetector.h */,
+				7393F4511DC35F7900EAEE21 /* DragDetector.m */,
+				7393F4521DC35F7900EAEE21 /* RCDoubleTapDetector.h */,
+				7393F4531DC35F7900EAEE21 /* RCDoubleTapDetector.m */,
+				7393F4541DC35F7900EAEE21 /* RCTapDetector.h */,
+				7393F4551DC35F7900EAEE21 /* RCTapDetector.m */,
+				7393F4561DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h */,
+				7393F4571DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m */,
+			);
+			path = UIViewAdditions;
+			sourceTree = "<group>";
+		};
 		7CB2EBC7943741F92C7B6E5F20065F25 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,16 +702,8 @@
 				FC143FBF3ADDF93A9A0CB909C64BD260 /* DebugOverview.h */,
 				7715BE2B31C0E63DA8A26F3EF1B40F5A /* DebugOverview.m */,
 				FD07A092DE20FC0231C873139C54D1A7 /* DebugOverview.xib */,
-				7BB6F4E4021950C1749263328320B5BB /* DragDetector.h */,
-				933C1C0101908478B93C5C3914A58241 /* DragDetector.m */,
 				00E0B80ABF278B71562A1122D0DEFB6D /* MAGDebugOverviewSettingsVC.h */,
 				3A2A4FA0C6278323D525970A2A34F8D2 /* MAGDebugOverviewSettingsVC.m */,
-				1382EC5F0C8F4D9105BD1E00A477D866 /* RCDoubleTapDetector.h */,
-				EC2B95FE151309F97FE1E1A817B25242 /* RCDoubleTapDetector.m */,
-				72E68FB9679A7DD7C13364D1A77D712F /* RCTapDetector.h */,
-				2B2EB75FC773A0D4A477D849A1FC2A42 /* RCTapDetector.m */,
-				89F6D457B8C9383A11803C4B5F5F081D /* UIView+MAGAnimatedBorder.h */,
-				174DAFADF9FCF4A648878F3925116F7A /* UIView+MAGAnimatedBorder.m */,
 			);
 			path = DebugOverview;
 			sourceTree = "<group>";
@@ -854,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				0F952C119E28DBAD0C53C454766C63EC /* MAGDebugKit.h */,
+				7393F44F1DC35F4300EAEE21 /* UIViewAdditions */,
 				805AAF43DFCDB6BEA0932D0067FBBE60 /* DebugOverview */,
 				51DEFE1BE75F36DA50D1308DB3A13B1D /* DebugPanel */,
 				0A7D104420436D5F4D258E5F43FC6FF8 /* Menu */,
@@ -918,14 +926,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				55930EB60F67BFCFB7B027ABDE316072 /* DebugOverview.h in Headers */,
-				2A479EB0F11CA3939BFD9C464BA4F142 /* DragDetector.h in Headers */,
+				7393F45C1DC35F7900EAEE21 /* RCTapDetector.h in Headers */,
 				2C68B823AEAF63BF92EB03C6289FA7F7 /* MAGDebugKit-umbrella.h in Headers */,
+				7393F4581DC35F7900EAEE21 /* DragDetector.h in Headers */,
+				7393F45E1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */,
 				C5954748D7497E8A5E4AE2E3539142D9 /* MAGDebugKit.h in Headers */,
 				A493ECDCEC4EBE70989D5D1FC716D98F /* MAGDebugOverviewSettingsVC.h in Headers */,
+				7393F45A1DC35F7900EAEE21 /* RCDoubleTapDetector.h in Headers */,
 				525AA656D3F2B3A6FE54B2BCFD399C71 /* MAGDebugPanel.h in Headers */,
-				EAE070E885980B6DE86939C460C0D2A4 /* RCDoubleTapDetector.h in Headers */,
-				A0212B885319C825C7B5987A610AD328 /* RCTapDetector.h in Headers */,
-				26EEA16FF75F34794AB510078AF0D8E9 /* UIView+MAGAnimatedBorder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,14 +1273,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3568CF8B2DDDDB6391FF606BF838E1D9 /* DebugOverview.m in Sources */,
+				7393F45B1DC35F7900EAEE21 /* RCDoubleTapDetector.m in Sources */,
+				7393F45F1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */,
 				B91D4A3B918B6E91BF0B876C754B3385 /* DebugOverview.xib in Sources */,
-				B8B3E4DD8AA0465C2BBF165CCEB7697F /* DragDetector.m in Sources */,
 				0496140A26ACCE9692792A6A92DE1B49 /* MAGDebugKit-dummy.m in Sources */,
+				7393F4591DC35F7900EAEE21 /* DragDetector.m in Sources */,
 				BB3B536B2C93A99724060672F5B6056D /* MAGDebugOverviewSettingsVC.m in Sources */,
+				7393F45D1DC35F7900EAEE21 /* RCTapDetector.m in Sources */,
 				3307B19ADFC7ADF7C11574A76F1E0918 /* MAGDebugPanel.m in Sources */,
-				105E522E38A0CCDB6C2F3D8034B27FB1 /* RCDoubleTapDetector.m in Sources */,
-				ED47E51D124CAE34AC5614277BC2CF93 /* RCTapDetector.m in Sources */,
-				B7B1368BEB19EFAE21FAE144F99CF580 /* UIView+MAGAnimatedBorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
