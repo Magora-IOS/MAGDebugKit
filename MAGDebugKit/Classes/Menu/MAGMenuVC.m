@@ -1,6 +1,8 @@
 #import "MAGMenuVC.h"
 #import "MAGMenuAction.h"
 
+#import <libextobjc/extobjc.h>
+
 
 static NSString *const cellReuseID = @"StandardCell";
 
@@ -93,10 +95,18 @@ static NSString *const cellReuseID = @"StandardCell";
 	id<MAGMenuAction> action = self.actions[indexPath.row];
 
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseID forIndexPath:indexPath];
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	cell.textLabel.text = action.title;
 	cell.detailTextLabel.text = action.subtitle;
 	
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	id<MAGMenuAction> action = self.actions[indexPath.row];
+	[action perform];
 }
 
 @end

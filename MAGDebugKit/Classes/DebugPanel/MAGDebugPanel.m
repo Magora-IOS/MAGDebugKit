@@ -1,6 +1,8 @@
 #import "MAGDebugPanel.h"
 #import "MAGMenuVC.h"
 
+#import <Masonry/Masonry.h>
+
 
 @interface MAGDebugPanel ()
 
@@ -38,10 +40,12 @@
 	self.menu = [[MAGMenuVC alloc] init];
 	[self.view addSubview:self.menu.view];
 	[self addChildViewController:self.menu];
+	[self.menu didMoveToParentViewController:self];
 	
-	// TODO: make constraints.
-	self.menu.view.frame = self.view.bounds;
-	
+	[self.menu.view mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self.view);
+		}];
+
 	[self.menu addBlockAction:^{
 		NSLog(@"ABC ABC");
 	} withTitle:@"ABC"];
@@ -51,6 +55,7 @@
 
 - (void)integrateAboveWindow:(UIWindow *)appWindow {
 	UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self];
+	nc.navigationBar.translucent = NO;
 
 	CGRect screenRect = [UIScreen mainScreen].bounds;
 	screenRect.origin.x = screenRect.size.width;
