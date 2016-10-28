@@ -1,5 +1,6 @@
 #import "MAGDebugPanel.h"
 #import "MAGDebugOverviewSettingsVC.h"
+#import "MAGRentgenSettingsVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -39,7 +40,7 @@
     [super viewDidLoad];
 	
 	self.title = @"Settings";
-	[self setupMenuVC];
+	[self setupMenuActions];
 }
 
 #pragma mark - Public methods
@@ -142,10 +143,6 @@
 	self.navigationItem.leftBarButtonItem = closeButton;
 }
 
-- (void)setupMenuVC {
-	[self setupMenuActions];
-}
-
 - (void)setupMenuActions {
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
@@ -166,7 +163,7 @@
 	[section addCell:[BOTableViewCell cellWithTitle:@"Rentgen mode" key:nil
 		handler:^(BOTableViewCell *cell) {
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			cell.destinationViewController = [[MAGDebugOverviewSettingsVC alloc] init];
+			cell.destinationViewController = [[MAGRentgenSettingsVC alloc] init];
 		}]];
 }
 

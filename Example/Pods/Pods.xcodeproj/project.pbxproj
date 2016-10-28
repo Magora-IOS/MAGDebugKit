@@ -74,6 +74,8 @@
 		7393F4641DC361E100EAEE21 /* MAGRentgenSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4621DC361E100EAEE21 /* MAGRentgenSettingsVC.m */; };
 		7393F4671DC3624000EAEE21 /* MAGRentgen.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4651DC3624000EAEE21 /* MAGRentgen.h */; };
 		7393F4681DC3624000EAEE21 /* MAGRentgen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4661DC3624000EAEE21 /* MAGRentgen.m */; };
+		7393F46F1DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F46D1DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.h */; };
+		7393F4701DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F46E1DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.m */; };
 		73A63F9D90E8740A3A6B62754D5F889E /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1B667C4EEB0CA48F023770ED2EAD6 /* EXTRuntimeExtensions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		7558160AE98FB283CED3C9B51086710B /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE17201642708B557EF936F8E91A2FA /* Masonry.framework */; };
 		770E66540AA9F183DD74B10B42C6FC1D /* UILabel+DatePickerCustomization.h in Headers */ = {isa = PBXBuildFile; fileRef = 28E27E721F218A66D7C220BB228B1F72 /* UILabel+DatePickerCustomization.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -305,6 +307,8 @@
 		7393F4621DC361E100EAEE21 /* MAGRentgenSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGRentgenSettingsVC.m; sourceTree = "<group>"; };
 		7393F4651DC3624000EAEE21 /* MAGRentgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGRentgen.h; sourceTree = "<group>"; };
 		7393F4661DC3624000EAEE21 /* MAGRentgen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGRentgen.m; sourceTree = "<group>"; };
+		7393F46D1DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGDebugPanelSettingsKeys.h; sourceTree = "<group>"; };
+		7393F46E1DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGDebugPanelSettingsKeys.m; sourceTree = "<group>"; };
 		7644CD1B47110D75E9438A8E3CD4ECB7 /* MAGDebugPanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MAGDebugPanel.h; sourceTree = "<group>"; };
 		76789E21932E7F6E3D0369E75A3485F7 /* MAGDebugPanel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MAGDebugPanel.m; sourceTree = "<group>"; };
 		76D3E4B79A549988CC2FB703AE5BAEF4 /* MAGDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MAGDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -581,6 +585,8 @@
 			children = (
 				7644CD1B47110D75E9438A8E3CD4ECB7 /* MAGDebugPanel.h */,
 				76789E21932E7F6E3D0369E75A3485F7 /* MAGDebugPanel.m */,
+				7393F46D1DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.h */,
+				7393F46E1DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.m */,
 			);
 			path = DebugPanel;
 			sourceTree = "<group>";
@@ -943,6 +949,7 @@
 				2C68B823AEAF63BF92EB03C6289FA7F7 /* MAGDebugKit-umbrella.h in Headers */,
 				7393F4581DC35F7900EAEE21 /* DragDetector.h in Headers */,
 				7393F4671DC3624000EAEE21 /* MAGRentgen.h in Headers */,
+				7393F46F1DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.h in Headers */,
 				7393F45E1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */,
 				C5954748D7497E8A5E4AE2E3539142D9 /* MAGDebugKit.h in Headers */,
 				A493ECDCEC4EBE70989D5D1FC716D98F /* MAGDebugOverviewSettingsVC.h in Headers */,
@@ -1289,6 +1296,7 @@
 				3568CF8B2DDDDB6391FF606BF838E1D9 /* DebugOverview.m in Sources */,
 				7393F45B1DC35F7900EAEE21 /* RCDoubleTapDetector.m in Sources */,
 				7393F45F1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */,
+				7393F4701DC3705000EAEE21 /* MAGDebugPanelSettingsKeys.m in Sources */,
 				B91D4A3B918B6E91BF0B876C754B3385 /* DebugOverview.xib in Sources */,
 				0496140A26ACCE9692792A6A92DE1B49 /* MAGDebugKit-dummy.m in Sources */,
 				7393F4591DC35F7900EAEE21 /* DragDetector.m in Sources */,
