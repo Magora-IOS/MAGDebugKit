@@ -1,5 +1,7 @@
 
 #import "RCTapDetector.h"
+#import "MAGCommonDefines.h"
+
 
 @interface RCTapDetector () <UIGestureRecognizerDelegate>
 
