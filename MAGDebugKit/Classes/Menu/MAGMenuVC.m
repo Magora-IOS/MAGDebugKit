@@ -16,6 +16,43 @@ static NSString *const cellReuseID = @"StandardCell";
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (!self) {
+		return nil;
+	}
+	
+	[self initializeMAGMenuVC];
+	
+	return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (!self) {
+		return nil;
+	}
+	
+	[self initializeMAGMenuVC];
+	
+	return self;
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+	self = [super initWithStyle:style];
+	if (!self) {
+		return nil;
+	}
+	
+	[self initializeMAGMenuVC];
+	
+	return self;
+}
+
+- (void)initializeMAGMenuVC {
+	_actions = [[NSMutableArray alloc] init];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellReuseID];
@@ -33,11 +70,14 @@ static NSString *const cellReuseID = @"StandardCell";
 	action.title = actionTitle;
 	
 	[self addAction:action];
+	[self.tableView reloadData];
+	
+	return action;
 }
 
 - (id<MAGMenuAction>)addSubscreen:(UIViewController *)subscreen withTitle:(NSString *)actionTitle {
 	@weakify(self);
-	[self addBlockAction:^{
+	return [self addBlockAction:^{
 			@strongify(self);
 			[self.navigationController pushViewController:subscreen animated:YES];
 		} withTitle:actionTitle];

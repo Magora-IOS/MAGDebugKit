@@ -1,10 +1,12 @@
 #import "MAGDebugPanel.h"
+#import "MAGMenuVC.h"
 
 
 @interface MAGDebugPanel ()
 
 @property (nonatomic) MAGDebugPanelAppearanceStyle appearanceStyle;
 @property (nonatomic) UIWindow *window;
+@property (nonatomic) MAGMenuVC *menu;
 
 @end
 
@@ -32,6 +34,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.menu = [[MAGMenuVC alloc] init];
+	[self.view addSubview:self.menu.view];
+	[self addChildViewController:self.menu];
+	
+	// TODO: make constraints.
+	self.menu.view.frame = self.view.bounds;
+	
+	[self.menu addBlockAction:^{
+		NSLog(@"ABC ABC");
+	} withTitle:@"ABC"];
 }
 
 #pragma mark - Public methods
