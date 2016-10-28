@@ -11,6 +11,7 @@
 #import "DragDetector.h"
 #import "MAGCommonDefines.h"
 #import "RCDoubleTapDetector.h"
+#import "MAGRentgen.h"
 
 #import "UIView+MAGMore.h"
 #import "NSObject+MAGMore.h"
@@ -22,17 +23,12 @@
 @interface DebugOverview ()
 
 @property (strong, nonatomic) DragDetector *dragDetector;
+@property (strong, nonatomic) RCDoubleTapDetector *doubleTapDetector;
 
 @property (strong, nonatomic) IBOutlet UILabel *buildLabel;
 @property (strong, nonatomic) IBOutlet UILabel *versionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tappedControlLabel;
-
-@property (strong, nonatomic) NSTimer *rentgenTimer;
-
-@property (strong, nonatomic) NSMutableArray *array;
-
-@property (strong, nonatomic) RCDoubleTapDetector *doubleTapDetector;
 
 @end
 
@@ -55,6 +51,8 @@
         DebugOverview *debugOverview = [[self class] sharedInstance];// [DebugOverview mag_loadFromNib];
         [window addSubview:debugOverview];
         debugOverview.frame = CGRectMake(window.width - debugOverview.width, window.height - debugOverview.height, debugOverview.width, debugOverview.height);
+		
+		[MAGRentgen sharedInstance].window = window;
     }
 }
 
@@ -84,71 +82,15 @@
 
     self.doubleTapDetector = [RCDoubleTapDetector new];
     [self.doubleTapDetector attachToTargetView:self];
-    
-    __weak typeof(self) wSelf = self;
+	
     self.doubleTapDetector.didTappedBlock = ^() {
-		if (!wSelf.rentgenTimer) {
-			[wSelf startRentgen];
+		MAGRentgen *rentgen = [MAGRentgen sharedInstance];
+		if (rentgen.active) {
+			[rentgen stop];
+		} else {
+			[rentgen start];
 		}
     };
-}
-
-- (void)startRentgen {
-    [self rentgenTimerTicked:nil];
-    self.rentgenTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(rentgenTimerTicked:) userInfo:nil repeats:YES];
-}
-
-- (void)rentgenTimerTicked:(NSTimer *)timer {
-    NSLog(@"TOP VC %@",[[UIView mag_appTopViewController] class]);
-    UIViewController *vc = [UIView mag_appTopViewController];
-    NSLog(@"");
-    NSLog(@"");
-    NSLog(@"");
-    
-    self.array = [NSMutableArray array];
-        self.window.backgroundColor = [UIColor whiteColor];
-        for (UIView *subview in self.window.subviews) {
-            [self changeView:subview];
-        }
-        
-//        for (UIView *view in self.array) {
-//            NSLog(@"Z position %@",[view class]);
-//        }
-
-}
-
-- (void)changeView:(UIView *)view {
-//    [self.array addObject:view];
-    
-    if (![view isMemberOfClass:[DebugOverview class]]) {
-        if ([view isKindOfClass:[UIControl class]]) {
-            view.backgroundColor = RGBA(26,85,224,1);
-            //        view.alpha = 0.7;
-        }
-        if ([view isKindOfClass:[UILabel class]]) {
-            view.backgroundColor = RGBA(255,210,249,1);
-            //        view.alpha = 0.3;
-        }
-        if ([view isKindOfClass:[UIImageView class]]) {
-			[view mag_addAnimatedDashedBorderColor:[UIColor redColor] borderWidth:1 cornerRadius:0];
-            //        view.backgroundColor = RGBA(255,210,249,1);
-            //        view.alpha = 0.3;
-        }
-        
-            for (UIView *subview in view.subviews) {
-                [self changeView:subview];
-            }
-    }
-
-//    if ([view isMemberOfClass:[UIView class]]) {
-//        view.backgroundColor = [[self class] randomColor];
-//        view.alpha = 0.1;
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
-//        label.text = NSStringFromClass([view class]);
-//        [view addSubview:label];
-//        label.center = view.center;
-//        label.alpha = 1.0;
-//    }
 }
 
 + (UIColor *)randomColor

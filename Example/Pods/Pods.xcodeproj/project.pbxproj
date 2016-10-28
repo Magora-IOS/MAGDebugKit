@@ -70,6 +70,10 @@
 		7393F45D1DC35F7900EAEE21 /* RCTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4551DC35F7900EAEE21 /* RCTapDetector.m */; };
 		7393F45E1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4561DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h */; };
 		7393F45F1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4571DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m */; };
+		7393F4631DC361E100EAEE21 /* MAGRentgenSettingsVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4611DC361E100EAEE21 /* MAGRentgenSettingsVC.h */; };
+		7393F4641DC361E100EAEE21 /* MAGRentgenSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4621DC361E100EAEE21 /* MAGRentgenSettingsVC.m */; };
+		7393F4671DC3624000EAEE21 /* MAGRentgen.h in Headers */ = {isa = PBXBuildFile; fileRef = 7393F4651DC3624000EAEE21 /* MAGRentgen.h */; };
+		7393F4681DC3624000EAEE21 /* MAGRentgen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7393F4661DC3624000EAEE21 /* MAGRentgen.m */; };
 		73A63F9D90E8740A3A6B62754D5F889E /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A1B667C4EEB0CA48F023770ED2EAD6 /* EXTRuntimeExtensions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		7558160AE98FB283CED3C9B51086710B /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE17201642708B557EF936F8E91A2FA /* Masonry.framework */; };
 		770E66540AA9F183DD74B10B42C6FC1D /* UILabel+DatePickerCustomization.h in Headers */ = {isa = PBXBuildFile; fileRef = 28E27E721F218A66D7C220BB228B1F72 /* UILabel+DatePickerCustomization.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -297,6 +301,10 @@
 		7393F4551DC35F7900EAEE21 /* RCTapDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTapDetector.m; sourceTree = "<group>"; };
 		7393F4561DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MAGAnimatedBorder.h"; sourceTree = "<group>"; };
 		7393F4571DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MAGAnimatedBorder.m"; sourceTree = "<group>"; };
+		7393F4611DC361E100EAEE21 /* MAGRentgenSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGRentgenSettingsVC.h; sourceTree = "<group>"; };
+		7393F4621DC361E100EAEE21 /* MAGRentgenSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGRentgenSettingsVC.m; sourceTree = "<group>"; };
+		7393F4651DC3624000EAEE21 /* MAGRentgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGRentgen.h; sourceTree = "<group>"; };
+		7393F4661DC3624000EAEE21 /* MAGRentgen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGRentgen.m; sourceTree = "<group>"; };
 		7644CD1B47110D75E9438A8E3CD4ECB7 /* MAGDebugPanel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MAGDebugPanel.h; sourceTree = "<group>"; };
 		76789E21932E7F6E3D0369E75A3485F7 /* MAGDebugPanel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MAGDebugPanel.m; sourceTree = "<group>"; };
 		76D3E4B79A549988CC2FB703AE5BAEF4 /* MAGDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MAGDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -447,13 +455,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A7D104420436D5F4D258E5F43FC6FF8 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Menu;
-			sourceTree = "<group>";
-		};
 		0E4BD0FB25666335454A637B537FD2A1 /* NSInvocation+EXT */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,6 +671,17 @@
 			path = UIViewAdditions;
 			sourceTree = "<group>";
 		};
+		7393F4601DC361C700EAEE21 /* Rentgen */ = {
+			isa = PBXGroup;
+			children = (
+				7393F4651DC3624000EAEE21 /* MAGRentgen.h */,
+				7393F4661DC3624000EAEE21 /* MAGRentgen.m */,
+				7393F4611DC361E100EAEE21 /* MAGRentgenSettingsVC.h */,
+				7393F4621DC361E100EAEE21 /* MAGRentgenSettingsVC.m */,
+			);
+			path = Rentgen;
+			sourceTree = "<group>";
+		};
 		7CB2EBC7943741F92C7B6E5F20065F25 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,9 +874,9 @@
 			children = (
 				0F952C119E28DBAD0C53C454766C63EC /* MAGDebugKit.h */,
 				7393F44F1DC35F4300EAEE21 /* UIViewAdditions */,
-				805AAF43DFCDB6BEA0932D0067FBBE60 /* DebugOverview */,
 				51DEFE1BE75F36DA50D1308DB3A13B1D /* DebugPanel */,
-				0A7D104420436D5F4D258E5F43FC6FF8 /* Menu */,
+				805AAF43DFCDB6BEA0932D0067FBBE60 /* DebugOverview */,
+				7393F4601DC361C700EAEE21 /* Rentgen */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -927,8 +939,10 @@
 			files = (
 				55930EB60F67BFCFB7B027ABDE316072 /* DebugOverview.h in Headers */,
 				7393F45C1DC35F7900EAEE21 /* RCTapDetector.h in Headers */,
+				7393F4631DC361E100EAEE21 /* MAGRentgenSettingsVC.h in Headers */,
 				2C68B823AEAF63BF92EB03C6289FA7F7 /* MAGDebugKit-umbrella.h in Headers */,
 				7393F4581DC35F7900EAEE21 /* DragDetector.h in Headers */,
+				7393F4671DC3624000EAEE21 /* MAGRentgen.h in Headers */,
 				7393F45E1DC35F7900EAEE21 /* UIView+MAGAnimatedBorder.h in Headers */,
 				C5954748D7497E8A5E4AE2E3539142D9 /* MAGDebugKit.h in Headers */,
 				A493ECDCEC4EBE70989D5D1FC716D98F /* MAGDebugOverviewSettingsVC.h in Headers */,
@@ -1279,6 +1293,8 @@
 				0496140A26ACCE9692792A6A92DE1B49 /* MAGDebugKit-dummy.m in Sources */,
 				7393F4591DC35F7900EAEE21 /* DragDetector.m in Sources */,
 				BB3B536B2C93A99724060672F5B6056D /* MAGDebugOverviewSettingsVC.m in Sources */,
+				7393F4641DC361E100EAEE21 /* MAGRentgenSettingsVC.m in Sources */,
+				7393F4681DC3624000EAEE21 /* MAGRentgen.m in Sources */,
 				7393F45D1DC35F7900EAEE21 /* RCTapDetector.m in Sources */,
 				3307B19ADFC7ADF7C11574A76F1E0918 /* MAGDebugPanel.m in Sources */,
 			);
