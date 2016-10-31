@@ -21,6 +21,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		6774437DF8FE860B043BD277 /* Pods_MAGDebugKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBCA0DA9014DE1A891EF5C5E /* Pods_MAGDebugKit_Example.framework */; };
+		736790751DC7304F0022E039 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736790741DC7304F0022E039 /* Launch Screen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		D8FC3FA06C01C82744EDA147 /* Pods_MAGDebugKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D97704B4414DC4D2AD1FCC /* Pods_MAGDebugKit_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		67464D7EF12ACAB5BEFAC954 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		736790741DC7304F0022E039 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		79DC1AD08C96C125A6CFDC03 /* MAGDebugKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MAGDebugKit.podspec; path = ../MAGDebugKit.podspec; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC60E726ED560A127207A935 /* Pods-MAGDebugKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGDebugKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MAGDebugKit_Example/Pods-MAGDebugKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				6003F5A6195388D20070C39A /* MAGViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				736790741DC7304F0022E039 /* Launch Screen.storyboard */,
 			);
 			name = "Example for MAGDebugKit";
 			path = MAGDebugKit;
@@ -281,6 +284,7 @@
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				736790751DC7304F0022E039 /* Launch Screen.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
