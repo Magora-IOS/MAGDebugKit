@@ -23,6 +23,7 @@
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
 			[self setupEnabledItemInSection:section];
+			[self setupClassCaptionsItemInSection:section];
 		}]];
 }
 
@@ -36,6 +37,16 @@
 					} else {
 						[[MAGRentgen sharedInstance] stop];
 					}
+				}];
+			}]];
+}
+
+- (void)setupClassCaptionsItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Display class captions"
+		key:MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled
+		handler:^(BOSwitchTableViewCell *cell) {
+				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					[MAGRentgen sharedInstance].showClassCaptions = enabled.boolValue;
 				}];
 			}]];
 }

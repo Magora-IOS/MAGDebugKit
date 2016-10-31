@@ -7,6 +7,7 @@
 
 @property (nonatomic) UIWindow *window;
 
+@property (nonatomic) BOOL showClassCaptions;
 @property (nonatomic, readonly) BOOL active;
 
 - (void)start;

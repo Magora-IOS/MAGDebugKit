@@ -88,17 +88,30 @@
 	}
 }
 
-- (void)changeView:(UIView *)view {
-    if ([view isMemberOfClass:[DebugOverview class]]) {
+- (void)changeView:(UIView *)view  {
+	// Don't preparate debug overview itself.
+	// Don't show fullscreen system windows, that cover the whole app.
+    if ([view isMemberOfClass:[DebugOverview class]] ||
+		[NSStringFromClass(view.class) isEqualToString:@"UITextEffectsWindow"] ||
+		[NSStringFromClass(view.class) isEqualToString:@"UIRemoteKeyboardWindow"]) {
+		
 		return;
 	}
+	
+	int depth = [NSThread callStackSymbols].count;
+	NSMutableString *indent = [[NSMutableString alloc] initWithCapacity:depth];
+	for (int i = 0; i< depth; ++i) {
+		[indent appendString:@"  "];
+	}
+	
+	NSLog(@"%@%@ %@", indent, view.class, NSStringFromCGRect(view.frame));
 	
 	if (!view.mag_initialBGColorSaved.boolValue) {
 		view.mag_initialBGColor = view.backgroundColor;
 		view.mag_initialBGColorSaved = @YES;
 		
 		if ([view isKindOfClass:[UIWindow class]]) {
-			view.backgroundColor = [UIColor whiteColor];
+			view.backgroundColor = RGBA(200, 200, 200, 1);
 		}
 		else if ([view isKindOfClass:[UIControl class]]) {
 			view.backgroundColor = RGBA(26, 85, 224, 0.35);
@@ -111,15 +124,30 @@
 		} else {
 			view.backgroundColor = [self.class randomColor];
 		}
-
+	}
+	
+	if (self.showClassCaptions && !view.mag_classCaption) {
 		view.mag_classCaption = [[CATextLayer alloc] init];
 		view.mag_classCaption.contentsScale = [UIScreen mainScreen].scale;
 		view.mag_classCaption.fontSize = 6;
 		view.mag_classCaption.foregroundColor = [UIColor redColor].CGColor;
 		view.mag_classCaption.string = NSStringFromClass([view class]);
 		[view.layer addSublayer:view.mag_classCaption];
+	} else if (!self.showClassCaptions && view.mag_classCaption) {
+		[view.mag_classCaption removeFromSuperlayer];
+		view.mag_classCaption = nil;
 	}
-	view.mag_classCaption.frame = view.layer.bounds;
+
+	CGRect captionFrame = view.layer.bounds;
+	
+	if (view.superview.mag_classCaption) {
+		CGRect superViewClassCaptionFrame = [view.superview
+			convertRect:view.superview.mag_classCaption.frame toView:view];
+		CGFloat minY = CGRectGetMinY(superViewClassCaptionFrame) + 8;
+		captionFrame.origin.y = MAX(captionFrame.origin.y, minY);
+	}
+	
+	view.mag_classCaption.frame = captionFrame;
 	
 	for (UIView *subview in view.subviews) {
 		[self changeView:subview];
