@@ -98,46 +98,86 @@
 		return;
 	}
 	
-	int depth = [NSThread callStackSymbols].count;
-	NSMutableString *indent = [[NSMutableString alloc] initWithCapacity:depth];
-	for (int i = 0; i< depth; ++i) {
-		[indent appendString:@"  "];
-	}
+//	int depth = [NSThread callStackSymbols].count;
+//	NSMutableString *indent = [[NSMutableString alloc] initWithCapacity:depth];
+//	for (int i = 0; i< depth; ++i) {
+//		[indent appendString:@"  "];
+//	}
+//	
+//	NSLog(@"%@%@ %@", indent, view.class, NSStringFromCGRect(view.frame));
 	
-	NSLog(@"%@%@ %@", indent, view.class, NSStringFromCGRect(view.frame));
-	
-	if (!view.mag_initialBGColorSaved.boolValue) {
+	BOOL shouldHighlight = [self shouldHighlight:view];
+	if (shouldHighlight && !view.mag_initialBGColorSaved.boolValue) {
 		view.mag_initialBGColor = view.backgroundColor;
 		view.mag_initialBGColorSaved = @YES;
-		
-		if ([view isKindOfClass:[UIWindow class]]) {
-			view.backgroundColor = RGBA(200, 200, 200, 1);
-		}
-		else if ([view isKindOfClass:[UIControl class]]) {
-			view.backgroundColor = RGBA(26, 85, 224, 0.35);
-		}
-		else if ([view isKindOfClass:[UILabel class]]) {
-			view.backgroundColor = RGBA(255, 210, 249, 0.35);
-		}
-		else if ([view isKindOfClass:[UIImageView class]]) {
-			view.backgroundColor = RGBA(0, 200, 60, 0.35);
-		} else {
-			view.backgroundColor = [self.class randomColor];
-		}
+		view.backgroundColor = [self colorForView:view];
+	} else if (!shouldHighlight && view.mag_initialBGColorSaved.boolValue) {
+		view.backgroundColor = view.mag_initialBGColor;
+		view.mag_initialBGColor = nil;
+		view.mag_initialBGColorSaved = @NO;
 	}
 	
-	if (self.showClassCaptions && !view.mag_classCaption) {
+	[self refreshCaptionForView:view];
+	[self refreshCaptureFrameForView:view];
+	
+	for (UIView *subview in view.subviews) {
+		[self changeView:subview];
+	}
+}
+
+- (BOOL)shouldHighlight:(UIView *)view {
+	return self.highlightAllViews ||
+		[view isKindOfClass:[UIWindow class]] ||
+		[view isKindOfClass:[UIControl class]] ||
+		[view isKindOfClass:[UILabel class]] ||
+		[view isKindOfClass:[UIImageView class]];
+}
+
+- (UIColor *)colorForView:(UIView *)view {
+	static NSDictionary *colors = nil;
+	if (!colors) {
+		colors = @{
+			NSStringFromClass([UIWindow class]): RGBA(200, 200, 200, 1),
+			NSStringFromClass([UIControl class]): RGBA(26, 85, 224, 0.35),
+			NSStringFromClass([UILabel class]): RGBA(255, 210, 249, 0.35),
+			NSStringFromClass([UIImageView class]): RGBA(0, 200, 60, 0.35),
+		};
+	}
+
+	UIColor *__block color = nil;
+	[colors enumerateKeysAndObjectsUsingBlock:^(NSString *className, UIColor *classColor, BOOL *stop) {
+			Class class = NSClassFromString(className);
+			if ([view isKindOfClass:class]) {
+				color = classColor;
+				*stop = YES;
+			}
+		}];
+	
+	if (!color) {
+		color = [self.class randomColor];
+	}
+	
+	return color;
+}
+
+- (void)refreshCaptionForView:(UIView *)view {
+	BOOL needCaption = self.showClassCaptions && [self shouldHighlight:view];
+	BOOL hasCaption = view.mag_classCaption != nil;
+	
+	if (needCaption && !hasCaption) {
 		view.mag_classCaption = [[CATextLayer alloc] init];
 		view.mag_classCaption.contentsScale = [UIScreen mainScreen].scale;
 		view.mag_classCaption.fontSize = 6;
 		view.mag_classCaption.foregroundColor = [UIColor redColor].CGColor;
 		view.mag_classCaption.string = NSStringFromClass([view class]);
 		[view.layer addSublayer:view.mag_classCaption];
-	} else if (!self.showClassCaptions && view.mag_classCaption) {
+	} else if (hasCaption && !needCaption) {
 		[view.mag_classCaption removeFromSuperlayer];
 		view.mag_classCaption = nil;
 	}
+}
 
+- (void)refreshCaptureFrameForView:(UIView *)view {
 	CGRect captionFrame = view.layer.bounds;
 	
 	if (view.superview.mag_classCaption) {
@@ -148,10 +188,6 @@
 	}
 	
 	view.mag_classCaption.frame = captionFrame;
-	
-	for (UIView *subview in view.subviews) {
-		[self changeView:subview];
-	}
 }
 
 + (UIColor *)randomColor {

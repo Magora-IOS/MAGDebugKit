@@ -23,6 +23,7 @@
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
 			[self setupEnabledItemInSection:section];
+			[self setupAllViewsItemInSection:section];
 			[self setupClassCaptionsItemInSection:section];
 		}]];
 }
@@ -47,6 +48,16 @@
 		handler:^(BOSwitchTableViewCell *cell) {
 				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
 					[MAGRentgen sharedInstance].showClassCaptions = enabled.boolValue;
+				}];
+			}]];
+}
+
+- (void)setupAllViewsItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Highlight all views"
+		key:MAGDebugPanelSettingKeyHighlightAllViewsEnabled
+		handler:^(BOSwitchTableViewCell *cell) {
+				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					[MAGRentgen sharedInstance].highlightAllViews = enabled.boolValue;
 				}];
 			}]];
 }
