@@ -4,6 +4,7 @@
 #import "MAGCommonDefines.h"
 #import "UIView+MAGMore.h"
 #import "UIView+MAGAnimatedBorder.h"
+#import "UIView+MAGRentgenProperties.h"
 
 
 @interface MAGRentgen ()
@@ -36,10 +37,12 @@
 	
 	self.active = YES;
 	
-    [self rentgenTimerTicked:nil];
-    self.ticker = [NSTimer scheduledTimerWithTimeInterval:2 target:self
-		selector:@selector(rentgenTimerTicked:) userInfo:nil repeats:YES];
-
+	[self rentgenTimerTicked:nil];
+	
+	if (!self.ticker) {
+		self.ticker = [NSTimer scheduledTimerWithTimeInterval:2 target:self
+			selector:@selector(rentgenTimerTicked:) userInfo:nil repeats:YES];
+	}
 }
 
 - (void)stop {
@@ -49,53 +52,86 @@
 	
 	self.active = NO;
 	
-	[self.ticker invalidate];
-	self.ticker = nil;
+	for (UIWindow *window in [UIApplication sharedApplication].windows) {
+		[self restoreInitialBGColors:window];
+	}
 }
 
 #pragma mark - Private methods
 
-- (void)rentgenTimerTicked:(NSTimer *)timer {
-    NSLog(@"Top VC: %@\n\n\n",[[UIView mag_appTopViewController] class]);
+- (void)restoreInitialBGColors:(UIView *)view {
+	if (view.mag_initialBGColorSaved.boolValue) {
+		view.backgroundColor = view.mag_initialBGColor;
+		view.mag_initialBGColor = nil;
+		view.mag_initialBGColorSaved = @NO;
+	}
 	
-	for (UIView *subview in self.window.subviews) {
-		[self changeView:subview];
+	[view.mag_classCaption removeFromSuperlayer];
+	view.mag_classCaption = nil;
+	
+	for (UIView *subview in view.subviews) {
+		[self restoreInitialBGColors:subview];
 	}
 }
 
+- (void)rentgenTimerTicked:(NSTimer *)timer {
+    NSLog(@"Top VC: %@\n\n\n",[[UIView mag_appTopViewController] class]);
+	
+	if (self.active) {
+		for (UIWindow *window in [UIApplication sharedApplication].windows) {
+			[self changeView:window];
+		}
+	} else {
+		for (UIWindow *window in [UIApplication sharedApplication].windows) {
+			[self restoreInitialBGColors:window];
+		}
+	}
+}
 
 - (void)changeView:(UIView *)view {
     if ([view isMemberOfClass:[DebugOverview class]]) {
 		return;
 	}
 	
-	if ([view isKindOfClass:[UIControl class]]) {
-		view.backgroundColor = RGBA(26,85,224,1);
-		//        view.alpha = 0.7;
+	if (!view.mag_initialBGColorSaved.boolValue) {
+		view.mag_initialBGColor = view.backgroundColor;
+		view.mag_initialBGColorSaved = @YES;
+		
+		if ([view isKindOfClass:[UIWindow class]]) {
+			view.backgroundColor = [UIColor whiteColor];
+		}
+		else if ([view isKindOfClass:[UIControl class]]) {
+			view.backgroundColor = RGBA(26, 85, 224, 0.35);
+		}
+		else if ([view isKindOfClass:[UILabel class]]) {
+			view.backgroundColor = RGBA(255, 210, 249, 0.35);
+		}
+		else if ([view isKindOfClass:[UIImageView class]]) {
+			view.backgroundColor = RGBA(0, 200, 60, 0.35);
+		} else {
+			view.backgroundColor = [self.class randomColor];
+		}
+
+		view.mag_classCaption = [[CATextLayer alloc] init];
+		view.mag_classCaption.contentsScale = [UIScreen mainScreen].scale;
+		view.mag_classCaption.fontSize = 6;
+		view.mag_classCaption.foregroundColor = [UIColor redColor].CGColor;
+		view.mag_classCaption.string = NSStringFromClass([view class]);
+		[view.layer addSublayer:view.mag_classCaption];
 	}
-	
-	if ([view isKindOfClass:[UILabel class]]) {
-		view.backgroundColor = RGBA(255,210,249,1);
-		//        view.alpha = 0.3;
-	}
-	
-	if ([view isKindOfClass:[UIImageView class]]) {
-		[view mag_addAnimatedDashedBorderColor:[UIColor redColor] borderWidth:1 cornerRadius:0];
-	}
+	view.mag_classCaption.frame = view.layer.bounds;
 	
 	for (UIView *subview in view.subviews) {
 		[self changeView:subview];
 	}
+}
 
-//    if ([view isMemberOfClass:[UIView class]]) {
-//        view.backgroundColor = [[self class] randomColor];
-//        view.alpha = 0.1;
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
-//        label.text = NSStringFromClass([view class]);
-//        [view addSubview:label];
-//        label.center = view.center;
-//        label.alpha = 1.0;
-//    }
++ (UIColor *)randomColor {
+    CGFloat hue = ( arc4random() % 256 / 256.0 );
+    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
+    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
+    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:0.08];
+    return color;
 }
 
 @end
