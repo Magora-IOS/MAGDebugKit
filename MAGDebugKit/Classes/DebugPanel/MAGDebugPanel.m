@@ -1,6 +1,7 @@
 #import "MAGDebugPanel.h"
 #import "MAGDebugOverviewSettingsVC.h"
 #import "MAGRentgenSettingsVC.h"
+#import "MAGLoggingSettingsVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -146,10 +147,24 @@
 - (void)setupMenuActions {
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
+			[self setupLoggingSettingsItemInSection:section];
+		}]];
+
+	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
+		handler:^(BOTableViewSection *section) {
 			[self setupOverviewSettingsItemInSection:section];
 			[self setupRentgenSettingsItemInSection:section];
 		}]];
 }
+
+- (void)setupLoggingSettingsItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOTableViewCell cellWithTitle:@"Logging" key:nil
+		handler:^(BOTableViewCell *cell) {
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.destinationViewController = [[MAGLoggingSettingsVC alloc] init];
+		}]];
+}
+
 
 - (void)setupOverviewSettingsItemInSection:(BOTableViewSection *)section {
 	[section addCell:[BOTableViewCell cellWithTitle:@"Overview" key:nil

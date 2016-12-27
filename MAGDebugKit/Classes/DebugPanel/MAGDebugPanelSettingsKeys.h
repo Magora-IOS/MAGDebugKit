@@ -11,3 +11,7 @@ extern NSString *const MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled;
 // Path: Rentgen settings -> Highlight all views
 // Type: BOOL
 extern NSString *const MAGDebugPanelSettingKeyHighlightAllViewsEnabled;
+
+// Path: Logging settings -> File logging enabled
+// Type: BOOL
+extern NSString *const MAGDebugPanelSettingKeyFileLoggingEnabled;
