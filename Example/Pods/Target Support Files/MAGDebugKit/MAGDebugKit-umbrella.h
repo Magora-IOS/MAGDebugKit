@@ -6,6 +6,8 @@
 #import "MAGDebugOverviewSettingsVC.h"
 #import "MAGDebugPanel.h"
 #import "MAGDebugPanelSettingsKeys.h"
+#import "MAGLogging.h"
+#import "MAGLoggingSettingsVC.h"
 #import "MAGDebugKit.h"
 #import "MAGRentgen.h"
 #import "MAGRentgenSettingsVC.h"

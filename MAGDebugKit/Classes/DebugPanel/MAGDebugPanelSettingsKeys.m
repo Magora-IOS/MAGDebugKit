@@ -5,3 +5,4 @@ NSString *const MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled = @"MAGDebugP
 NSString *const MAGDebugPanelSettingKeyHighlightAllViewsEnabled = @"MAGDebugPanelSettingKeyHighlightAllViewsEnabled";
 
 NSString *const MAGDebugPanelSettingKeyFileLoggingEnabled = @"MAGDebugPanelSettingKeyFileLoggingEnabled";
+NSString *const MAGDebugPanelSettingKeyConsoleLoggingEnabled = @"MAGDebugPanelSettingKeyConsoleLoggingEnabled";

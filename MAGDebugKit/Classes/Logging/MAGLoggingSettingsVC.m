@@ -1,5 +1,6 @@
 #import "MAGLoggingSettingsVC.h"
 #import "MAGDebugPanelSettingsKeys.h"
+#import "MAGLogging.h"
 
 #import <Bohr/BOTableViewCell+Subclass.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -27,6 +28,7 @@
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
 			[self setupFileLoggingItemInSection:section];
+			[self setupConsoleLoggingItemInSection:section];
 		}]];
 }
 
@@ -35,11 +37,17 @@
 		key:MAGDebugPanelSettingKeyFileLoggingEnabled
 		handler:^(BOSwitchTableViewCell *cell) {
 				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-					if (enabled.boolValue) {
+					[[MAGLogging sharedInstance] setFileLoggingEnabled:enabled.boolValue];
+				}];
+			}]];
+}
 
-					} else {
-
-					}
+- (void)setupConsoleLoggingItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Console logging"
+		key:MAGDebugPanelSettingKeyConsoleLoggingEnabled
+		handler:^(BOSwitchTableViewCell *cell) {
+				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					[[MAGLogging sharedInstance] setConsoleLoggingEnabled:enabled.boolValue];
 				}];
 			}]];
 }
