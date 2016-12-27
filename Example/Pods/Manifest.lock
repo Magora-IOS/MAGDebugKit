@@ -1,5 +1,13 @@
 PODS:
   - Bohr (3.0.0)
+  - CocoaLumberjack (2.4.0):
+    - CocoaLumberjack/Default (= 2.4.0)
+    - CocoaLumberjack/Extensions (= 2.4.0)
+  - CocoaLumberjack/Core (2.4.0)
+  - CocoaLumberjack/Default (2.4.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.4.0):
+    - CocoaLumberjack/Default
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
     - libextobjc/EXTConcreteProtocol (= 0.4.1)
@@ -35,8 +43,9 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
-  - MAGDebugKit (0.1.3):
+  - MAGDebugKit (0.2.0):
     - Bohr (= 3.0.0)
+    - CocoaLumberjack (~> 2.4)
     - libextobjc (= 0.4.1)
     - MAGMatveevReusable (= 0.1.6)
     - Masonry (= 1.0.2)
@@ -60,12 +69,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Bohr: 17b150766e54e1fb8ff417d85b830c7caafa8b4a
+  CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  MAGDebugKit: f6902bf88172f7f3f2822709ebfda4ecf49771b6
+  MAGDebugKit: ccdcf2f129ad6f2f2f3bd6c11a1fe4d1159f0c6f
   MAGMatveevReusable: ae165bb0d72af8087da427ee0ec5ae9e42e2eba6
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
 PODFILE CHECKSUM: 34c8267daa4562d6e685eebaf2b0a8bd12688700
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1
