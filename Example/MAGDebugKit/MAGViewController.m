@@ -1,16 +1,12 @@
-//
-//  MAGViewController.m
-//  MAGDebugKit
-//
-//  Created by Evgeniy Stepanov on 10/05/2016.
-//  Copyright (c) 2016 Evgeniy Stepanov. All rights reserved.
-//
-
 #import "MAGViewController.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import <MAGDebugKit/MAGLogging.h>
+
 
 @interface MAGViewController ()
 
 @end
+
 
 @implementation MAGViewController
 
@@ -20,10 +16,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - UI events
+
+- (IBAction)buttonTap:(id)sender {
+	DDLogInfo(@"Button tap.");
 }
 
 @end
