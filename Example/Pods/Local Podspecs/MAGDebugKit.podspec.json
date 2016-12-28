@@ -39,6 +39,9 @@
     ],
     "CocoaLumberjack": [
       "~> 2.4"
+    ],
+    "DDAntennaLogger": [
+      "~> 1.0"
     ]
   }
 }
