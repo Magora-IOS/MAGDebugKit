@@ -12,11 +12,16 @@
 #endif
 
 
+static NSString *const kAntennaHostFormat = @"http://%@:%@/log";
+static NSString *const kAntennaMethod = @"POST";
+
+
 @interface MAGLogging ()
 
 @property (nonatomic) DDFileLogger *fileLogger;
 @property (nonatomic) DDTTYLogger *ttyLogger;
 @property (nonatomic) DDAntennaLogger *antennaLogger;
+@property (nonatomic) Antenna *antenna;
 
 @end
 
@@ -73,15 +78,25 @@
 	
 	_antennaLoggingEnabled = antennaLoggingEnabled;
 	
-	NSString *serverURLString = @"http://192.168.16.32:3205/log";
-	NSString *serverLogMethod = @"POST";
-	Antenna *antenna = [Antenna sharedLogger];
-	[antenna addChannelWithURL:[NSURL URLWithString:serverURLString]
-		method:serverLogMethod];
-	[antenna startLoggingApplicationLifecycleNotifications];
+	[DDLog removeLogger:self.antennaLogger];
+	self.antennaLogger = nil;
+	[self.antenna stopLoggingAllNotifications];
+	self.antenna = nil;
+	
+//	NSString *serverURLString = @"http://192.168.16.32:3205/log";
+//	NSString *serverLogMethod = @"POST";
+	
 	
 	if (self.antennaLoggingEnabled) {
-		self.antennaLogger = [[DDAntennaLogger alloc] initWithAntenna:antenna];
+		self.antenna = [[Antenna alloc] init];
+		
+		NSString *fullHost = [NSString stringWithFormat:kAntennaHostFormat,
+			self.antennaLoggingHost, self.antennaLoggingPort];
+		[self.antenna addChannelWithURL:[NSURL URLWithString:fullHost]
+			method:kAntennaMethod];
+		[self.antenna startLoggingApplicationLifecycleNotifications];
+
+		self.antennaLogger = [[DDAntennaLogger alloc] initWithAntenna:self.antenna];
 		[DDLog addLogger:self.antennaLogger];
 	} else {
 		[DDLog removeLogger:self.antennaLogger];

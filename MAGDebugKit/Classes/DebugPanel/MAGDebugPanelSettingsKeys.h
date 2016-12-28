@@ -23,3 +23,14 @@ extern NSString *const MAGDebugPanelSettingKeyConsoleLoggingEnabled;
 // Path: Logging settings -> Antenna logging enabled
 // Type: BOOL
 extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingEnabled;
+
+// Path: Logging settings -> Antenna logging host
+// Type: NSString
+extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingHost;
+
+// Path: Logging settings -> Antenna logging port
+// Type: NSNumber
+extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingPort;
+
+// Path: Logging settings -> Antenna logging reconnect
+extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingReconnect;
