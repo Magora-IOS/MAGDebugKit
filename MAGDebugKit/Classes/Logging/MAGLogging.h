@@ -15,5 +15,6 @@ extern BOOL magDebugKitAsyncLogs;
 
 @property (nonatomic) BOOL fileLoggingEnabled;
 @property (nonatomic) BOOL consoleLoggingEnabled;
+@property (nonatomic) BOOL antennaLoggingEnabled;
 
 @end

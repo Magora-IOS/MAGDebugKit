@@ -29,6 +29,7 @@
 		handler:^(BOTableViewSection *section) {
 			[self setupFileLoggingItemInSection:section];
 			[self setupConsoleLoggingItemInSection:section];
+			[self setupAntennaLoggingItemInSection:section];
 		}]];
 }
 
@@ -48,6 +49,16 @@
 		handler:^(BOSwitchTableViewCell *cell) {
 				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
 					[[MAGLogging sharedInstance] setConsoleLoggingEnabled:enabled.boolValue];
+				}];
+			}]];
+}
+
+- (void)setupAntennaLoggingItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Antenna logging"
+		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
+		handler:^(BOSwitchTableViewCell *cell) {
+				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					[[MAGLogging sharedInstance] setAntennaLoggingEnabled:enabled.boolValue];
 				}];
 			}]];
 }

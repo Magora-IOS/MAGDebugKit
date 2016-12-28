@@ -1,4 +1,6 @@
 #import "MAGLogging.h"
+#import <DDAntennaLogger/DDAntennaLogger.h>
+#import <Antenna/Antenna.h>
 
 
 #ifdef DEBUG
@@ -14,6 +16,7 @@
 
 @property (nonatomic) DDFileLogger *fileLogger;
 @property (nonatomic) DDTTYLogger *ttyLogger;
+@property (nonatomic) DDAntennaLogger *antennaLogger;
 
 @end
 
@@ -60,6 +63,29 @@
 	} else {
 		[DDLog removeLogger:self.fileLogger];
 		self.fileLogger = nil;
+	}
+}
+
+- (void)setAntennaLoggingEnabled:(BOOL)antennaLoggingEnabled {
+	if (_antennaLoggingEnabled == antennaLoggingEnabled) {
+		return;
+	}
+	
+	_antennaLoggingEnabled = antennaLoggingEnabled;
+	
+	NSString *serverURLString = @"http://192.168.16.32:3205/log";
+	NSString *serverLogMethod = @"POST";
+	Antenna *antenna = [Antenna sharedLogger];
+	[antenna addChannelWithURL:[NSURL URLWithString:serverURLString]
+		method:serverLogMethod];
+	[antenna startLoggingApplicationLifecycleNotifications];
+	
+	if (self.antennaLoggingEnabled) {
+		self.antennaLogger = [[DDAntennaLogger alloc] initWithAntenna:antenna];
+		[DDLog addLogger:self.antennaLogger];
+	} else {
+		[DDLog removeLogger:self.antennaLogger];
+		self.antennaLogger = nil;
 	}
 }
 
