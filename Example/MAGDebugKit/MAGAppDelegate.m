@@ -9,6 +9,7 @@
 #import "MAGAppDelegate.h"
 #import <MAGDebugKit/MAGDebugKit.h>
 
+#import "MAGAutoVideoRecorder.h"
 
 @implementation MAGAppDelegate
 
@@ -19,7 +20,11 @@
         [DebugOverview addToWindowWithFrame:CGRectMake(100, 100, 200, 50)];
 		[[MAGDebugPanel rightPanel] integrateAboveWindow:self.window];
     });
-    
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		[[MAGAutoVideoRecorder sharedInstance] startVideoRecording];
+	});
+
     return YES;
 }
 
@@ -45,9 +50,8 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+- (void)applicationWillTerminate:(UIApplication *)application {
+	[[MAGAutoVideoRecorder sharedInstance] stop];//		for writing video on disk before final termination
 }
 
 @end

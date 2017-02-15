@@ -2,6 +2,8 @@ use_frameworks!
 
 target 'MAGDebugKit_Example' do
   pod 'MAGDebugKit', :path => '../'
+  pod 'YKMediaPlayerKit', '~> 0.0.3'
+  pod 'MAGMatveevReusable', :git => 'https://github.com/Magora-IOS/MAGMatveevReusable.git'
 
   target 'MAGDebugKit_Tests' do
     inherit! :search_paths

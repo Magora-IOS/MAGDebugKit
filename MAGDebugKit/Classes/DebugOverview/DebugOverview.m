@@ -8,9 +8,9 @@
 
 
 #import "DebugOverview.h"
-#import "DragDetector.h"
+#import "MAGDragDetector.h"
 #import "MAGCommonDefines.h"
-#import "RCDoubleTapDetector.h"
+#import "MAGDoubleTapDetector.h"
 #import "MAGRentgen.h"
 
 #import "UIView+MAGMore.h"
@@ -22,8 +22,8 @@
 
 @interface DebugOverview ()
 
-@property (strong, nonatomic) DragDetector *dragDetector;
-@property (strong, nonatomic) RCDoubleTapDetector *doubleTapDetector;
+@property (strong, nonatomic) MAGDragDetector *dragDetector;
+@property (strong, nonatomic) MAGDoubleTapDetector *doubleTapDetector;
 
 @property (strong, nonatomic) IBOutlet UILabel *buildLabel;
 @property (strong, nonatomic) IBOutlet UILabel *versionLabel;
@@ -77,13 +77,13 @@
 
     NSLog(@"%@ %@",[NSString stringWithUTF8String:__DATE__],[NSString stringWithUTF8String:__TIME__]);
     
-    self.dragDetector = [[DragDetector alloc] initWithFundamentView:[UIApplication sharedApplication].keyWindow];
+    self.dragDetector = [[MAGDragDetector alloc] initWithFundamentView:[UIApplication sharedApplication].keyWindow];
     [self prepareDragDetector];
 
-    self.doubleTapDetector = [RCDoubleTapDetector new];
+    self.doubleTapDetector = [MAGDoubleTapDetector new];
     [self.doubleTapDetector attachToTargetView:self];
 	
-    self.doubleTapDetector.didTappedBlock = ^() {
+    self.doubleTapDetector.didTappedBlock = ^(CGPoint point) {
 		MAGRentgen *rentgen = [MAGRentgen sharedInstance];
 		if (rentgen.active) {
 			[rentgen stop];

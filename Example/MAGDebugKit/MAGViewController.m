@@ -2,8 +2,11 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import <MAGDebugKit/MAGLogging.h>
 
+#import "MAGAutoVideoRecorder.h"
 
 @interface MAGViewController ()
+
+@property (strong, nonatomic) IBOutlet UIButton *stopVideoRecordingButton;
 
 @end
 
@@ -20,6 +23,10 @@
 
 - (IBAction)buttonTap:(id)sender {
 	DDLogInfo(@"Button tap.");
+}
+
+- (IBAction)stopVideoRecordingAction {
+	[[MAGAutoVideoRecorder sharedInstance] stop];
 }
 
 @end
