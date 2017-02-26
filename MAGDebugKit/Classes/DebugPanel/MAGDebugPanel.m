@@ -2,6 +2,7 @@
 #import "MAGDebugOverviewSettingsVC.h"
 #import "MAGRentgenSettingsVC.h"
 #import "MAGLoggingSettingsVC.h"
+#import "MAGSandboxBrowserVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -190,7 +191,7 @@
 - (void)setupSandboxBrowserItemInSection:(BOTableViewSection *)section {
 	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox browser" key:nil
 		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = self;
+			cell.destinationViewController = [[MAGSandboxBrowserVC alloc] initWithURL:nil];
 		}]];
 }
 
