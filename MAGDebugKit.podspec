@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MAGDebugKit'
-  s.version          = '0.2.3'
+  s.version          = '0.2.4'
   s.summary          = 'Developers Kit for convenient testing and QA.'
 
 # This description is used to generate tags and improve search results.
@@ -29,7 +29,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'MAGDebugKit/Classes/**/*'
-  
+  s.resources = ["classes/**/*.xib"]
+
   # s.resource_bundles = {
   #   'MAGDebugKit' => ['MAGDebugKit/Assets/*.png']
   # }
@@ -40,11 +41,9 @@ Pod::Spec.new do |s|
 
   s.dependency 'MAGMatveevReusable', '0.3.5'
   s.dependency 'YKMediaPlayerKit', '~> 0.0.3'
-  s.dependency 'libextobjc', '~> 0.4.1'
-
-  s.dependency 'libextobjc', '0.4.1'
-  s.dependency 'Masonry', '1.0.2'
-  s.dependency 'Bohr', '3.0.0'
+  s.dependency 'libextobjc', '~> 0.4'
+  s.dependency 'Masonry', '~> 1.0'
+  s.dependency 'Bohr', '~> 3.0'
   s.dependency 'ReactiveCocoa', '~> 2.5'
   s.dependency 'CocoaLumberjack', '~> 2.4'
   s.dependency 'DDAntennaLogger', '~> 1.0'
