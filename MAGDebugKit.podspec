@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'MAGDebugKit/Classes/**/*'
-  s.resources = ["Classes/**/*.xib"]
+  s.resources = ["MAGDebugKit/Classes/**/*.xib"]
 
   # s.resource_bundles = {
   #   'MAGDebugKit' => ['MAGDebugKit/Assets/*.png']
