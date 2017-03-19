@@ -3,7 +3,7 @@
 #import "MAGLogging.h"
 
 #import <Bohr/BOTableViewCell+Subclass.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 
 @interface MAGLoggingSettingsVC ()

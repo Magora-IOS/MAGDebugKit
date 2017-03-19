@@ -1,0 +1,118 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Antenna (2.0.1):
+    - AFNetworking (~> 2.4)
+  - Bohr (3.0.0)
+  - CocoaLumberjack (2.4.0):
+    - CocoaLumberjack/Default (= 2.4.0)
+    - CocoaLumberjack/Extensions (= 2.4.0)
+  - CocoaLumberjack/Core (2.4.0)
+  - CocoaLumberjack/Default (2.4.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.4.0):
+    - CocoaLumberjack/Default
+  - DDAntennaLogger (1.0.1):
+    - Antenna (~> 2.0)
+    - CocoaLumberjack (~> 2.0)
+  - libextobjc (0.4.1):
+    - libextobjc/EXTADT (= 0.4.1)
+    - libextobjc/EXTConcreteProtocol (= 0.4.1)
+    - libextobjc/EXTKeyPathCoding (= 0.4.1)
+    - libextobjc/EXTNil (= 0.4.1)
+    - libextobjc/EXTSafeCategory (= 0.4.1)
+    - libextobjc/EXTScope (= 0.4.1)
+    - libextobjc/EXTSelectorChecking (= 0.4.1)
+    - libextobjc/EXTSynthesize (= 0.4.1)
+    - libextobjc/NSInvocation+EXT (= 0.4.1)
+    - libextobjc/NSMethodSignature+EXT (= 0.4.1)
+    - libextobjc/RuntimeExtensions (= 0.4.1)
+    - libextobjc/UmbrellaHeader (= 0.4.1)
+  - libextobjc/EXTADT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTConcreteProtocol (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTKeyPathCoding (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTNil (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSafeCategory (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSelectorChecking (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSynthesize (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSInvocation+EXT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSMethodSignature+EXT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.4.1)
+  - libextobjc/UmbrellaHeader (0.4.1)
+  - MAGDebugKit (0.2.4):
+    - Bohr (~> 3.0)
+    - CocoaLumberjack (~> 2.4)
+    - DDAntennaLogger (~> 1.0)
+    - libextobjc (~> 0.4)
+    - MAGMatveevReusable (= 0.3.5)
+    - Masonry (~> 1.0)
+    - ReactiveObjC (~> 2.1)
+    - YKMediaPlayerKit (~> 0.0.3)
+  - MAGMatveevReusable (0.3.5):
+    - Masonry (~> 1.0)
+  - Masonry (1.0.2)
+  - ReactiveObjC (2.1.2)
+  - YKMediaPlayerKit (0.0.3)
+
+DEPENDENCIES:
+  - MAGDebugKit (from `../`)
+  - MAGMatveevReusable (from `https://github.com/Magora-IOS/MAGMatveevReusable.git`)
+  - YKMediaPlayerKit (~> 0.0.3)
+
+EXTERNAL SOURCES:
+  MAGDebugKit:
+    :path: "../"
+  MAGMatveevReusable:
+    :git: https://github.com/Magora-IOS/MAGMatveevReusable.git
+
+CHECKOUT OPTIONS:
+  MAGMatveevReusable:
+    :commit: 45d436cd00f1d7e1ad7e8dc34f995ab05bd10f5f
+    :git: https://github.com/Magora-IOS/MAGMatveevReusable.git
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  Antenna: 3b540bbf07c32ad13c40d355ca19c4c6ea27feb5
+  Bohr: 17b150766e54e1fb8ff417d85b830c7caafa8b4a
+  CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
+  DDAntennaLogger: d5a9f7fb89f6b0b265e5ccf92f88bd78e1e5dbae
+  libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
+  MAGDebugKit: 61b9deaebea770484f69ca3e4304cff6fe7b24c5
+  MAGMatveevReusable: 4d875ac6429d809edf708c6b99c1bbbb6a2dc700
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0
+  YKMediaPlayerKit: fd05f28f3f684c1891f913a7712c12f86c407285
+
+PODFILE CHECKSUM: ae77ff02ff7ed94aa1e15150e1d0e99e6c66b5b6
+
+COCOAPODS: 1.2.0
