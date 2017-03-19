@@ -4,7 +4,7 @@
 
 #import "MAGAutoVideoRecorder.h"
 
-@interface MAGViewController ()
+@interface MAGViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *stopVideoRecordingButton;
 
@@ -27,6 +27,11 @@
 
 - (IBAction)stopVideoRecordingAction {
 	[[MAGAutoVideoRecorder sharedInstance] stop];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return NO;
 }
 
 @end
