@@ -11,7 +11,6 @@ extern BOOL magDebugKitAsyncLogs;
 @interface MAGLogging : NSObject
 
 + (instancetype)sharedInstance;
-+ (void)addToWindowWithFrame:(CGRect)frame;
 
 @property (nonatomic) BOOL fileLoggingEnabled;
 @property (nonatomic) BOOL consoleLoggingEnabled;

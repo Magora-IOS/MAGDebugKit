@@ -56,6 +56,7 @@
 	self.window.rootViewController = nc;
 	self.window.windowLevel = appWindow.windowLevel + 1;
 	[self.window makeKeyAndVisible];
+	[appWindow makeKeyWindow];
 	
 	[self setupAppearanceFromWindow:appWindow];
 	

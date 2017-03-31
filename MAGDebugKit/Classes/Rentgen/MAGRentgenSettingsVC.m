@@ -1,6 +1,7 @@
 #import "MAGRentgenSettingsVC.h"
 #import "MAGDebugPanelSettingsKeys.h"
 #import "MAGRentgen.h"
+#import "MAGTapRentgen.h"
 
 #import <Bohr/BOTableViewCell+Subclass.h>
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -22,14 +23,30 @@
 - (void)setupMenuActions {
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
+			[self setupRespondersEnabledItemInSection:section];
 			[self setupEnabledItemInSection:section];
 			[self setupAllViewsItemInSection:section];
 			[self setupClassCaptionsItemInSection:section];
 		}]];
 }
 
+- (void)setupRespondersEnabledItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Highlight responders"
+		key:MAGDebugPanelSettingKeyRentgenRespondersEnabled
+		handler:^(BOSwitchTableViewCell *cell) {
+				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					if (enabled.boolValue) {
+						[[MAGTapRentgen sharedInstance] start];
+					} else {
+						[[MAGTapRentgen sharedInstance] stop];
+					}
+				}];
+			}]];
+}
+
+
 - (void)setupEnabledItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Enabled"
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Highlight views"
 		key:MAGDebugPanelSettingKeyRentgenEnabled
 		handler:^(BOSwitchTableViewCell *cell) {
 				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {

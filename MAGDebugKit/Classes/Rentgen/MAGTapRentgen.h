@@ -1,12 +1,9 @@
 #import <Foundation/Foundation.h>
 
 
-@interface MAGRentgen : NSObject
+@interface MAGTapRentgen : NSObject
 
 + (instancetype)sharedInstance;
-
-@property (nonatomic) BOOL showClassCaptions;
-@property (nonatomic) BOOL highlightAllViews;
 
 @property (nonatomic, readonly) BOOL active;
 

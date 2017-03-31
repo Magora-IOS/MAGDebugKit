@@ -1,6 +1,18 @@
 #import <Foundation/Foundation.h>
 
-// Path: Rentgen settings -> Enabled
+// Path: Overview -> Enable
+// Type: BOOL
+extern NSString *const MAGDebugPanelSettingKeyOverviewEnabled;
+
+// Path: Overview -> Flow mode
+// Type: BOOL
+extern NSString *const MAGDebugPanelSettingKeyOverviewFlowMode;
+
+// Path: Rentgen settings -> Highlight tapped responders
+// Type: BOOL
+extern NSString *const MAGDebugPanelSettingKeyRentgenRespondersEnabled;
+
+// Path: Rentgen settings -> Highlight views
 // Type: BOOL
 extern NSString *const MAGDebugPanelSettingKeyRentgenEnabled;
 
@@ -34,3 +46,6 @@ extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingPort;
 
 // Path: Logging settings -> Antenna logging reconnect
 extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingReconnect;
+
+// Path: Sandbox -> Finder
+extern NSString *const MAGDebugPanelSettingKeySandboxFinder;

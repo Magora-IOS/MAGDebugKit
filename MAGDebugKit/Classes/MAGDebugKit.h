@@ -9,7 +9,7 @@
 #ifndef MAGDebugKit_h
 #define MAGDebugKit_h
 
-#import "DebugOverview.h"
+#import "MAGDebugOverview.h"
 #import "MAGDebugPanel.h"
 
 #import "MAGAutoVideoRecorder.h"

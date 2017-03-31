@@ -1,5 +1,5 @@
 #import "MAGRentgen.h"
-#import "DebugOverview.h"
+#import "MAGDebugOverview.h"
 
 #import "MAGCommonDefines.h"
 #import "UIView+MAGMore.h"
@@ -89,9 +89,9 @@
 }
 
 - (void)changeView:(UIView *)view  {
-	// Don't preparate debug overview itself.
+	// Don't preparate debug overview.
 	// Don't show fullscreen system windows, that cover the whole app.
-    if ([view isMemberOfClass:[DebugOverview class]] ||
+    if ([view isMemberOfClass:[MAGDebugOverview class]] ||
 		[NSStringFromClass(view.class) isEqualToString:@"UITextEffectsWindow"] ||
 		[NSStringFromClass(view.class) isEqualToString:@"UIRemoteKeyboardWindow"]) {
 		
