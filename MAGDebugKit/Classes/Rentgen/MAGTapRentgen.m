@@ -69,6 +69,7 @@
 	}
 	
 	self.active = NO;
+	[[MAGDebugOverview sharedInstance] displayMessage:nil];
 }
 
 - (MAGDragDetector *)setupTapDetectorForView:(UIView *)fundamentView {
