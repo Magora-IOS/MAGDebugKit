@@ -16,8 +16,23 @@ static NSString *const sandboxBrowserCellId = @"sandboxBrowserCellId";
 
 @implementation MAGSandboxBrowserVC
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+	self = [self initWithURL:nil];
+	return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	self = [self initWithURL:nil];
+	return self;
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+	self = [self initWithURL:nil];
+	return self;
+}
+
 - (instancetype)initWithURL:(NSURL *)url {
-	self = [self initWithStyle:UITableViewStylePlain];
+	self = [super initWithStyle:UITableViewStylePlain];
 	if (!self) {
 		return nil;
 	}
@@ -135,14 +150,9 @@ static NSString *const sandboxBrowserCellId = @"sandboxBrowserCellId";
 		[vc.view addSubview:view];
 		view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 		[view loadFileURL:item allowingReadAccessToURL:self.url];
-//		SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:item];
 		[self.navigationController pushViewController:vc animated:YES];
-//		UIDocumentInteractionController *interactor = [UIDocumentInteractionController
-//			interactionControllerWithURL:item];
-//		interactor.delegate = self;
-//		[interactor presentPreviewAnimated:YES];
 		
-//		[interactor presentOptionsMenuFromRect:CGRectZero inView:tableView animated:YES];
+		// Use QLPreviewController ???
 	}
 }
 
