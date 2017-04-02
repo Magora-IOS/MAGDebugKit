@@ -2,7 +2,7 @@
 #import "MAGDragDetector.h"
 #import "MAGDebugOverview.h"
 #import "UIView+MAGAnimatedBorder.h"
-
+#import "UIView+VCFinder.h"
 
 
 @interface MAGTapRentgen ()
@@ -90,8 +90,13 @@
             view = view.superview;
             className = NSStringFromClass([view class]);
         }
+		
+		UIViewController *vc = [view mag_nearestViewController];
+		NSString *vcClassName = NSStringFromClass([vc class]);
+		
+		NSString *message = [NSString stringWithFormat:@"%@ : %@", className, vcClassName];
 
-		[[MAGDebugOverview sharedInstance] displayMessage:className];
+		[[MAGDebugOverview sharedInstance] displayMessage:message];
 	};
 
 	return tapDetector;
