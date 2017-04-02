@@ -62,11 +62,11 @@
 }
 
 - (void)setupAntennaLoggingItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Antenna"
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Remote"
 		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
 		handler:^(BOSwitchTableViewCell *cell) {
 				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-					[[MAGLogging sharedInstance] setAntennaLoggingEnabled:enabled.boolValue];
+					[[MAGLogging sharedInstance] setRemoteLoggingEnabled:enabled.boolValue];
 				}];
 			}]];
 }
@@ -81,7 +81,7 @@
 				cell.textField.spellCheckingType = UITextSpellCheckingTypeNo;
 			
 				[RACObserve(cell, setting.value) subscribeNext:^(NSString *text) {
-					[[MAGLogging sharedInstance] setAntennaLoggingHost:text];
+					[[MAGLogging sharedInstance] setRemoteLoggingHost:text];
 				}];
 			}]];
 }
@@ -96,7 +96,7 @@
 				cell.textField.spellCheckingType = UITextSpellCheckingTypeNo;
 			
 				[RACObserve(cell, setting.value) subscribeNext:^(NSString *text) {
-					[[MAGLogging sharedInstance] setAntennaLoggingPort:@(text.integerValue)];
+					[[MAGLogging sharedInstance] setRemoteLoggingPort:@(text.integerValue)];
 				}];
 			}]];
 }
@@ -106,9 +106,9 @@
 	[section addCell:[BOButtonTableViewCell cellWithTitle:@"Reconnect"
 		key:MAGDebugPanelSettingKeyAntennaLoggingReconnect handler:^(BOButtonTableViewCell *cell) {
 			cell.actionBlock = ^{
-					if ([MAGLogging sharedInstance].antennaLoggingEnabled) {
-						[[MAGLogging sharedInstance] setAntennaLoggingEnabled:NO];
-						[[MAGLogging sharedInstance] setAntennaLoggingEnabled:YES];
+					if ([MAGLogging sharedInstance].remoteLoggingEnabled) {
+						[[MAGLogging sharedInstance] setRemoteLoggingEnabled:NO];
+						[[MAGLogging sharedInstance] setRemoteLoggingEnabled:YES];
 					}
 				};
 		}]];
