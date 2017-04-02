@@ -44,6 +44,7 @@ Pod::Spec.new do |s|
   s.dependency 'Bohr', '~> 3.0'
   s.dependency 'ReactiveObjC', '~> 2.1'
   s.dependency 'CocoaLumberjack', '~> 2.4'
-  s.dependency 'DDAntennaLogger', '~> 1.0'
+# s.dependency 'DDAntennaLogger', '~> 1.0'
+  s.dependency 'CocoaAsyncSocket', '~> 7.6'
 
 end

@@ -1,6 +1,6 @@
 #import "MAGLogging.h"
-#import <DDAntennaLogger/DDAntennaLogger.h>
-#import <Antenna/Antenna.h>
+#import "MAGRemoteLogger.h"
+#import "MAGJSONLogFormatter.h"
 
 
 #ifdef DEBUG
@@ -12,16 +12,11 @@
 #endif
 
 
-static NSString *const kAntennaHostFormat = @"http://%@:%@/log";
-static NSString *const kAntennaMethod = @"POST";
-
-
 @interface MAGLogging ()
 
 @property (nonatomic) DDFileLogger *fileLogger;
 @property (nonatomic) DDTTYLogger *ttyLogger;
-@property (nonatomic) DDAntennaLogger *antennaLogger;
-@property (nonatomic) Antenna *antenna;
+@property (nonatomic) MAGRemoteLogger *remoteLogger;
 
 @end
 
@@ -71,36 +66,23 @@ static NSString *const kAntennaMethod = @"POST";
 	}
 }
 
-- (void)setAntennaLoggingEnabled:(BOOL)antennaLoggingEnabled {
-	if (_antennaLoggingEnabled == antennaLoggingEnabled) {
+- (void)setRemoteLoggingEnabled:(BOOL)remoteLoggingEnabled {
+	if (_remoteLoggingEnabled == remoteLoggingEnabled) {
 		return;
 	}
 	
-	_antennaLoggingEnabled = antennaLoggingEnabled;
+	_remoteLoggingEnabled = remoteLoggingEnabled;
 	
-	[DDLog removeLogger:self.antennaLogger];
-	self.antennaLogger = nil;
-	[self.antenna stopLoggingAllNotifications];
-	self.antenna = nil;
-	
-//	NSString *serverURLString = @"http://192.168.16.32:3205/log";
-//	NSString *serverLogMethod = @"POST";
-	
-	
-	if (self.antennaLoggingEnabled) {
-		self.antenna = [[Antenna alloc] init];
-		
-		NSString *fullHost = [NSString stringWithFormat:kAntennaHostFormat,
-			self.antennaLoggingHost, self.antennaLoggingPort];
-		[self.antenna addChannelWithURL:[NSURL URLWithString:fullHost]
-			method:kAntennaMethod];
-		[self.antenna startLoggingApplicationLifecycleNotifications];
+	[DDLog removeLogger:self.remoteLogger];
+	self.remoteLogger = nil;
 
-		self.antennaLogger = [[DDAntennaLogger alloc] initWithAntenna:self.antenna];
-		[DDLog addLogger:self.antennaLogger];
+	if (self.remoteLoggingEnabled) {
+		self.remoteLogger = [[MAGRemoteLogger alloc] initWithHost:self.remoteLoggingHost port:self.remoteLoggingPort.unsignedIntegerValue];
+		self.remoteLogger.logFormatter = [MAGJSONLogFormatter new];
+		[DDLog addLogger:self.remoteLogger];
 	} else {
-		[DDLog removeLogger:self.antennaLogger];
-		self.antennaLogger = nil;
+		[DDLog removeLogger:self.remoteLogger];
+		self.remoteLogger = nil;
 	}
 }
 

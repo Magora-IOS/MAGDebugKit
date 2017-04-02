@@ -15,8 +15,9 @@ extern BOOL magDebugKitAsyncLogs;
 @property (nonatomic) BOOL fileLoggingEnabled;
 @property (nonatomic) BOOL consoleLoggingEnabled;
 
-@property (nonatomic) BOOL antennaLoggingEnabled;
-@property (nonatomic, copy) NSString *antennaLoggingHost;
-@property (nonatomic) NSNumber *antennaLoggingPort;
+// Send logs via TCP socket.
+@property (nonatomic) BOOL remoteLoggingEnabled;
+@property (nonatomic, copy) NSString *remoteLoggingHost;
+@property (nonatomic) NSNumber *remoteLoggingPort;
 
 @end
