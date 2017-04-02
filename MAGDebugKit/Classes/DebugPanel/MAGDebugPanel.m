@@ -161,8 +161,8 @@
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
 			[self setupSandboxBrowserItemInSection:section];
-			[self setupSandboxSharingItemInSection:section];
-			[self setupSandboxCleaningItemInSection:section];
+//			[self setupSandboxSharingItemInSection:section];
+//			[self setupSandboxCleaningItemInSection:section];
 		}]];
 	
 }
