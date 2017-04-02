@@ -1,4 +1,6 @@
 #import "MAGLogging.h"
+#import "MAGRemoteLogger.h"
+#import "MAGJSONLogFormatter.h"
 
 
 #ifdef DEBUG
@@ -14,7 +16,7 @@
 
 @property (nonatomic) DDFileLogger *fileLogger;
 @property (nonatomic) DDTTYLogger *ttyLogger;
-//@property (nonatomic) MAGRemoteLogger *remoteLogger;
+@property (nonatomic) MAGRemoteLogger *remoteLogger;
 
 @end
 
@@ -71,25 +73,16 @@
 	
 	_remoteLoggingEnabled = remoteLoggingEnabled;
 	
-//	[DDLog removeLogger:self.remoteLogger];
-//	self.remoteLogger = nil;
-//	[self.antenna stopLoggingAllNotifications];
-//	self.antenna = nil;
-//	
+	[DDLog removeLogger:self.remoteLogger];
+	self.remoteLogger = nil;
+
 	if (self.remoteLoggingEnabled) {
-//		self.antenna = [[Antenna alloc] init];
-//		
-//		NSString *fullHost = [NSString stringWithFormat:kAntennaHostFormat,
-//			self.antennaLoggingHost, self.antennaLoggingPort];
-//		[self.antenna addChannelWithURL:[NSURL URLWithString:fullHost]
-//			method:kAntennaMethod];
-//		[self.antenna startLoggingApplicationLifecycleNotifications];
-//
-//		self.antennaLogger = [[DDAntennaLogger alloc] initWithAntenna:self.antenna];
-//		[DDLog addLogger:self.antennaLogger];
+		self.remoteLogger = [[MAGRemoteLogger alloc] initWithHost:self.remoteLoggingHost port:self.remoteLoggingPort.unsignedIntegerValue];
+		self.remoteLogger.logFormatter = [MAGJSONLogFormatter new];
+		[DDLog addLogger:self.remoteLogger];
 	} else {
-//		[DDLog removeLogger:self.remoteLogger];
-//		self.remoteLogger = nil;
+		[DDLog removeLogger:self.remoteLogger];
+		self.remoteLogger = nil;
 	}
 }
 

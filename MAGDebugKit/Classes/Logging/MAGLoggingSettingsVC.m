@@ -66,6 +66,12 @@
 		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
 		handler:^(BOSwitchTableViewCell *cell) {
 				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					NSString *host = [BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingHost].value;
+					[[MAGLogging sharedInstance] setRemoteLoggingHost:host];
+					
+					NSString *port = [BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingPort].value;
+					[[MAGLogging sharedInstance] setRemoteLoggingPort:@(port.integerValue)];
+					
 					[[MAGLogging sharedInstance] setRemoteLoggingEnabled:enabled.boolValue];
 				}];
 			}]];
