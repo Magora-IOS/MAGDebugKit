@@ -45,7 +45,7 @@ Pod::Spec.new do |s|
   s.dependency 'libextobjc', '0.4.1'
   s.dependency 'Masonry', '1.0.2'
   s.dependency 'Bohr', '3.0.0'
-  s.dependency 'ReactiveCocoa', '~> 2.5'
+  s.dependency 'ReactiveObjC', '~> 2.1'
   s.dependency 'CocoaLumberjack', '~> 2.4'
   s.dependency 'DDAntennaLogger', '~> 1.0'
 
