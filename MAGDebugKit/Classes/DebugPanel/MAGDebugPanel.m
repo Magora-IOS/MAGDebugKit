@@ -2,6 +2,7 @@
 #import "MAGDebugOverviewSettingsVC.h"
 #import "MAGRentgenSettingsVC.h"
 #import "MAGLoggingSettingsVC.h"
+#import "MAGSandboxBrowserVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -156,12 +157,19 @@
 			[self setupOverviewSettingsItemInSection:section];
 			[self setupRentgenSettingsItemInSection:section];
 		}]];
+	
+	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
+		handler:^(BOTableViewSection *section) {
+			[self setupSandboxBrowserItemInSection:section];
+			[self setupSandboxSharingItemInSection:section];
+			[self setupSandboxCleaningItemInSection:section];
+		}]];
+	
 }
 
 - (void)setupLoggingSettingsItemInSection:(BOTableViewSection *)section {
 	[section addCell:[BOTableViewCell cellWithTitle:@"Logging" key:nil
 		handler:^(BOTableViewCell *cell) {
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			cell.destinationViewController = [[MAGLoggingSettingsVC alloc] init];
 		}]];
 }
@@ -170,7 +178,6 @@
 - (void)setupOverviewSettingsItemInSection:(BOTableViewSection *)section {
 	[section addCell:[BOTableViewCell cellWithTitle:@"Overview" key:nil
 		handler:^(BOTableViewCell *cell) {
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			cell.destinationViewController = [[MAGDebugOverviewSettingsVC alloc] init];
 		}]];
 }
@@ -178,8 +185,28 @@
 - (void)setupRentgenSettingsItemInSection:(BOTableViewSection *)section {
 	[section addCell:[BOTableViewCell cellWithTitle:@"Rentgen mode" key:nil
 		handler:^(BOTableViewCell *cell) {
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			cell.destinationViewController = [[MAGRentgenSettingsVC alloc] init];
+		}]];
+}
+
+- (void)setupSandboxBrowserItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox browser" key:nil
+		handler:^(BOTableViewCell *cell) {
+			cell.destinationViewController = [[MAGSandboxBrowserVC alloc] initWithURL:nil];
+		}]];
+}
+
+- (void)setupSandboxSharingItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox HTTP sharing" key:nil
+		handler:^(BOTableViewCell *cell) {
+			cell.destinationViewController = self;
+		}]];
+}
+
+- (void)setupSandboxCleaningItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox cleaning" key:nil
+		handler:^(BOTableViewCell *cell) {
+			cell.destinationViewController = self;
 		}]];
 }
 
