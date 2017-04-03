@@ -163,8 +163,7 @@
 			[self setupSandboxBrowserItemInSection:section];
 //			[self setupSandboxSharingItemInSection:section];
 //			[self setupSandboxCleaningItemInSection:section];
-		}]];
-	
+		}]];	
 }
 
 - (void)setupLoggingSettingsItemInSection:(BOTableViewSection *)section {

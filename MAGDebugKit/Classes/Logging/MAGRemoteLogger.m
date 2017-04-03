@@ -1,6 +1,5 @@
 #import "MAGRemoteLogger.h"
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
-#import <mach/mach_time.h>
 
 
 @interface MAGRemoteLogger () <GCDAsyncSocketDelegate>

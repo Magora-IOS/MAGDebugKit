@@ -78,7 +78,11 @@
 
 	if (self.remoteLoggingEnabled) {
 		self.remoteLogger = [[MAGRemoteLogger alloc] initWithHost:self.remoteLoggingHost port:self.remoteLoggingPort.unsignedIntegerValue];
-		self.remoteLogger.logFormatter = [MAGJSONLogFormatter new];
+		MAGJSONLogFormatter *formatter = [[MAGJSONLogFormatter alloc] init];
+		[formatter setPermanentLogValue:@"log" field:@"type"];
+		[formatter setPermanentLogValue:[NSProcessInfo processInfo].operatingSystemVersionString field:@"os"];
+		
+		self.remoteLogger.logFormatter = formatter;
 		[DDLog addLogger:self.remoteLogger];
 	} else {
 		[DDLog removeLogger:self.remoteLogger];
