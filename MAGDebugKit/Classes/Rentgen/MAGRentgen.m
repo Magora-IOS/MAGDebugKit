@@ -75,8 +75,6 @@
 }
 
 - (void)rentgenTimerTicked:(NSTimer *)timer {
-    NSLog(@"Top VC: %@\n\n\n",[[UIView mag_appTopViewController] class]);
-	
 	if (self.active) {
 		for (UIWindow *window in [UIApplication sharedApplication].windows) {
 			[self changeView:window];
