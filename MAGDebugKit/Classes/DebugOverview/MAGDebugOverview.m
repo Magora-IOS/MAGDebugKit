@@ -37,9 +37,12 @@ static MAGDebugOverview *_sharedInstance = nil;
 
 + (instancetype)sharedInstance {
     if (!_sharedInstance) {
-//        sharedInstance = [DebugOverview mag_loadFromNib];// [[self alloc] init];
-        NSBundle *bundle = [NSBundle bundleForClass:self.class];
-        _sharedInstance = [bundle loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
+		NSBundle *podBundle = [NSBundle bundleForClass:self.class];
+		NSURL *bundleURL = [podBundle URLForResource:@"MAGDebugKit" withExtension:@"bundle"];
+		NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+		_sharedInstance = [bundle loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
+
+//		_sharedInstance = [podBundle loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
     };
     return _sharedInstance;
 }
