@@ -9,6 +9,7 @@ static NSString *const sandboxBrowserCellId = @"sandboxBrowserCellId";
 
 @property (nonatomic) NSFileManager *fm;
 @property (nonatomic) NSURL *url;
+@property (nonatomic) UIDocumentInteractionController *documentInteractor;
 @property (nonatomic) NSArray <NSURL *> *items;
 
 @end
@@ -166,9 +167,9 @@ static NSString *const sandboxBrowserCellId = @"sandboxBrowserCellId";
 		MAGSandboxBrowserVC *vc = [[MAGSandboxBrowserVC alloc] initWithURL:item];
 		[self.navigationController pushViewController:vc animated:YES];
 	} else {
-		UIDocumentInteractionController *interactor = [UIDocumentInteractionController
+		self.documentInteractor = [UIDocumentInteractionController
 			interactionControllerWithURL:item];
-		[interactor presentOptionsMenuFromRect:[tableView rectForRowAtIndexPath:indexPath]
+		[self.documentInteractor presentOptionsMenuFromRect:[tableView rectForRowAtIndexPath:indexPath]
 			inView:tableView animated:YES];
 	}
 }
