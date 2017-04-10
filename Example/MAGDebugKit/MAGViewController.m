@@ -13,24 +13,15 @@
 
 @implementation MAGViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
 #pragma mark - UI events
 
 - (IBAction)buttonTap:(id)sender {
 	DDLogInfo(@"Button tap.");
 }
 
-- (IBAction)stopVideoRecordingAction {
-	[[MAGAutoVideoRecorder sharedInstance] stop];
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
+	DDLogDebug(@"Text field should return.");
 	return NO;
 }
 
