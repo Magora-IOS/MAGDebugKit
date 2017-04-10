@@ -1,6 +1,5 @@
 # MAGDebugKit
 
-#[![CI Status](http://img.shields.io/travis/Evgeniy Stepanov/MAGDebugKit.svg?style=flat)](https://travis-ci.org/Evgeniy Stepanov/MAGDebugKit)
 [![Version](https://img.shields.io/cocoapods/v/MAGDebugKit.svg?style=flat)](http://cocoapods.org/pods/MAGDebugKit)
 [![License](https://img.shields.io/cocoapods/l/MAGDebugKit.svg?style=flat)](http://cocoapods.org/pods/MAGDebugKit)
 [![Platform](https://img.shields.io/cocoapods/p/MAGDebugKit.svg?style=flat)](http://cocoapods.org/pods/MAGDebugKit)
@@ -34,10 +33,17 @@ it, simply add the following line to your Podfile:
 pod "MAGDebugKit"
 ```
 
+To integrate into the project, in your AppDelegate, after the app main window is alreadey initialized, add following line:
+
+```objectivec
+[[MAGDebugPanel rightPanel] integrateAboveWindow:self.window];
+```
+
 ## Authors
 
 Evgeniy Stepanov, stepanov@magora.systems
 Alexander Gorbunov, gorbunov@magora-systems.com
+Denis Matveev
 
 ## License
 
