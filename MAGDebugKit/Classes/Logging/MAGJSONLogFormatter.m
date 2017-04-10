@@ -28,7 +28,7 @@
 			@"source": [NSString stringWithFormat:@"%@:%@ %@",
 				logMessage->_fileName, @(logMessage->_line), logMessage->_function],
 			@"context": @(logMessage->_context),
-			@"level": levelString(logMessage->_level),
+			@"level": levelString(logMessage->_flag),
 		}];
 	
 	[map addEntriesFromDictionary:self.permanentFields];
@@ -45,31 +45,20 @@
 }
 
 
-static NSString *levelString(DDLogLevel level) {
+static NSString *levelString(DDLogFlag level) {
 	static NSDictionary *levels = nil;
 	if (!levels) {
 		levels = @{
-				@(DDLogLevelError): @"Error",
-				@(DDLogLevelWarning): @"Warning",
-				@(DDLogLevelInfo): @"Info",
-				@(DDLogLevelDebug): @"Debug",
-				@(DDLogLevelVerbose): @"Verbose",
+				@(DDLogFlagError): @"Error",
+				@(DDLogFlagWarning): @"Warning",
+				@(DDLogFlagInfo): @"Info",
+				@(DDLogFlagDebug): @"Debug",
+				@(DDLogFlagVerbose): @"Verbose",
 			};
 	}
 	
-	NSString *string;
-	
-	if (level & DDLogFlagError) {
-		string = levels[@(DDLogFlagError)];
-	} else if (level & DDLogFlagWarning) {
-		string = levels[@(DDLogFlagWarning)];
-	} else if (level & DDLogFlagInfo) {
-		string = levels[@(DDLogFlagInfo)];
-	} else if (level & DDLogFlagDebug) {
-		string = levels[@(DDLogFlagDebug)];
-	} else if (level & DDLogFlagVerbose) {
-		string = levels[@(DDLogFlagVerbose)];
-	} else {
+	NSString *string = levels[@(level)];
+	if (!string) {
 		string = @"";
 	}
 	
