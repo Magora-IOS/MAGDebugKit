@@ -18,6 +18,8 @@
 
 6. Simple filesystem browser and files previewer.
 
+7. Custom actions with easy access from any screen.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -41,9 +43,9 @@ To integrate into the project, in your AppDelegate, after the app main window is
 
 ## Authors
 
-Evgeniy Stepanov, stepanov@magora.systems
-Alexander Gorbunov, gorbunov@magora-systems.com
-Denis Matveev
+* Evgeniy Stepanov, stepanov@magora.systems
+* Alexander Gorbunov, gorbunov@magora-systems.com  
+* Denis Matveev
 
 ## License
 

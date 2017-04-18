@@ -8,8 +8,10 @@
 
 #import "MAGAppDelegate.h"
 #import <MAGDebugKit/MAGDebugKit.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 #import "MAGAutoVideoRecorder.h"
+
 
 @implementation MAGAppDelegate
 
@@ -17,7 +19,15 @@
 {
     // Override point for customization after application launch.
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		[[MAGDebugPanel rightPanel] integrateAboveWindow:self.window];
+		MAGDebugPanel *panel = [MAGDebugPanel rightPanel];
+		
+		@weakify(panel);
+		[panel addAction:^{
+				@strongify(panel);
+				[panel desintegrate];
+			} withTitle:@"Desintegrate panel"];
+		
+		[panel integrateAboveWindow:self.window];
     });
 	
 //	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
