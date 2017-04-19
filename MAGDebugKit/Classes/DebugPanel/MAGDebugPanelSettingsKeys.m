@@ -9,6 +9,7 @@ NSString *const MAGDebugPanelSettingKeyRentgenEnabled = @"MAGDebugPanelSettingKe
 NSString *const MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled = @"MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled";
 NSString *const MAGDebugPanelSettingKeyHighlightAllViewsEnabled = @"MAGDebugPanelSettingKeyHighlightAllViewsEnabled";
 
+NSString *const MAGDebugPanelSettingKeyLoggingVerbosity = @"MAGDebugPanelSettingKeyLoggingVerbosity";
 NSString *const MAGDebugPanelSettingKeyFileLoggingEnabled = @"MAGDebugPanelSettingKeyFileLoggingEnabled";
 NSString *const MAGDebugPanelSettingKeyConsoleLoggingEnabled = @"MAGDebugPanelSettingKeyConsoleLoggingEnabled";
 

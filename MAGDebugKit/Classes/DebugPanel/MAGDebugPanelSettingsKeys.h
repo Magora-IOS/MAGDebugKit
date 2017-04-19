@@ -24,6 +24,10 @@ extern NSString *const MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled;
 // Type: BOOL
 extern NSString *const MAGDebugPanelSettingKeyHighlightAllViewsEnabled;
 
+// Path: Logging settings -> Logging verbosity
+// Type: enum
+extern NSString *const MAGDebugPanelSettingKeyLoggingVerbosity;
+
 // Path: Logging settings -> File logging enabled
 // Type: BOOL
 extern NSString *const MAGDebugPanelSettingKeyFileLoggingEnabled;

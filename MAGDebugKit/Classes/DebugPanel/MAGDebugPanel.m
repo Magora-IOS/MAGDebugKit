@@ -14,6 +14,8 @@
 @property (nonatomic) MAGDebugPanelAppearanceStyle appearanceStyle;
 @property (nonatomic) UIWindow *window;
 
+@property (nonatomic) BOTableViewSection *customActions;
+
 @end
 
 
@@ -62,6 +64,22 @@
 	[self setupAppearanceFromWindow:appWindow];
 	
 	[self setupCloseButton];
+}
+
+- (void)desintegrate {
+	[self.navigationController.view removeFromSuperview];
+	[self.navigationController removeFromParentViewController];
+	self.window.rootViewController = nil;
+	self.window = nil;
+}
+
+- (void)addAction:(void(^)(void))action withTitle:(NSString *)title {	
+	BOTableViewCell *cell = [BOButtonTableViewCell cellWithTitle:title key:nil
+		handler:^(BOButtonTableViewCell *cell) {
+			cell.actionBlock = action;
+		}];
+
+	[self.customActions addCell:cell];
 }
 
 #pragma mark - UI actions
@@ -161,10 +179,12 @@
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
 			[self setupSandboxBrowserItemInSection:section];
-			[self setupSandboxSharingItemInSection:section];
-			[self setupSandboxCleaningItemInSection:section];
+//			[self setupSandboxSharingItemInSection:section];
+//			[self setupSandboxCleaningItemInSection:section];
 		}]];
 	
+	self.customActions = [BOTableViewSection sectionWithHeaderTitle:nil handler:nil];
+	[self addSection:self.customActions];
 }
 
 - (void)setupLoggingSettingsItemInSection:(BOTableViewSection *)section {

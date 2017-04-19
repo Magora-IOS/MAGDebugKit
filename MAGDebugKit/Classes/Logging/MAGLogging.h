@@ -12,6 +12,8 @@ extern BOOL magDebugKitAsyncLogs;
 
 + (instancetype)sharedInstance;
 
+@property (nonatomic) DDLogLevel logLevel;
+
 @property (nonatomic) BOOL fileLoggingEnabled;
 @property (nonatomic) BOOL consoleLoggingEnabled;
 

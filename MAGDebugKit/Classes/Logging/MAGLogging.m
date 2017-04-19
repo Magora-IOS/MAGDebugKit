@@ -4,7 +4,7 @@
 
 
 #ifdef DEBUG
-	DDLogLevel magDebugKitLogLevel = DDLogLevelVerbose;
+	DDLogLevel magDebugKitLogLevel = DDLogLevelAll;
 	BOOL magDebugKitAsyncLogs = YES;
 #else
 	DDLogLevel magDebugKitLogLevel = DDLogLevelWarning;
@@ -30,6 +30,14 @@
         sharedInstance = [[MAGLogging alloc] init];
     });
     return sharedInstance;
+}
+
+- (void)setLogLevel:(DDLogLevel)logLevel {
+	magDebugKitLogLevel = logLevel;
+}
+
+- (DDLogLevel)logLevel {
+	return magDebugKitLogLevel;
 }
 
 - (void)setConsoleLoggingEnabled:(BOOL)consoleLoggingEnabled {
@@ -78,7 +86,11 @@
 
 	if (self.remoteLoggingEnabled) {
 		self.remoteLogger = [[MAGRemoteLogger alloc] initWithHost:self.remoteLoggingHost port:self.remoteLoggingPort.unsignedIntegerValue];
-		self.remoteLogger.logFormatter = [MAGJSONLogFormatter new];
+		MAGJSONLogFormatter *formatter = [[MAGJSONLogFormatter alloc] init];
+		[formatter setPermanentLogValue:@"log" field:@"type"];
+		[formatter setPermanentLogValue:[NSProcessInfo processInfo].operatingSystemVersionString field:@"os"];
+		
+		self.remoteLogger.logFormatter = formatter;
 		[DDLog addLogger:self.remoteLogger];
 	} else {
 		[DDLog removeLogger:self.remoteLogger];
