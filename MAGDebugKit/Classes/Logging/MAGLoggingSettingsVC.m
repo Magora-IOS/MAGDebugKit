@@ -19,6 +19,9 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 
 @interface MAGLoggingSettingsVC ()
 
+@property (nonatomic) BOTextTableViewCell *hostCell;
+@property (nonatomic) BOTextTableViewCell *portCell;
+
 @end
 
 
@@ -53,7 +56,6 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 			[self setupAntennaLoggingItemInSection:section];
 			[self setupAntennaLoggingHostItemInSection:section];
 			[self setupAntennaLoggingPortItemInSection:section];
-			[self setupAntennaLoggingReconnectButtonCellInSection:section];
 		}]];
 }
 
@@ -107,6 +109,9 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
 		handler:^(BOSwitchTableViewCell *cell) {
 				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					self.hostCell.textField.enabled = !enabled.boolValue;
+					self.portCell.textField.enabled = !enabled.boolValue;
+				
 					NSString *host = [BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingHost].value;
 					[[MAGLogging sharedInstance] setRemoteLoggingHost:host];
 					
@@ -119,46 +124,38 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 }
 
 - (void)setupAntennaLoggingHostItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTextTableViewCell cellWithTitle:@"Host"
+	self.hostCell = [BOTextTableViewCell cellWithTitle:@"Host"
 		key:MAGDebugPanelSettingKeyAntennaLoggingHost
 		handler:^(BOTextTableViewCell *cell) {
 				cell.textField.keyboardType = UIKeyboardTypeURL;
 				cell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
 				cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 				cell.textField.spellCheckingType = UITextSpellCheckingTypeNo;
+				cell.textField.enabled = ![[BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingEnabled].value boolValue];
 			
 				[RACObserve(cell, setting.value) subscribeNext:^(NSString *text) {
 					[[MAGLogging sharedInstance] setRemoteLoggingHost:text];
 				}];
-			}]];
+			}];
+	[section addCell:self.hostCell];
 }
 
 - (void)setupAntennaLoggingPortItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTextTableViewCell cellWithTitle:@"Port"
+	self.portCell = [BOTextTableViewCell cellWithTitle:@"Port"
 		key:MAGDebugPanelSettingKeyAntennaLoggingPort
 		handler:^(BOTextTableViewCell *cell) {
 				cell.textField.keyboardType = UIKeyboardTypeNumberPad;
 				cell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
 				cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 				cell.textField.spellCheckingType = UITextSpellCheckingTypeNo;
+				cell.textField.enabled = ![[BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingEnabled].value boolValue];
 			
 				[RACObserve(cell, setting.value) subscribeNext:^(NSString *text) {
 					[[MAGLogging sharedInstance] setRemoteLoggingPort:@(text.integerValue)];
 				}];
-			}]];
-}
+			}];
 
-
-- (void)setupAntennaLoggingReconnectButtonCellInSection:(BOTableViewSection *)section {
-	[section addCell:[BOButtonTableViewCell cellWithTitle:@"Reconnect"
-		key:MAGDebugPanelSettingKeyAntennaLoggingReconnect handler:^(BOButtonTableViewCell *cell) {
-			cell.actionBlock = ^{
-					if ([MAGLogging sharedInstance].remoteLoggingEnabled) {
-						[[MAGLogging sharedInstance] setRemoteLoggingEnabled:NO];
-						[[MAGLogging sharedInstance] setRemoteLoggingEnabled:YES];
-					}
-				};
-		}]];
+	[section addCell:self.portCell];
 }
 
 NSString *titleForLoggingLevel(MAGLoggingLevel level) {

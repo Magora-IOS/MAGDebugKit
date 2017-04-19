@@ -48,8 +48,5 @@ extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingHost;
 // Type: NSNumber
 extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingPort;
 
-// Path: Logging settings -> Antenna logging reconnect
-extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingReconnect;
-
 // Path: Sandbox -> Finder
 extern NSString *const MAGDebugPanelSettingKeySandboxFinder;
