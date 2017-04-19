@@ -17,6 +17,5 @@ NSString *const MAGDebugPanelSettingKeyTTYLoggingEnabled = @"MAGDebugPanelSettin
 NSString *const MAGDebugPanelSettingKeyAntennaLoggingEnabled = @"MAGDebugPanelSettingKeyAntennaLoggingEnabled";
 NSString *const MAGDebugPanelSettingKeyAntennaLoggingHost = @"MAGDebugPanelSettingKeyAntennaLoggingHost";
 NSString *const MAGDebugPanelSettingKeyAntennaLoggingPort = @"MAGDebugPanelSettingKeyAntennaLoggingPort";
-NSString *const MAGDebugPanelSettingKeyAntennaLoggingReconnect = @"MAGDebugPanelSettingKeyAntennaLoggingReconnect";
 
 NSString *const MAGDebugPanelSettingKeySandboxFinder = @"MAGDebugPanelSettingKeySandboxFinder";
