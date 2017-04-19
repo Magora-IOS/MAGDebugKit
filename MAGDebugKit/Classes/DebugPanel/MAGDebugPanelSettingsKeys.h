@@ -32,9 +32,13 @@ extern NSString *const MAGDebugPanelSettingKeyLoggingVerbosity;
 // Type: BOOL
 extern NSString *const MAGDebugPanelSettingKeyFileLoggingEnabled;
 
-// Path: Logging settings -> Console logging enabled
+// Path: Logging settings -> ASL logging enabled
 // Type: BOOL
-extern NSString *const MAGDebugPanelSettingKeyConsoleLoggingEnabled;
+extern NSString *const MAGDebugPanelSettingKeyASLLoggingEnabled;
+
+// Path: Logging settings -> TTY logging enabled
+// Type: BOOL
+extern NSString *const MAGDebugPanelSettingKeyTTYLoggingEnabled;
 
 // Path: Logging settings -> Antenna logging enabled
 // Type: BOOL

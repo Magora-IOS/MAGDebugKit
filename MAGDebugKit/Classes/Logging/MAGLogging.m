@@ -16,6 +16,7 @@
 
 @property (nonatomic) DDFileLogger *fileLogger;
 @property (nonatomic) DDTTYLogger *ttyLogger;
+@property (nonatomic) DDASLLogger *aslLogger;
 @property (nonatomic) MAGRemoteLogger *remoteLogger;
 
 @end
@@ -40,19 +41,35 @@
 	return magDebugKitLogLevel;
 }
 
-- (void)setConsoleLoggingEnabled:(BOOL)consoleLoggingEnabled {
-	if (_consoleLoggingEnabled == consoleLoggingEnabled) {
+- (void)setTtyLoggingEnabled:(BOOL)ttyLoggingEnabled {
+	if (_ttyLoggingEnabled == ttyLoggingEnabled) {
 		return;
 	}
 
-	_consoleLoggingEnabled = consoleLoggingEnabled;
+	_ttyLoggingEnabled = ttyLoggingEnabled;
 	
-	if (self.consoleLoggingEnabled) {
+	if (self.ttyLoggingEnabled) {
 		self.ttyLogger = [DDTTYLogger sharedInstance];
 		[DDLog addLogger:self.ttyLogger];
 	} else {
 		[DDLog removeLogger:self.ttyLogger];
 		self.ttyLogger = nil;
+	}
+}
+
+- (void)setAslLoggingEnabled:(BOOL)aslLoggingEnabled {
+	if (_aslLoggingEnabled == aslLoggingEnabled) {
+		return;
+	}
+
+	_aslLoggingEnabled = aslLoggingEnabled;
+	
+	if (self.aslLoggingEnabled) {
+		self.aslLogger = [DDASLLogger sharedInstance];
+		[DDLog addLogger:self.aslLogger];
+	} else {
+		[DDLog removeLogger:self.aslLogger];
+		self.aslLogger = nil;
 	}
 }
 

@@ -15,7 +15,8 @@ extern BOOL magDebugKitAsyncLogs;
 @property (nonatomic) DDLogLevel logLevel;
 
 @property (nonatomic) BOOL fileLoggingEnabled;
-@property (nonatomic) BOOL consoleLoggingEnabled;
+@property (nonatomic) BOOL ttyLoggingEnabled;
+@property (nonatomic) BOOL aslLoggingEnabled;
 
 // Send logs via TCP socket.
 @property (nonatomic) BOOL remoteLoggingEnabled;

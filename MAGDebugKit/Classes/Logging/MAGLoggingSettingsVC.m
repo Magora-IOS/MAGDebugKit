@@ -45,7 +45,8 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
 		handler:^(BOTableViewSection *section) {
 			[self setupFileLoggingItemInSection:section];
-			[self setupConsoleLoggingItemInSection:section];
+			[self setupTTYLoggingItemInSection:section];
+			[self setupASLLoggingItemInSection:section];
 		}]];
 
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
@@ -92,12 +93,22 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 		}]];
 }
 
-- (void)setupConsoleLoggingItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Console"
-		key:MAGDebugPanelSettingKeyConsoleLoggingEnabled
+- (void)setupTTYLoggingItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"TTY"
+		key:MAGDebugPanelSettingKeyTTYLoggingEnabled
 		handler:^(BOSwitchTableViewCell *cell) {
 				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-					[[MAGLogging sharedInstance] setConsoleLoggingEnabled:enabled.boolValue];
+					[[MAGLogging sharedInstance] setTtyLoggingEnabled:enabled.boolValue];
+				}];
+			}]];
+}
+
+- (void)setupASLLoggingItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"ASL"
+		key:MAGDebugPanelSettingKeyASLLoggingEnabled
+		handler:^(BOSwitchTableViewCell *cell) {
+				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+					[[MAGLogging sharedInstance] setAslLoggingEnabled:enabled.boolValue];
 				}];
 			}]];
 }
