@@ -4,7 +4,7 @@
 
 
 #ifdef DEBUG
-	DDLogLevel magDebugKitLogLevel = DDLogLevelVerbose;
+	DDLogLevel magDebugKitLogLevel = DDLogLevelAll;
 	BOOL magDebugKitAsyncLogs = YES;
 #else
 	DDLogLevel magDebugKitLogLevel = DDLogLevelWarning;
@@ -30,6 +30,14 @@
         sharedInstance = [[MAGLogging alloc] init];
     });
     return sharedInstance;
+}
+
+- (void)setLogLevel:(DDLogLevel)logLevel {
+	magDebugKitLogLevel = logLevel;
+}
+
+- (DDLogLevel)logLevel {
+	return magDebugKitLogLevel;
 }
 
 - (void)setConsoleLoggingEnabled:(BOOL)consoleLoggingEnabled {
