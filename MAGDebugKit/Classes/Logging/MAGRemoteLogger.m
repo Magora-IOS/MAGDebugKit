@@ -2,6 +2,9 @@
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
 
+static NSTimeInterval const retryInterval = 10.0;
+
+
 @interface MAGRemoteLogger () <GCDAsyncSocketDelegate>
 
 @property (nonatomic, copy) NSString *host;
@@ -10,6 +13,8 @@
 
 #warning Rewrite to make access to the queue thread-safe.
 @property (nonatomic) NSMutableArray *logsToShip;
+@property (atomic) dispatch_queue_t loggingQueue;
+
 @property (nonatomic) DDLogMessage *shippingLog;
 
 @end
@@ -25,11 +30,12 @@
 		return nil;
 	}
 	
+	_logsToShip = [[NSMutableArray alloc] init];
+	_loggingQueue = dispatch_queue_create("loggingQueue", DISPATCH_QUEUE_SERIAL);
+
 	_host = [host copy];
 	_port = port;
-	_socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-	
-	_logsToShip = [[NSMutableArray alloc] init];
+	_socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:_loggingQueue];
 	
 	return self;
 }
@@ -37,14 +43,20 @@
 #pragma mark - Public methods
 
 - (void)logMessage:(DDLogMessage *)logMessage {
-	[self.logsToShip addObject:logMessage];
-	[self shipFromQueue];
+	dispatch_async(self.loggingQueue, ^{
+		[self.logsToShip addObject:logMessage];
+		[self shipFromQueue];
+	});
 }
 
 #pragma mark - Private methods
 
 - (void)shipFromQueue {
 	if (self.logsToShip.count == 0) {
+		return;
+	}
+	
+	if (self.shippingLog) {
 		return;
 	}
 	
@@ -70,14 +82,16 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag {
 	[self.logsToShip removeObject:self.shippingLog];
+	self.shippingLog = nil;
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err {
 	if (err) {
 		NSLog(@"Socket did disconnect with error: %@", err);
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-			[self shipFromQueue];
-		});
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(retryInterval * NSEC_PER_SEC)),
+			self.loggingQueue, ^{
+				[self shipFromQueue];
+			});
 	} else {
 		[self shipFromQueue];
 	}
