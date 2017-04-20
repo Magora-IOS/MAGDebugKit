@@ -1,13 +1,11 @@
 PODS:
   - Bohr (3.0.0)
   - CocoaAsyncSocket (7.6.0)
-  - CocoaLumberjack (2.4.0):
-    - CocoaLumberjack/Default (= 2.4.0)
-    - CocoaLumberjack/Extensions (= 2.4.0)
-  - CocoaLumberjack/Core (2.4.0)
-  - CocoaLumberjack/Default (2.4.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.4.0):
+  - CocoaLumberjack (3.1.0):
+    - CocoaLumberjack/Default (= 3.1.0)
+    - CocoaLumberjack/Extensions (= 3.1.0)
+  - CocoaLumberjack/Default (3.1.0)
+  - CocoaLumberjack/Extensions (3.1.0):
     - CocoaLumberjack/Default
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
@@ -44,10 +42,10 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
-  - MAGDebugKit (0.2.4):
+  - MAGDebugKit (0.4.6):
     - Bohr (~> 3.0)
     - CocoaAsyncSocket (~> 7.6)
-    - CocoaLumberjack (~> 2.4)
+    - CocoaLumberjack (~> 3.1)
     - libextobjc (~> 0.4)
     - MAGMatveevReusable (= 0.3.5)
     - Masonry (~> 1.0)
@@ -78,9 +76,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Bohr: 17b150766e54e1fb8ff417d85b830c7caafa8b4a
   CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
-  CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
+  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  MAGDebugKit: d09b6021ffa0881bc4ac74c4dc2f9d4455d67359
+  MAGDebugKit: 0d469488e72b5e9f493e701ab85544ebaafe6d2b
   MAGMatveevReusable: 4d875ac6429d809edf708c6b99c1bbbb6a2dc700
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0
@@ -88,4 +86,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ae77ff02ff7ed94aa1e15150e1d0e99e6c66b5b6
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
