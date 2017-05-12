@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MAGDebugKit'
-  s.version          = '0.4.6'
+  s.version          = '0.4.7'
   s.summary          = 'Developers Kit for convenient testing and QA.'
 
 # This description is used to generate tags and improve search results.
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/Magora-IOS/MAGDebugKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
   s.author           = { 'Evgeniy Stepanov' => 'stepanov@magora.systems' }
   s.source           = { :git => 'https://github.com/Magora-IOS/MAGDebugKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'

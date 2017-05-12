@@ -4,19 +4,19 @@
 [![License](https://img.shields.io/cocoapods/l/MAGDebugKit.svg?style=flat)](http://cocoapods.org/pods/MAGDebugKit)
 [![Platform](https://img.shields.io/cocoapods/p/MAGDebugKit.svg?style=flat)](http://cocoapods.org/pods/MAGDebugKit)
 
-## Fetures
+## Features
 
 1. Sending CocoaLumberjack logs to ELK log server.
 
 2. Configuring CocoaLumberjack loggers.
 
-3. Overview — view flowing above main window shows exact app version and any other info.
+3. Overview: main window overlay that shows app version and other info.
 
-4. Rentgen mode — highlight views bounds, optionally display their classes.
+4. Rentgen mode: view bounds highlighting with optional display of class names.
 
 5. Highlight tapped responder view and its view controller.
 
-6. Simple filesystem browser and files previewer.
+6. Simple filesystem browser and file viewer.
 
 7. Custom actions with easy access from any screen.
 
@@ -49,4 +49,4 @@ To integrate into the project, in your AppDelegate, after the app main window is
 
 ## License
 
-MAGDebugKit is available under the MIT license. See the LICENSE file for more info.
+MAGDebugKit is available under Apache-2.0 license. See the LICENSE file for more info.

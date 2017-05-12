@@ -58,8 +58,6 @@
 	self.window = [[UIWindow alloc] initWithFrame:screenRect];
 	self.window.rootViewController = nc;
 	self.window.windowLevel = appWindow.windowLevel + 1;
-	[self.window makeKeyAndVisible];
-	[appWindow makeKeyWindow];
 	
 	[self setupAppearanceFromWindow:appWindow];
 	
@@ -94,6 +92,7 @@
 		CGRect panelRect = appWindow.bounds;
 		panelRect.origin.x = appWindow.frame.size.width + translation;
 		self.window.frame = panelRect;
+		self.window.hidden = NO;
 	} else {
 		[self stickToNearestEdge];
 	}
@@ -132,8 +131,10 @@
 	CGFloat finalPosition = NAN;
 	if (self.window.frame.origin.x < self.window.frame.size.width/2) {
 		finalPosition = 0;
+		self.window.hidden = NO;
 	} else {
 		finalPosition = self.window.frame.size.width;
+		self.window.hidden = YES;
 	}
 	
 	CGRect finalRect = self.window.frame;
@@ -149,11 +150,18 @@
 	finalRect.origin.x = self.window.frame.size.width;
 
 	if (animated) {
-		[UIView animateWithDuration:0.25 animations:^{
+		//[UIView animateWithDuration:0.25 animations:^{
+		[UIView
+			animateWithDuration:0.25
+			animations:^{
 				self.window.frame = finalRect;
+			}
+			completion:^(BOOL finished) {
+				self.window.hidden = YES;
 			}];
 	} else {
-		self.window.frame = finalRect;	
+		self.window.frame = finalRect;
+		self.window.hidden = YES;
 	}
 }
 
