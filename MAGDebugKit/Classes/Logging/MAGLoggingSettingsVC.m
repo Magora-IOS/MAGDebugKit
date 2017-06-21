@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 			[self setupVerbosityLevelInSection:section];
 		}]];
 
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"Channels"
+	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"Local"
 		handler:^(BOTableViewSection *section) {
 			[self setupFileLoggingItemInSection:section];
 			[self setupTTYLoggingItemInSection:section];
