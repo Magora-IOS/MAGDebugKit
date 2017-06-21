@@ -40,23 +40,23 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 #pragma mark - Private methods
 
 - (void)setupMenuActions {
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
+	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"Verbosity"
 		handler:^(BOTableViewSection *section) {
 			[self setupVerbosityLevelInSection:section];
 		}]];
 
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
+	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"Local"
 		handler:^(BOTableViewSection *section) {
 			[self setupFileLoggingItemInSection:section];
 			[self setupTTYLoggingItemInSection:section];
 			[self setupASLLoggingItemInSection:section];
 		}]];
 
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
+	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"Remote"
 		handler:^(BOTableViewSection *section) {
-			[self setupAntennaLoggingItemInSection:section];
 			[self setupAntennaLoggingHostItemInSection:section];
 			[self setupAntennaLoggingPortItemInSection:section];
+			[self setupAntennaLoggingItemInSection:section];
 		}]];
 }
 
@@ -116,21 +116,15 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 }
 
 - (void)setupAntennaLoggingItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Remote"
+	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Enabled"
 		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
 		handler:^(BOSwitchTableViewCell *cell) {
-				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-					self.hostCell.textField.enabled = !enabled.boolValue;
-					self.portCell.textField.enabled = !enabled.boolValue;
-				
-					NSString *host = [BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingHost].value;
-					[[MAGLogging sharedInstance] setRemoteLoggingHost:host];
-					
-					NSString *port = [BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingPort].value;
-					[[MAGLogging sharedInstance] setRemoteLoggingPort:@(port.integerValue)];
-					
-					[[MAGLogging sharedInstance] setRemoteLoggingEnabled:enabled.boolValue];
-				}];
+				// Sync model with view using two-way binding.
+				MAGLogging *logging = [MAGLogging sharedInstance];
+				RACChannelTerminal *c1 = RACChannelTo(cell, setting.value);
+				RACChannelTerminal *c2 = RACChannelTo(logging, remoteLoggingEnabled);
+				[c1 subscribe:c2];
+				[c2 subscribe:c1];
 			}]];
 }
 
@@ -143,16 +137,18 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 				cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 				cell.textField.spellCheckingType = UITextSpellCheckingTypeNo;
 				cell.textField.enabled = ![[BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingEnabled].value boolValue];
-			
-				[RACObserve(cell, setting.value) subscribeNext:^(NSString *text) {
-					[[MAGLogging sharedInstance] setRemoteLoggingHost:text];
-				}];
+				// Sync model with view using two-way binding.
+				MAGLogging *logging = [MAGLogging sharedInstance];
+				RACChannelTerminal *c1 = RACChannelTo(cell, setting.value);
+				RACChannelTerminal *c2 = RACChannelTo(logging, remoteLoggingHost);
+				[c1 subscribe:c2];
+				[c2 subscribe:c1];
 			}];
 	[section addCell:self.hostCell];
 }
 
 - (void)setupAntennaLoggingPortItemInSection:(BOTableViewSection *)section {
-	self.portCell = [BOTextTableViewCell cellWithTitle:@"Port"
+	self.portCell = [BONumberTableViewCell cellWithTitle:@"Port"
 		key:MAGDebugPanelSettingKeyAntennaLoggingPort
 		handler:^(BOTextTableViewCell *cell) {
 				cell.textField.keyboardType = UIKeyboardTypeNumberPad;
@@ -160,10 +156,12 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 				cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 				cell.textField.spellCheckingType = UITextSpellCheckingTypeNo;
 				cell.textField.enabled = ![[BOSetting settingWithKey:MAGDebugPanelSettingKeyAntennaLoggingEnabled].value boolValue];
-			
-				[RACObserve(cell, setting.value) subscribeNext:^(NSString *text) {
-					[[MAGLogging sharedInstance] setRemoteLoggingPort:@(text.integerValue)];
-				}];
+				// Sync model with view using two-way binding.
+				MAGLogging *logging = [MAGLogging sharedInstance];
+				RACChannelTerminal *c1 = RACChannelTo(cell, setting.value);
+				RACChannelTerminal *c2 = RACChannelTo(logging, remoteLoggingPort);
+				[c1 subscribe:c2];
+				[c2 subscribe:c1];
 			}];
 
 	[section addCell:self.portCell];

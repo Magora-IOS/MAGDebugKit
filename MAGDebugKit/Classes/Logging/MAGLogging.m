@@ -17,7 +17,9 @@
 @property (nonatomic) DDFileLogger *fileLogger;
 @property (nonatomic) DDTTYLogger *ttyLogger;
 @property (nonatomic) DDASLLogger *aslLogger;
+
 @property (nonatomic) MAGRemoteLogger *remoteLogger;
+@property (nonatomic) MAGJSONLogFormatter *remoteLogFormatter;
 
 @end
 
@@ -91,8 +93,8 @@
 	}
 }
 
-- (void)setRemoteLoggingEnabled:(BOOL)remoteLoggingEnabled {
-	if (_remoteLoggingEnabled == remoteLoggingEnabled) {
+- (void)setRemoteLoggingEnabled:(NSNumber *)remoteLoggingEnabled {
+	if (_remoteLoggingEnabled && remoteLoggingEnabled && (_remoteLoggingEnabled.boolValue == remoteLoggingEnabled.boolValue)) {
 		return;
 	}
 	
@@ -101,9 +103,10 @@
 	[DDLog removeLogger:self.remoteLogger];
 	self.remoteLogger = nil;
 
-	if (self.remoteLoggingEnabled) {
+	if (self.remoteLoggingEnabled && self.remoteLoggingEnabled.boolValue) {
 		self.remoteLogger = [[MAGRemoteLogger alloc] initWithHost:self.remoteLoggingHost port:self.remoteLoggingPort.unsignedIntegerValue];
-		MAGJSONLogFormatter *formatter = [[MAGJSONLogFormatter alloc] init];
+		self.remoteLogFormatter = [[MAGJSONLogFormatter alloc] init];
+		MAGJSONLogFormatter *formatter = self.remoteLogFormatter;
 		[formatter setPermanentLogValue:@"log" field:@"type"];
 		[formatter setPermanentLogValue:[NSProcessInfo processInfo].operatingSystemVersionString field:@"os"];
 
@@ -114,12 +117,29 @@
 		NSString *appVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 		NSString *fullVersionString = [NSString stringWithFormat:@"%@(%@)", appVersionString, appBuildString];
 		[formatter setPermanentLogValue:fullVersionString field:@"app_version"];
+		[self updatePermanentLogValuesFromDictionary];
 		
 		self.remoteLogger.logFormatter = formatter;
 		[DDLog addLogger:self.remoteLogger];
 	} else {
 		[DDLog removeLogger:self.remoteLogger];
+		self.remoteLogger.logFormatter = nil;
+		self.remoteLogFormatter = nil;
 		self.remoteLogger = nil;
+	}
+}
+
+- (void)setRemoteLoggingDictionary:(NSDictionary *)dict {
+	_remoteLoggingDictionary = dict;
+	[self updatePermanentLogValuesFromDictionary];
+}
+
+- (void)updatePermanentLogValuesFromDictionary {
+	if (self.remoteLogger && self.remoteLogger.logFormatter) {
+		for (NSString *key in self.remoteLoggingDictionary) {
+			[self.remoteLogFormatter
+				setPermanentLogValue:self.remoteLoggingDictionary[key] field:key];
+		}
 	}
 }
 
