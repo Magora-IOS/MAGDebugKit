@@ -19,8 +19,9 @@ extern BOOL magDebugKitAsyncLogs;
 @property (nonatomic) BOOL aslLoggingEnabled;
 
 // Send logs via TCP socket.
-@property (nonatomic) BOOL remoteLoggingEnabled;
+@property (nonatomic) NSNumber *remoteLoggingEnabled;
 @property (nonatomic, copy) NSString *remoteLoggingHost;
 @property (nonatomic) NSNumber *remoteLoggingPort;
+@property (nonatomic, copy) NSDictionary *remoteLoggingDictionary;
 
 @end
