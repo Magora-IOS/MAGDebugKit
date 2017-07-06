@@ -3,6 +3,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 
 
+static NSTimeInterval const idleConnection = 10.0;
 static NSTimeInterval const retryInterval = 10.0;
 
 
@@ -48,6 +49,7 @@ DDLogMessage *mag_decodedLogMessage(NSDictionary *encoded) {
 @property (nonatomic) NSMutableArray <DDLogMessage *> *logsToShip;
 @property (atomic) dispatch_queue_t loggingQueue;
 @property (nonatomic) NSURL *diskQueue;
+@property (nonatomic) dispatch_block_t disconnectionBlock;
 
 @property (nonatomic) DDLogMessage *shippingLog;
 
@@ -118,6 +120,7 @@ DDLogMessage *mag_decodedLogMessage(NSDictionary *encoded) {
 
 - (void)shipFromQueue {
 	if (self.logsToShip.count == 0) {
+		[self scheduleDisconnect];
 		return;
 	}
 	
@@ -127,40 +130,70 @@ DDLogMessage *mag_decodedLogMessage(NSDictionary *encoded) {
 	
 	self.shippingLog = self.logsToShip.firstObject;
 	
-	NSError *__autoreleasing error = nil;
-	[self.socket connectToHost:self.host onPort:self.port error:&error];
-	
-	if (error) {
-		NSLog(@"Failed to connect with error: %@", error);
-		self.shippingLog = nil;
+	if (self.socket.isConnected) {
+		[self writeShippingLogToSocket];
+	} else {
+		NSError *__autoreleasing error = nil;
+		[self.socket connectToHost:self.host onPort:self.port error:&error];
+		
+		if (error) {
+			self.shippingLog = nil;
+		}
 	}
+}
+
+- (void)writeShippingLogToSocket {
+	NSString *string = [self.logFormatter formatLogMessage:self.shippingLog];
+	NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+	[self.socket writeData:data withTimeout:10 tag:0];
+}
+
+- (void)scheduleDisconnect {
+	if (self.disconnectionBlock) {
+		dispatch_block_cancel(self.disconnectionBlock);
+		self.disconnectionBlock = nil;
+	}
+
+	self.disconnectionBlock = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS,
+		^{
+			if (self.socket.isDisconnected) {
+				return;
+			}
+		
+			// Don't disconnect if queue became non-empty during a timeout.
+			if (self.shippingLog || self.logsToShip.count > 0) {
+				return;
+			}
+			
+			[self.socket disconnectAfterReadingAndWriting];
+		}
+	);
+
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(idleConnection * NSEC_PER_SEC)),
+		dispatch_get_main_queue(), self.disconnectionBlock);
 }
 
 #pragma mark - Socket delegate
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
-	NSString *string = [self.logFormatter formatLogMessage:self.shippingLog];
-	NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-	[sock writeData:data withTimeout:10 tag:0];
-	[self.socket disconnectAfterReadingAndWriting];
+	[self writeShippingLogToSocket];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag {
 	[self.logsToShip removeObject:self.shippingLog];
+	[self saveDiskQueue];
+	
 	self.shippingLog = nil;
 	
-	[self saveDiskQueue];
+	[self shipFromQueue];
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err {
 	if (err) {
-		NSLog(@"Socket did disconnect with error: %@", err);
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(retryInterval * NSEC_PER_SEC)),
 			self.loggingQueue, ^{
 				[self shipFromQueue];
 			});
-	} else {
-		[self shipFromQueue];
 	}
 }
 
