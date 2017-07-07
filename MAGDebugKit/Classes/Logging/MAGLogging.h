@@ -2,7 +2,18 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
 
-extern DDLogLevel ddLogLevel;
+extern DDLogLevel magDebugKitLogLevel;
+extern BOOL magDebugKitAsyncLogs;
+
+#ifdef LOG_ASYNC_ENABLED
+	#undef LOG_ASYNC_ENABLED
+#endif
+#define LOG_ASYNC_ENABLED magDebugKitAsyncLogs
+
+#ifdef LOG_LEVEL_DEF
+	#undef LOG_LEVEL_DEF
+#endif
+#define LOG_LEVEL_DEF magDebugKitLogLevel
 
 
 @interface MAGLogging : NSObject

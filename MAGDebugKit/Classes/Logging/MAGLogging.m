@@ -4,9 +4,11 @@
 
 
 #ifdef DEBUG
-	DDLogLevel ddLogLevel = DDLogLevelAll;
+	DDLogLevel magDebugKitLogLevel = DDLogLevelAll;
+	BOOL magDebugKitAsyncLogs = YES;
 #else
-	DDLogLevel ddLogLevel = DDLogLevelWarning;
+	DDLogLevel magDebugKitLogLevel = DDLogLevelWarning;
+	BOOL magDebugKitAsyncLogs = YES;
 #endif
 
 
@@ -34,11 +36,11 @@
 }
 
 - (void)setLogLevel:(DDLogLevel)logLevel {
-	ddLogLevel = logLevel;
+	magDebugKitLogLevel = logLevel;
 }
 
 - (DDLogLevel)logLevel {
-	return ddLogLevel;
+	return magDebugKitLogLevel;
 }
 
 - (void)setTtyLoggingEnabled:(BOOL)ttyLoggingEnabled {
