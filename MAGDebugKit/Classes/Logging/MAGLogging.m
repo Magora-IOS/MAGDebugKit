@@ -3,12 +3,10 @@
 #import "MAGJSONLogFormatter.h"
 
 
-#ifdef DEBUG
+#if DEBUG
 	DDLogLevel magDebugKitLogLevel = DDLogLevelAll;
-	BOOL magDebugKitAsyncLogs = YES;
 #else
 	DDLogLevel magDebugKitLogLevel = DDLogLevelWarning;
-	BOOL magDebugKitAsyncLogs = YES;
 #endif
 
 
