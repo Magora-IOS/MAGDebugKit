@@ -16,9 +16,11 @@
 
 5. Highlight tapped responder view and its view controller.
 
-6. Simple filesystem browser and file viewer.
+6. Automatically log 'init' and 'dealloc' calls of each VC in your project. 
 
-7. Custom actions with easy access from any screen.
+7. Simple filesystem browser and file viewer.
+
+8. Custom actions with easy access from any screen.
 
 ## Example
 
@@ -44,7 +46,8 @@ To integrate into the project, in your AppDelegate, after the app main window is
 ## Authors
 
 * Evgeniy Stepanov, stepanov@magora.systems
-* Alexander Gorbunov, gorbunov@magora-systems.com  
+* Alexander Gorbunov, gorbunov@magora-systems.com
+* Mikhael Kapelko, kapelko@magora-systems.com  
 * Denis Matveev
 
 ## License

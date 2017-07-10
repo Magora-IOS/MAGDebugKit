@@ -3,6 +3,7 @@
 #import "MAGRentgenSettingsVC.h"
 #import "MAGLoggingSettingsVC.h"
 #import "MAGSandboxBrowserVC.h"
+#import "MAGVCLifecycleLoggingSettingsVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -182,6 +183,7 @@
 		handler:^(BOTableViewSection *section) {
 			[self setupOverviewSettingsItemInSection:section];
 			[self setupRentgenSettingsItemInSection:section];
+			[self setupVCLifecycleSettingsItemInSection:section];
 		}]];
 	
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
@@ -207,6 +209,13 @@
 	[section addCell:[BOTableViewCell cellWithTitle:@"Overview" key:nil
 		handler:^(BOTableViewCell *cell) {
 			cell.destinationViewController = [[MAGDebugOverviewSettingsVC alloc] init];
+		}]];
+}
+
+- (void)setupVCLifecycleSettingsItemInSection:(BOTableViewSection *)section {
+	[section addCell:[BOTableViewCell cellWithTitle:@"VC lifecycle" key:nil
+		handler:^(BOTableViewCell *cell) {
+			cell.destinationViewController = [[MAGVCLifecycleLoggingSettingsVC alloc] init];
 		}]];
 }
 
