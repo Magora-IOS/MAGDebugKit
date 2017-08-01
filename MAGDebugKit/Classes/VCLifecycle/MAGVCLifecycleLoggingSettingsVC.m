@@ -2,7 +2,6 @@
 #import "MAGDebugPanelSettingsKeys.h"
 #import "MAGVCLifecycleLogging.h"
 
-#import <Bohr/BOTableViewCell+Subclass.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 
 
@@ -25,24 +24,24 @@
 #pragma mark - Private methods
 
 - (void)setupMenuActions {
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
-		handler:^(BOTableViewSection *section) {
-			[self setupLifecycleLoggingEnabledItemInSection:section];
-		}]];
+//	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
+//		handler:^(BOTableViewSection *section) {
+//			[self setupLifecycleLoggingEnabledItemInSection:section];
+//		}]];
 }
 
-- (void)setupLifecycleLoggingEnabledItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Log init/dealloc events"
-		key:MAGDebugPanelSettingKeyLogVCLifecycleEnabled
-		handler:^(BOSwitchTableViewCell *cell) {
-				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-					if (enabled.boolValue) {
-						[MAGVCLifecycleLogging enableInitDeallocLogging];
-					} else {
-						[MAGVCLifecycleLogging disableInitDeallocLogging];
-					}
-				}];
-			}]];
-}
+//- (void)setupLifecycleLoggingEnabledItemInSection:(BOTableViewSection *)section {
+//	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Log init/dealloc events"
+//		key:MAGDebugPanelSettingKeyLogVCLifecycleEnabled
+//		handler:^(BOSwitchTableViewCell *cell) {
+//				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
+//					if (enabled.boolValue) {
+//						[MAGVCLifecycleLogging enableInitDeallocLogging];
+//					} else {
+//						[MAGVCLifecycleLogging disableInitDeallocLogging];
+//					}
+//				}];
+//			}]];
+//}
 
 @end

@@ -1,5 +1,5 @@
-#import <Bohr/Bohr.h>
+#import <UIKit/UIKit.h>
 
 
-@interface MAGRentgenSettingsVC : BOTableViewController
+@interface MAGRentgenSettingsVC : UIViewController
 @end

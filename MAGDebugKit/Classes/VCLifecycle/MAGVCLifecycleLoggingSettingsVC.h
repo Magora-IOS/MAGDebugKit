@@ -1,6 +1,6 @@
-#import <Bohr/Bohr.h>
+#import <UIKit/UIKit.h>
 
 
-@interface MAGVCLifecycleLoggingSettingsVC : BOTableViewController
+@interface MAGVCLifecycleLoggingSettingsVC : UIViewController
 
 @end

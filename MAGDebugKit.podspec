@@ -40,7 +40,6 @@ Pod::Spec.new do |s|
   s.dependency 'YKMediaPlayerKit', '~> 0.0.3'
   s.dependency 'libextobjc', '~> 0.4'
   s.dependency 'Masonry', '~> 1.0'
-  s.dependency 'Bohr', '~> 3.0'
   s.dependency 'ReactiveObjC', '~> 2.1'
   s.dependency 'CocoaLumberjack', '~> 3.1'
   s.dependency 'CocoaAsyncSocket', '~> 7.6'

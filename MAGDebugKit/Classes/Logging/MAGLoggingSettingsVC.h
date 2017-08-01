@@ -1,5 +1,5 @@
-#import <Bohr/Bohr.h>
+#import <UIKit/UIKit.h>
 
 
-@interface MAGLoggingSettingsVC : BOTableViewController
+@interface MAGLoggingSettingsVC : UIViewController
 @end

@@ -4,10 +4,13 @@
 #import "MAGLoggingSettingsVC.h"
 #import "MAGSandboxBrowserVC.h"
 #import "MAGVCLifecycleLoggingSettingsVC.h"
+#import "MAGPanelGeometry.h"
+#import "MAGPanelButtonCell.h"
+#import "MAGPanelSeparator.h"
+#import "MAGPanelTitleCell.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
-#import <Bohr/Bohr.h>
 
 
 @interface MAGDebugPanel ()
@@ -15,7 +18,8 @@
 @property (nonatomic) MAGDebugPanelAppearanceStyle appearanceStyle;
 @property (nonatomic) UIWindow *window;
 
-@property (nonatomic) BOTableViewSection *customActions;
+@property (nonatomic) UIStackView *stackView;
+//@property (nonatomic) BOTableViewSection *customActions;
 
 @end
 
@@ -43,6 +47,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.view.backgroundColor = [UIColor magPanelBackground];
+	
+	self.stackView = [[UIStackView alloc] init];
+	self.stackView.axis = UILayoutConstraintAxisVertical;
+	
+	UIScrollView *scroller = [[UIScrollView alloc] init];
+	[self.view addSubview:scroller];
+	[scroller mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self.view);
+		}];
+
+	[scroller addSubview:self.stackView];
+	[self.stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(scroller);
+			make.width.equalTo(self.view);
+		}];
 	
 	self.title = @"Settings";
 	[self setupMenuActions];
@@ -72,13 +93,13 @@
 	self.window = nil;
 }
 
-- (void)addAction:(void(^)(void))action withTitle:(NSString *)title {	
-	BOTableViewCell *cell = [BOButtonTableViewCell cellWithTitle:title key:nil
-		handler:^(BOButtonTableViewCell *cell) {
-			cell.actionBlock = action;
-		}];
-
-	[self.customActions addCell:cell];
+- (void)addAction:(void(^)(void))action withTitle:(NSString *)title {
+//	BOTableViewCell *cell = [BOButtonTableViewCell cellWithTitle:title key:nil
+//		handler:^(BOButtonTableViewCell *cell) {
+//			cell.actionBlock = action;
+//		}];
+//
+//	[self.customActions addCell:cell];
 }
 
 #pragma mark - UI actions
@@ -174,77 +195,88 @@
 }
 
 - (void)setupMenuActions {
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
-		handler:^(BOTableViewSection *section) {
-			[self setupLoggingSettingsItemInSection:section];
-		}]];
-
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
-		handler:^(BOTableViewSection *section) {
-			[self setupOverviewSettingsItemInSection:section];
-			[self setupRentgenSettingsItemInSection:section];
-			[self setupVCLifecycleSettingsItemInSection:section];
-		}]];
+	@weakify(self);
 	
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
-		handler:^(BOTableViewSection *section) {
-			[self setupSandboxBrowserItemInSection:section];
-//			[self setupSandboxSharingItemInSection:section];
-//			[self setupSandboxCleaningItemInSection:section];
-		}]];
+	MAGPanelTitleCell *loggingTitle = [[MAGPanelTitleCell alloc] init];
+	loggingTitle.title = @"Logging";
+	[self.stackView addArrangedSubview:loggingTitle];
+
+	MAGPanelButtonCell *loggingButton = [[MAGPanelButtonCell alloc] init];
+	loggingButton.title = @"Logging";
+	loggingButton.action = ^{
+			@strongify(self);
+			[self loggingAction];
+		};
+	[self.stackView addArrangedSubview:loggingButton];
+	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
 	
-	self.customActions = [BOTableViewSection sectionWithHeaderTitle:nil handler:nil];
-	[self addSection:self.customActions];
+	MAGPanelTitleCell *viewsTitle = [[MAGPanelTitleCell alloc] init];
+	viewsTitle.title = @"Views";
+	[self.stackView addArrangedSubview:viewsTitle];
+
+	MAGPanelButtonCell *overviewButton = [[MAGPanelButtonCell alloc] init];
+	overviewButton.title = @"Overview";
+	overviewButton.action = ^{
+			@strongify(self);
+			[self overviewAction];
+		};
+	[self.stackView addArrangedSubview:overviewButton];
+	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	
+	MAGPanelButtonCell *rentgenButton = [[MAGPanelButtonCell alloc] init];
+	rentgenButton.title = @"Rentgen";
+	rentgenButton.action = ^{
+			@strongify(self);
+			[self rentgenAction];
+		};
+	[self.stackView addArrangedSubview:rentgenButton];
+	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	
+	MAGPanelButtonCell *vcLifecycleButton = [[MAGPanelButtonCell alloc] init];
+	vcLifecycleButton.title = @"VC lifecycle";
+	vcLifecycleButton.action = ^{
+			@strongify(self);
+			[self vcLifecycleAction];
+		};
+	[self.stackView addArrangedSubview:vcLifecycleButton];
+	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+
+	MAGPanelTitleCell *sandboxTitle = [[MAGPanelTitleCell alloc] init];
+	sandboxTitle.title = @"Sandbox";
+	[self.stackView addArrangedSubview:sandboxTitle];
+
+	MAGPanelButtonCell *sandboxBrowserButton = [[MAGPanelButtonCell alloc] init];
+	sandboxBrowserButton.title = @"Disk browser";
+	sandboxBrowserButton.action = ^{
+			@strongify(self);
+			[self sandboxBrowserAction];
+		};
+	[self.stackView addArrangedSubview:sandboxBrowserButton];
+	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	
+//	self.customActions = [BOTableViewSection sectionWithHeaderTitle:nil handler:nil];
+//	[self addSection:self.customActions];
 }
 
-- (void)setupLoggingSettingsItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Logging" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGLoggingSettingsVC alloc] init];
-		}]];
+- (void)loggingAction {
+	
 }
 
+- (void)overviewAction {
 
-- (void)setupOverviewSettingsItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Overview" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGDebugOverviewSettingsVC alloc] init];
-		}]];
 }
 
-- (void)setupVCLifecycleSettingsItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"VC lifecycle" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGVCLifecycleLoggingSettingsVC alloc] init];
-		}]];
+- (void)rentgenAction {
+	
 }
 
-- (void)setupRentgenSettingsItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Rentgen mode" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGRentgenSettingsVC alloc] init];
-		}]];
+- (void)vcLifecycleAction {
+
 }
 
-- (void)setupSandboxBrowserItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox browser" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGSandboxBrowserVC alloc] initWithURL:nil];
-		}]];
-}
-
-- (void)setupSandboxSharingItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox HTTP sharing" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = self;
-		}]];
-}
-
-- (void)setupSandboxCleaningItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox cleaning" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = self;
-		}]];
+- (void)sandboxBrowserAction {
+	MAGSandboxBrowserVC *vc = [[MAGSandboxBrowserVC alloc] initWithURL:nil];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
