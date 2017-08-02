@@ -210,6 +210,8 @@
 //	[self addSection:self.customActions];
 }
 
+#pragma mark - UI actions
+
 - (void)loggingAction {
 	
 }
@@ -219,7 +221,8 @@
 }
 
 - (void)rentgenAction {
-	
+	MAGRentgenSettingsVC *vc = [[MAGRentgenSettingsVC alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)vcLifecycleAction {
