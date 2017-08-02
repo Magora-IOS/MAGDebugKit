@@ -4,10 +4,6 @@
 #import "MAGLoggingSettingsVC.h"
 #import "MAGSandboxBrowserVC.h"
 #import "MAGVCLifecycleLoggingSettingsVC.h"
-#import "MAGPanelGeometry.h"
-#import "MAGPanelButtonCell.h"
-#import "MAGPanelSeparator.h"
-#import "MAGPanelTitleCell.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -18,7 +14,6 @@
 @property (nonatomic) MAGDebugPanelAppearanceStyle appearanceStyle;
 @property (nonatomic) UIWindow *window;
 
-@property (nonatomic) UIStackView *stackView;
 //@property (nonatomic) BOTableViewSection *customActions;
 
 @end
@@ -47,25 +42,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	self.view.backgroundColor = [UIColor magPanelBackground];
-	
-	self.stackView = [[UIStackView alloc] init];
-	self.stackView.axis = UILayoutConstraintAxisVertical;
-	
-	UIScrollView *scroller = [[UIScrollView alloc] init];
-	[self.view addSubview:scroller];
-	[scroller mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(self.view);
-		}];
-
-	[scroller addSubview:self.stackView];
-	[self.stackView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.edges.equalTo(scroller);
-			make.width.equalTo(self.view);
-		}];
-	
 	self.title = @"Settings";
+	
 	[self setupMenuActions];
 }
 
@@ -197,63 +175,37 @@
 - (void)setupMenuActions {
 	@weakify(self);
 	
-	MAGPanelTitleCell *loggingTitle = [[MAGPanelTitleCell alloc] init];
-	loggingTitle.title = @"Logging";
-	[self.stackView addArrangedSubview:loggingTitle];
-
-	MAGPanelButtonCell *loggingButton = [[MAGPanelButtonCell alloc] init];
-	loggingButton.title = @"Logging";
-	loggingButton.action = ^{
+	[self addTitle:@"Logging"];
+	
+	[self addButtonWithTitle:@"Logging" action:^{
 			@strongify(self);
 			[self loggingAction];
-		};
-	[self.stackView addArrangedSubview:loggingButton];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+		}];
 	
-	MAGPanelTitleCell *viewsTitle = [[MAGPanelTitleCell alloc] init];
-	viewsTitle.title = @"Views";
-	[self.stackView addArrangedSubview:viewsTitle];
+	[self addTitle:@"Views"];
 
-	MAGPanelButtonCell *overviewButton = [[MAGPanelButtonCell alloc] init];
-	overviewButton.title = @"Overview";
-	overviewButton.action = ^{
+	[self addButtonWithTitle:@"Overview" action:^{
 			@strongify(self);
 			[self overviewAction];
-		};
-	[self.stackView addArrangedSubview:overviewButton];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+		}];
 	
-	MAGPanelButtonCell *rentgenButton = [[MAGPanelButtonCell alloc] init];
-	rentgenButton.title = @"Rentgen";
-	rentgenButton.action = ^{
+	[self addButtonWithTitle:@"Rentgen" action:^{
 			@strongify(self);
 			[self rentgenAction];
-		};
-	[self.stackView addArrangedSubview:rentgenButton];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
-	
-	MAGPanelButtonCell *vcLifecycleButton = [[MAGPanelButtonCell alloc] init];
-	vcLifecycleButton.title = @"VC lifecycle";
-	vcLifecycleButton.action = ^{
+		}];
+
+	[self addButtonWithTitle:@"VC lifecycle" action:^{
 			@strongify(self);
 			[self vcLifecycleAction];
-		};
-	[self.stackView addArrangedSubview:vcLifecycleButton];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+		}];
 
-	MAGPanelTitleCell *sandboxTitle = [[MAGPanelTitleCell alloc] init];
-	sandboxTitle.title = @"Sandbox";
-	[self.stackView addArrangedSubview:sandboxTitle];
+	[self addTitle:@"Sandbox"];
 
-	MAGPanelButtonCell *sandboxBrowserButton = [[MAGPanelButtonCell alloc] init];
-	sandboxBrowserButton.title = @"Disk browser";
-	sandboxBrowserButton.action = ^{
+	[self addButtonWithTitle:@"Disk browser" action:^{
 			@strongify(self);
 			[self sandboxBrowserAction];
-		};
-	[self.stackView addArrangedSubview:sandboxBrowserButton];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
-	
+		}];
+
 //	self.customActions = [BOTableViewSection sectionWithHeaderTitle:nil handler:nil];
 //	[self addSection:self.customActions];
 }
