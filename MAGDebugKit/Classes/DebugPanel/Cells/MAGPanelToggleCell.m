@@ -65,6 +65,9 @@
 			make.trailing.equalTo(self).with.insets(magPanelTitleCellEdgeInsets);
 			make.centerY.equalTo(self);
 		}];
+	
+	[self.toggle setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+	[self.label setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 }
 
 #pragma mark - Accessors
