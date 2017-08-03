@@ -27,6 +27,10 @@ CGFloat const magPanelSeparatorHeight = 0.5f;
 	return [UIColor colorWithWhite:0.0f alpha:1.0f];
 }
 
++ (UIColor *)magPanelCellValueText {
+	return [UIColor colorWithWhite:0.75f alpha:1.0f];
+}
+
 + (UIColor *)magPanelTitleCellText {
 	return [UIColor colorWithWhite:0.5f alpha:1.0f];
 }

@@ -14,6 +14,7 @@ extern CGFloat const magPanelSeparatorHeight;
 + (UIColor *)magPanelCellBackground;
 + (UIColor *)magPanelSeparator;
 + (UIColor *)magPanelCellText;
++ (UIColor *)magPanelCellValueText;
 + (UIColor *)magPanelTitleCellText;
 
 @end

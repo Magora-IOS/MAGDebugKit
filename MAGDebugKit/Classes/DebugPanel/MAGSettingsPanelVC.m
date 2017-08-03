@@ -5,6 +5,8 @@
 #import "MAGPanelTitleCell.h"
 #import "MAGPanelToggleCell.h"
 #import "MAGPanelInputCell.h"
+#import "MAGPanelPickerCell.h"
+#import "MAGPanelPickerManager.h"
 
 #import <Masonry/Masonry.h>
 
@@ -12,6 +14,7 @@
 @interface MAGSettingsPanelVC ()
 
 @property (nonatomic) UIStackView *stackView;
+@property (nonatomic) NSMutableArray *pickerManagers;
 
 @end
 
@@ -39,6 +42,8 @@
 			make.edges.equalTo(scroller);
 			make.width.equalTo(self.view);
 		}];
+	
+	self.pickerManagers = [[NSMutableArray alloc] init];
 }
 
 #pragma mark - Public methods
@@ -79,6 +84,25 @@
 	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
 	
 	return input;
+}
+
+- (MAGPanelPickerManager *)addPickerWithTitle:(NSString *)title key:(NSString *)key
+	options:(NSArray *)options optionRenderer:(NSString *(^)(id value))renderer
+	action:(void(^)(id value))action {
+
+	MAGPanelPickerCell *picker = [[MAGPanelPickerCell alloc] init];
+	picker.title = title;
+	picker.action = action;
+	picker.renderer = renderer;
+	[self.stackView addArrangedSubview:picker];
+	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	
+	MAGPanelPickerManager *pickerManager = [MAGPanelPickerManager managerForPickerCell:picker
+		options:options optionRenderer:renderer];
+	
+	[self.pickerManagers addObject:pickerManager];
+	
+	return pickerManager;
 }
 
 @end
