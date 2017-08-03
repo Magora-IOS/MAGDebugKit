@@ -1,5 +1,5 @@
-#import <UIKit/UIKit.h>
+#import "MAGSettingsPanelVC.h"
 
 
-@interface MAGLoggingSettingsVC : UIViewController
+@interface MAGLoggingSettingsVC : MAGSettingsPanelVC
 @end

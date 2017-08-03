@@ -91,8 +91,8 @@
 	}
 }
 
-- (void)setRemoteLoggingEnabled:(NSNumber *)remoteLoggingEnabled {
-	if (_remoteLoggingEnabled && remoteLoggingEnabled && (_remoteLoggingEnabled.boolValue == remoteLoggingEnabled.boolValue)) {
+- (void)setRemoteLoggingEnabled:(BOOL)remoteLoggingEnabled {
+	if (_remoteLoggingEnabled == remoteLoggingEnabled) {
 		return;
 	}
 	
@@ -101,7 +101,7 @@
 	[DDLog removeLogger:self.remoteLogger];
 	self.remoteLogger = nil;
 
-	if (self.remoteLoggingEnabled && self.remoteLoggingEnabled.boolValue) {
+	if (self.remoteLoggingEnabled) {
 		self.remoteLogger = [[MAGRemoteLogger alloc] initWithHost:self.remoteLoggingHost port:self.remoteLoggingPort.unsignedIntegerValue];
 		self.remoteLogFormatter = [[MAGJSONLogFormatter alloc] init];
 		MAGJSONLogFormatter *formatter = self.remoteLogFormatter;

@@ -22,7 +22,7 @@ extern DDLogLevel magDebugKitLogLevel;
 @property (nonatomic) BOOL aslLoggingEnabled;
 
 // Send logs via TCP socket.
-@property (nonatomic) NSNumber *remoteLoggingEnabled;
+@property (nonatomic) BOOL remoteLoggingEnabled;
 @property (nonatomic, copy) NSString *remoteLoggingHost;
 @property (nonatomic) NSNumber *remoteLoggingPort;
 @property (nonatomic, copy) NSDictionary *remoteLoggingDictionary;

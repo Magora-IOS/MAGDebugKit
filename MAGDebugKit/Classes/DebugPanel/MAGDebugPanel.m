@@ -213,7 +213,8 @@
 #pragma mark - UI actions
 
 - (void)loggingAction {
-	
+	MAGLoggingSettingsVC *vc = [[MAGLoggingSettingsVC alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)overviewAction {

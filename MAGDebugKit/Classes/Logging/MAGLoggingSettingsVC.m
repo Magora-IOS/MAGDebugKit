@@ -1,5 +1,7 @@
 #import "MAGLoggingSettingsVC.h"
 #import "MAGDebugPanelSettingsKeys.h"
+#import "MAGPanelPickerCell.h"
+#import "MAGPanelPickerManager.h"
 #import "MAGLogging.h"
 
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -32,42 +34,79 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
     [super viewDidLoad];
 	
 	self.title = @"Logging";
-//	[self setupMenuActions];
+	[self setupMenuActions];
 }
 
 #pragma mark - Private methods
 
-//- (void)setupMenuActions {
-//	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"Verbosity"
-//		handler:^(BOTableViewSection *section) {
-//			[self setupVerbosityLevelInSection:section];
-//		}]];
-//
-//	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"Local"
-//		handler:^(BOTableViewSection *section) {
-//			[self setupFileLoggingItemInSection:section];
-//			[self setupTTYLoggingItemInSection:section];
-//			[self setupASLLoggingItemInSection:section];
-//		}]];
-//
-//	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"Remote"
-//		handler:^(BOTableViewSection *section) {
-//			[self setupAntennaLoggingHostItemInSection:section];
-//			[self setupAntennaLoggingPortItemInSection:section];
-//			[self setupAntennaLoggingItemInSection:section];
-//		}]];
-//}
-//
-//- (void)setupFileLoggingItemInSection:(BOTableViewSection *)section {
-//	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"File"
-//		key:MAGDebugPanelSettingKeyFileLoggingEnabled
-//		handler:^(BOSwitchTableViewCell *cell) {
-//				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-//					[[MAGLogging sharedInstance] setFileLoggingEnabled:enabled.boolValue];
-//				}];
-//			}]];
-//}
-//
+- (void)setupMenuActions {
+	
+	[self setupLogLevelSection];
+	[self setupLocalSection];
+	[self setupRemoteSection];
+}
+
+- (void)setupLogLevelSection {
+	[self addTitle:@"Log level"];
+
+	NSArray *options = loggingLevelOptions();
+	MAGPanelPickerManager *pickerManager = [self addPickerWithTitle:@"Verbosity"
+		key:MAGDebugPanelSettingKeyLoggingVerbosity
+		options:options optionRenderer:^NSString *(id value) {
+			MAGLoggingLevel level = [value unsignedIntegerValue];
+			return titleForLoggingLevel(level);
+		} action:^(id value) {
+			MAGLoggingLevel level = [value unsignedIntegerValue];
+			[[MAGLogging sharedInstance] setLogLevel:ddLogLevelForLoggingLevel(level)];
+		}];
+	
+	pickerManager.value = @(MAGLoggingLevelAll);
+}
+
+- (void)setupLocalSection {
+	[self addTitle:@"Local"];
+	
+	[self addToggleWithTitle:@"File"
+		key:MAGDebugPanelSettingKeyFileLoggingEnabled
+		action:^(BOOL value) {
+			[[MAGLogging sharedInstance] setFileLoggingEnabled:value];
+		}];
+	
+	[self addToggleWithTitle:@"TTY"
+		key:MAGDebugPanelSettingKeyTTYLoggingEnabled
+		action:^(BOOL value) {
+			[[MAGLogging sharedInstance] setTtyLoggingEnabled:value];
+		}];
+	
+	[self addToggleWithTitle:@"ASL"
+		key:MAGDebugPanelSettingKeyASLLoggingEnabled
+		action:^(BOOL value) {
+			[[MAGLogging sharedInstance] setAslLoggingEnabled:value];
+		}];
+}
+
+- (void)setupRemoteSection {
+	[self addTitle:@"Remote"];
+	
+	[self addInputWithTitle:@"Host"
+		key:MAGDebugPanelSettingKeyAntennaLoggingHost
+		action:^(NSString *value) {
+			[MAGLogging sharedInstance].remoteLoggingHost = value;
+		}];
+	
+	[self addInputWithTitle:@"Port"
+		key:MAGDebugPanelSettingKeyAntennaLoggingPort
+		action:^(NSString *value) {
+			[MAGLogging sharedInstance].remoteLoggingPort = @(value.integerValue);
+		}];
+
+	[self addToggleWithTitle:@"Enabled"
+		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
+		action:^(BOOL value) {
+			[MAGLogging sharedInstance].remoteLoggingEnabled = value;
+		}];
+}
+
 //- (void)setupVerbosityLevelInSection:(BOTableViewSection *)section {
 //	BOSetting *setting = [BOSetting settingWithKey:MAGDebugPanelSettingKeyLoggingVerbosity];
 //	NSNumber *savedValue = setting.value;
@@ -92,40 +131,7 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 //
 //		}]];
 //}
-//
-//- (void)setupTTYLoggingItemInSection:(BOTableViewSection *)section {
-//	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"TTY"
-//		key:MAGDebugPanelSettingKeyTTYLoggingEnabled
-//		handler:^(BOSwitchTableViewCell *cell) {
-//				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-//					[[MAGLogging sharedInstance] setTtyLoggingEnabled:enabled.boolValue];
-//				}];
-//			}]];
-//}
-//
-//- (void)setupASLLoggingItemInSection:(BOTableViewSection *)section {
-//	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"ASL"
-//		key:MAGDebugPanelSettingKeyASLLoggingEnabled
-//		handler:^(BOSwitchTableViewCell *cell) {
-//				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-//					[[MAGLogging sharedInstance] setAslLoggingEnabled:enabled.boolValue];
-//				}];
-//			}]];
-//}
-//
-//- (void)setupAntennaLoggingItemInSection:(BOTableViewSection *)section {
-//	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Enabled"
-//		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
-//		handler:^(BOSwitchTableViewCell *cell) {
-//				// Sync model with view using two-way binding.
-//				MAGLogging *logging = [MAGLogging sharedInstance];
-//				RACChannelTerminal *c1 = RACChannelTo(cell, setting.value);
-//				RACChannelTerminal *c2 = RACChannelTo(logging, remoteLoggingEnabled);
-//				[c1 subscribe:c2];
-//				[c2 subscribe:c1];
-//			}]];
-//}
-//
+
 //- (void)setupAntennaLoggingHostItemInSection:(BOTableViewSection *)section {
 //	self.hostCell = [BOTextTableViewCell cellWithTitle:@"Host"
 //		key:MAGDebugPanelSettingKeyAntennaLoggingHost
@@ -165,6 +171,19 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 //	[section addCell:self.portCell];
 //}
 //
+
+NSArray *loggingLevelOptions() {
+	return @[
+		@(MAGLoggingLevelOff),
+		@(MAGLoggingLevelError),
+		@(MAGLoggingLevelWarning),
+		@(MAGLoggingLevelInfo),
+		@(MAGLoggingLevelDebug),
+		@(MAGLoggingLevelVerbose),
+		@(MAGLoggingLevelAll)
+	];
+}
+
 NSString *titleForLoggingLevel(MAGLoggingLevel level) {
 	static NSDictionary *levels = nil;
 	if (!levels) {
