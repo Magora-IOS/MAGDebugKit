@@ -4,6 +4,7 @@
 extern CGFloat const magPanelCellHeight;
 extern UIEdgeInsets const magPanelCellEdgeInsets;
 extern UIEdgeInsets const magPanelTitleCellEdgeInsets;
+extern CGFloat const magPanelCellElementsOffset;
 
 extern CGFloat const magPanelSeparatorHeight;
 

@@ -19,7 +19,7 @@
 	self = [super initWithFrame:frame];
 	
 	if (self) {
-		[self setupMAGPanelButtonCell];
+		[self setupMAGPanelToggleCell];
 	}
 	
 	return self;
@@ -29,13 +29,13 @@
 	self = [super initWithCoder:aDecoder];
 	
 	if (self) {
-		[self setupMAGPanelButtonCell];
+		[self setupMAGPanelToggleCell];
 	}
 	
 	return self;
 }
 
-- (void)setupMAGPanelButtonCell {
+- (void)setupMAGPanelToggleCell {
 	[self mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.height.equalTo(@(magPanelCellHeight));
 		}];
@@ -56,13 +56,13 @@
 	[self addSubview:self.toggle];
 
 	[self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.leading.equalTo(self).with.insets(magPanelTitleCellEdgeInsets);
+			make.leading.equalTo(self).with.insets(magPanelCellEdgeInsets);
 			make.centerY.equalTo(self);
 		}];
 	
 	[self.toggle mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.leading.equalTo(self.label.mas_trailing);
-			make.trailing.equalTo(self).with.insets(magPanelTitleCellEdgeInsets);
+			make.trailing.equalTo(self).with.insets(magPanelCellEdgeInsets);
 			make.centerY.equalTo(self);
 		}];
 	

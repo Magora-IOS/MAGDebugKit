@@ -4,6 +4,7 @@
 #import "MAGPanelSeparator.h"
 #import "MAGPanelTitleCell.h"
 #import "MAGPanelToggleCell.h"
+#import "MAGPanelInputCell.h"
 
 #import <Masonry/Masonry.h>
 
@@ -68,6 +69,16 @@
 	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
 	
 	return toggle;
+}
+
+- (MAGPanelInputCell *)addInputWithTitle:(NSString *)title key:(NSString *)key action:(void(^)(NSString *value))action {
+	MAGPanelInputCell *input = [[MAGPanelInputCell alloc] init];
+	input.title = title;
+	input.action = action;
+	[self.stackView addArrangedSubview:input];
+	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	
+	return input;
 }
 
 @end
