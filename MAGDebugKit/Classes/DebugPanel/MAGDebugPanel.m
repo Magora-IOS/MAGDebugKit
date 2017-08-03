@@ -217,7 +217,8 @@
 }
 
 - (void)overviewAction {
-
+	MAGDebugOverviewSettingsVC *vc = [[MAGDebugOverviewSettingsVC alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)rentgenAction {
@@ -226,7 +227,8 @@
 }
 
 - (void)vcLifecycleAction {
-
+	MAGVCLifecycleLoggingSettingsVC *vc = [[MAGVCLifecycleLoggingSettingsVC alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)sandboxBrowserAction {

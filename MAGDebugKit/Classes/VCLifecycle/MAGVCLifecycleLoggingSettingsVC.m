@@ -24,24 +24,17 @@
 #pragma mark - Private methods
 
 - (void)setupMenuActions {
-//	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
-//		handler:^(BOTableViewSection *section) {
-//			[self setupLifecycleLoggingEnabledItemInSection:section];
-//		}]];
+	[self addTitle:nil];
+	
+	[self addToggleWithTitle:@"Log init/dealloc events"
+		key:MAGDebugPanelSettingKeyLogVCLifecycleEnabled
+		action:^(BOOL value) {
+			if (value) {
+				[MAGVCLifecycleLogging enableInitDeallocLogging];
+			} else {
+				[MAGVCLifecycleLogging disableInitDeallocLogging];
+			}
+		}];
 }
-
-//- (void)setupLifecycleLoggingEnabledItemInSection:(BOTableViewSection *)section {
-//	[section addCell:[BOSwitchTableViewCell cellWithTitle:@"Log init/dealloc events"
-//		key:MAGDebugPanelSettingKeyLogVCLifecycleEnabled
-//		handler:^(BOSwitchTableViewCell *cell) {
-//				[RACObserve(cell, setting.value) subscribeNext:^(NSNumber *enabled) {
-//					if (enabled.boolValue) {
-//						[MAGVCLifecycleLogging enableInitDeallocLogging];
-//					} else {
-//						[MAGVCLifecycleLogging disableInitDeallocLogging];
-//					}
-//				}];
-//			}]];
-//}
 
 @end
