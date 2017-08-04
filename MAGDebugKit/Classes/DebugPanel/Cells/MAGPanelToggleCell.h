@@ -3,8 +3,8 @@
 
 @interface MAGPanelToggleCell : UIView
 
-@property (nonatomic) BOOL value;
+@property (nonatomic) NSNumber *value;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) void(^action)(BOOL value);
+@property (nonatomic, copy) void(^action)(NSNumber *value);
 
 @end

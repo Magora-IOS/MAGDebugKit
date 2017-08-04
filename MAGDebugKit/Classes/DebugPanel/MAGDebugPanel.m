@@ -4,6 +4,7 @@
 #import "MAGLoggingSettingsVC.h"
 #import "MAGSandboxBrowserVC.h"
 #import "MAGVCLifecycleLoggingSettingsVC.h"
+#import "MAGUDSettingsStorage.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -26,7 +27,10 @@
 - (instancetype)initWithAppearanceStyle:(MAGDebugPanelAppearanceStyle)appearanceStyle {
 	NSAssert(appearanceStyle != MAGDebugPanelAppearanceStyleUnknown, @"Appearance style must be defined.");
 
-	self = [super init];
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	id<MAGSettingsReactor> settings = [[MAGUDSettingsStorage alloc] initWithUserDefaults:ud];
+
+	self = [super initWithSettings:settings];
 	if (!self) {
 		return nil;
 	}
@@ -213,22 +217,22 @@
 #pragma mark - UI actions
 
 - (void)loggingAction {
-	MAGLoggingSettingsVC *vc = [[MAGLoggingSettingsVC alloc] init];
+	MAGLoggingSettingsVC *vc = [[MAGLoggingSettingsVC alloc] initWithSettings:self.settingsReactor];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)overviewAction {
-	MAGDebugOverviewSettingsVC *vc = [[MAGDebugOverviewSettingsVC alloc] init];
+	MAGDebugOverviewSettingsVC *vc = [[MAGDebugOverviewSettingsVC alloc] initWithSettings:self.settingsReactor];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)rentgenAction {
-	MAGRentgenSettingsVC *vc = [[MAGRentgenSettingsVC alloc] init];
+	MAGRentgenSettingsVC *vc = [[MAGRentgenSettingsVC alloc] initWithSettings:self.settingsReactor];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)vcLifecycleAction {
-	MAGVCLifecycleLoggingSettingsVC *vc = [[MAGVCLifecycleLoggingSettingsVC alloc] init];
+	MAGVCLifecycleLoggingSettingsVC *vc = [[MAGVCLifecycleLoggingSettingsVC alloc] initWithSettings:self.settingsReactor];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

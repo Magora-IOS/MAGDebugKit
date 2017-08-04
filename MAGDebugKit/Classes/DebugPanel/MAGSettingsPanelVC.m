@@ -7,11 +7,14 @@
 #import "MAGPanelInputCell.h"
 #import "MAGPanelPickerCell.h"
 #import "MAGPanelPickerManager.h"
+#import "MAGSettingsReactor.h"
 
 #import <Masonry/Masonry.h>
 
 
 @interface MAGSettingsPanelVC ()
+
+@property (nonatomic) id<MAGSettingsReactor> settingsReactor;
 
 @property (nonatomic) UIStackView *stackView;
 @property (nonatomic) NSMutableArray *pickerManagers;
@@ -22,6 +25,18 @@
 @implementation MAGSettingsPanelVC
 
 #pragma mark - Lifecycle
+
+- (instancetype)initWithSettings:(id<MAGSettingsReactor>)settingsReactor {
+	self = [super initWithNibName:nil bundle:nil];
+	
+	if (!self) {
+		return nil;
+	}
+	
+	_settingsReactor = settingsReactor;
+	
+	return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,12 +81,21 @@
 	return button;
 }
 
-- (MAGPanelToggleCell *)addToggleWithTitle:(NSString *)title key:(NSString *)key action:(void(^)(BOOL value))action {
+- (MAGPanelToggleCell *)addToggleWithTitle:(NSString *)title key:(NSString *)key action:(void(^)(NSNumber *value))action {
 	MAGPanelToggleCell *toggle = [[MAGPanelToggleCell alloc] init];
 	toggle.title = title;
-	toggle.action = action;
+	
+	NSNumber *storedValue = [self.settingsReactor settingForKey:key];
+	toggle.value = storedValue;
+	
+//	toggle.action = action;
 	[self.stackView addArrangedSubview:toggle];
 	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+
+	[self.settingsReactor setReaction:action forKey:key defaultValue:@NO];
+	toggle.action = ^(NSNumber *value) {
+		[self.settingsReactor setSetting:value forKey:key];
+	};
 	
 	return toggle;
 }

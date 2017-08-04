@@ -28,8 +28,8 @@
 	
 	[self addToggleWithTitle:@"Log init/dealloc events"
 		key:MAGDebugPanelSettingKeyLogVCLifecycleEnabled
-		action:^(BOOL value) {
-			if (value) {
+		action:^(NSNumber *value) {
+			if (value.boolValue) {
 				[MAGVCLifecycleLogging enableInitDeallocLogging];
 			} else {
 				[MAGVCLifecycleLogging disableInitDeallocLogging];

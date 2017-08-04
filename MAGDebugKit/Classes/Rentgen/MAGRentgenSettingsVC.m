@@ -24,8 +24,8 @@
 
 	[self addToggleWithTitle:@"Highlight responders"
 		key:MAGDebugPanelSettingKeyRentgenRespondersEnabled
-		action:^(BOOL value) {
-			if (value) {
+		action:^(NSNumber *value) {
+			if (value.boolValue) {
 				[[MAGTapRentgen sharedInstance] start];
 			} else {
 				[[MAGTapRentgen sharedInstance] stop];
@@ -34,8 +34,8 @@
 
 	[self addToggleWithTitle:@"Highlight views"
 		key:MAGDebugPanelSettingKeyRentgenEnabled
-		action:^(BOOL value) {
-			if (value) {
+		action:^(NSNumber *value) {
+			if (value.boolValue) {
 				[[MAGRentgen sharedInstance] start];
 			} else {
 				[[MAGRentgen sharedInstance] stop];
@@ -44,14 +44,14 @@
 
 	[self addToggleWithTitle:@"Highlight all views"
 		key:MAGDebugPanelSettingKeyHighlightAllViewsEnabled
-		action:^(BOOL value) {
-			[MAGRentgen sharedInstance].highlightAllViews = value;
+		action:^(NSNumber *value) {
+			[MAGRentgen sharedInstance].highlightAllViews = value.boolValue;
 		}];
 	
 	[self addToggleWithTitle:@"Display class captions"
 		key:MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled
-		action:^(BOOL value) {
-			[MAGRentgen sharedInstance].showClassCaptions = value;
+		action:^(NSNumber *value) {
+			[MAGRentgen sharedInstance].showClassCaptions = value.boolValue;
 		}];
 }
 

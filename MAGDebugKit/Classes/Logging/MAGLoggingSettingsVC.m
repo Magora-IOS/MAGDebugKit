@@ -68,20 +68,20 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 	
 	[self addToggleWithTitle:@"File"
 		key:MAGDebugPanelSettingKeyFileLoggingEnabled
-		action:^(BOOL value) {
-			[[MAGLogging sharedInstance] setFileLoggingEnabled:value];
+		action:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setFileLoggingEnabled:value.boolValue];
 		}];
 	
 	[self addToggleWithTitle:@"TTY"
 		key:MAGDebugPanelSettingKeyTTYLoggingEnabled
-		action:^(BOOL value) {
-			[[MAGLogging sharedInstance] setTtyLoggingEnabled:value];
+		action:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setTtyLoggingEnabled:value.boolValue];
 		}];
 	
 	[self addToggleWithTitle:@"ASL"
 		key:MAGDebugPanelSettingKeyASLLoggingEnabled
-		action:^(BOOL value) {
-			[[MAGLogging sharedInstance] setAslLoggingEnabled:value];
+		action:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setAslLoggingEnabled:value.boolValue];
 		}];
 }
 
@@ -102,8 +102,8 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 
 	[self addToggleWithTitle:@"Enabled"
 		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
-		action:^(BOOL value) {
-			[MAGLogging sharedInstance].remoteLoggingEnabled = value;
+		action:^(NSNumber *value) {
+			[MAGLogging sharedInstance].remoteLoggingEnabled = value.boolValue;
 		}];
 }
 

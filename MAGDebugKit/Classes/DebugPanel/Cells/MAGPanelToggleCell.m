@@ -77,11 +77,18 @@
 	self.label.text = title;
 }
 
+- (void)setValue:(NSNumber *)value {
+	_value = value;
+	self.toggle.on = value.boolValue;
+}
+
 #pragma mark - UI actions
 
 - (void)switchToggle:(UISwitch *)sender {
+	_value = @(self.toggle.on);
+
 	if (self.action) {
-		self.action(self.toggle.on);
+		self.action(self.value);
 	}
 }
 

@@ -28,8 +28,8 @@
 	
 	[self addToggleWithTitle:@"Enabled"
 		key:MAGDebugPanelSettingKeyOverviewEnabled
-		action:^(BOOL value) {
-			if (value) {
+		action:^(NSNumber *value) {
+			if (value.boolValue) {
 //					if ([[BOSetting settingWithKey:MAGDebugPanelSettingKeyOverviewFlowMode].value boolValue]) {
 				if (NO) {
 					[MAGDebugOverview addToWindow];
@@ -43,10 +43,10 @@
 
 	[self addToggleWithTitle:@"Flow mode"
 		key:MAGDebugPanelSettingKeyOverviewFlowMode
-		action:^(BOOL value) {
+		action:^(NSNumber *value) {
 //			if ([[BOSetting settingWithKey:MAGDebugPanelSettingKeyOverviewEnabled].value boolValue]) {
 			if (NO) {
-				if (value) {
+				if (value.boolValue) {
 					[MAGDebugOverview addToWindow];
 				} else {
 					[MAGDebugOverview addToStatusBar];
