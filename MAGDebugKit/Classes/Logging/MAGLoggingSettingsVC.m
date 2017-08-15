@@ -66,23 +66,9 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 - (void)setupLocalSection {
 	[self addTitle:@"Local"];
 	
-	[self addToggleWithTitle:@"File"
-		key:MAGDebugPanelSettingKeyFileLoggingEnabled
-		action:^(NSNumber *value) {
-			[[MAGLogging sharedInstance] setFileLoggingEnabled:value.boolValue];
-		}];
-	
-	[self addToggleWithTitle:@"TTY"
-		key:MAGDebugPanelSettingKeyTTYLoggingEnabled
-		action:^(NSNumber *value) {
-			[[MAGLogging sharedInstance] setTtyLoggingEnabled:value.boolValue];
-		}];
-	
-	[self addToggleWithTitle:@"ASL"
-		key:MAGDebugPanelSettingKeyASLLoggingEnabled
-		action:^(NSNumber *value) {
-			[[MAGLogging sharedInstance] setAslLoggingEnabled:value.boolValue];
-		}];
+	[self addToggleWithTitle:@"File" key:MAGDebugPanelSettingKeyFileLoggingEnabled];
+	[self addToggleWithTitle:@"TTY" key:MAGDebugPanelSettingKeyTTYLoggingEnabled];
+	[self addToggleWithTitle:@"ASL" key:MAGDebugPanelSettingKeyASLLoggingEnabled];
 }
 
 - (void)setupRemoteSection {
@@ -100,11 +86,7 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 			[MAGLogging sharedInstance].remoteLoggingPort = @(value.integerValue);
 		}];
 
-	[self addToggleWithTitle:@"Enabled"
-		key:MAGDebugPanelSettingKeyAntennaLoggingEnabled
-		action:^(NSNumber *value) {
-			[MAGLogging sharedInstance].remoteLoggingEnabled = value.boolValue;
-		}];
+	[self addToggleWithTitle:@"Enabled" key:MAGDebugPanelSettingKeyAntennaLoggingEnabled];
 }
 
 //- (void)setupVerbosityLevelInSection:(BOTableViewSection *)section {

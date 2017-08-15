@@ -26,33 +26,8 @@
 - (void)setupMenuActions {
 	[self addTitle:nil];
 	
-	[self addToggleWithTitle:@"Enabled"
-		key:MAGDebugPanelSettingKeyOverviewEnabled
-		action:^(NSNumber *value) {
-			if (value.boolValue) {
-//					if ([[BOSetting settingWithKey:MAGDebugPanelSettingKeyOverviewFlowMode].value boolValue]) {
-				if (NO) {
-					[MAGDebugOverview addToWindow];
-				} else {
-					[MAGDebugOverview addToStatusBar];
-				}
-			} else {
-				[MAGDebugOverview dismissSharedInstance];
-			}
-		}];
-
-	[self addToggleWithTitle:@"Flow mode"
-		key:MAGDebugPanelSettingKeyOverviewFlowMode
-		action:^(NSNumber *value) {
-//			if ([[BOSetting settingWithKey:MAGDebugPanelSettingKeyOverviewEnabled].value boolValue]) {
-			if (NO) {
-				if (value.boolValue) {
-					[MAGDebugOverview addToWindow];
-				} else {
-					[MAGDebugOverview addToStatusBar];
-				}
-			}
-		}];
+	[self addToggleWithTitle:@"Enabled" key:MAGDebugPanelSettingKeyOverviewEnabled];
+	[self addToggleWithTitle:@"Flow mode" key:MAGDebugPanelSettingKeyOverviewFlowMode];
 }
 
 @end

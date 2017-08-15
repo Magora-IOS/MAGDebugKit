@@ -22,7 +22,7 @@
 
 - (MAGPanelButtonCell *)addButtonWithTitle:(NSString *)title action:(void(^)(void))action;
 
-- (MAGPanelToggleCell *)addToggleWithTitle:(NSString *)title key:(NSString *)key action:(void(^)(NSNumber *value))action;
+- (MAGPanelToggleCell *)addToggleWithTitle:(NSString *)title key:(NSString *)key;
 
 - (MAGPanelInputCell *)addInputWithTitle:(NSString *)title key:(NSString *)key action:(void(^)(NSString *value))action;
 

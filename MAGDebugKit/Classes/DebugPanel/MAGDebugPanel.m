@@ -6,6 +6,13 @@
 #import "MAGVCLifecycleLoggingSettingsVC.h"
 #import "MAGUDSettingsStorage.h"
 
+#import "MAGDebugPanelSettingsKeys.h"
+#import "MAGDebugOverview.h"
+#import "MAGLogging.h"
+#import "MAGRentgen.h"
+#import "MAGTapRentgen.h"
+#import "MAGVCLifecycleLogging.h"
+
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
 
@@ -29,6 +36,7 @@
 
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	id<MAGSettingsReactor> settings = [[MAGUDSettingsStorage alloc] initWithUserDefaults:ud];
+	[MAGDebugPanel configureReactionsFor:settings];
 
 	self = [super initWithSettings:settings];
 	if (!self) {
@@ -239,6 +247,88 @@
 - (void)sandboxBrowserAction {
 	MAGSandboxBrowserVC *vc = [[MAGSandboxBrowserVC alloc] initWithURL:nil];
 	[self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - Private methods
+
++ (void)configureReactionsFor:(id<MAGSettingsReactor>) settings {
+	typeof(settings) __weak weakSettings = settings;
+	
+	// Overview.
+	[settings setReaction:^(NSNumber *value) {
+			if (value.boolValue) {
+				NSNumber *flowValue = [weakSettings settingForKey:MAGDebugPanelSettingKeyOverviewFlowMode];
+				if (flowValue.boolValue) {
+					[MAGDebugOverview addToWindow];
+				} else {
+					[MAGDebugOverview addToStatusBar];
+				}
+			} else {
+				[MAGDebugOverview dismissSharedInstance];
+			}
+	} forKey:MAGDebugPanelSettingKeyOverviewEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+		NSNumber *enabledValue = [weakSettings settingForKey:MAGDebugPanelSettingKeyOverviewEnabled];
+		if (enabledValue.boolValue) {
+				if (value.boolValue) {
+					[MAGDebugOverview addToWindow];
+				} else {
+					[MAGDebugOverview addToStatusBar];
+				}
+		}
+	} forKey:MAGDebugPanelSettingKeyOverviewFlowMode defaultValue:@NO];
+	
+	// Rentgen.
+	[settings setReaction:^(NSNumber *value) {
+			if (value.boolValue) {
+				[[MAGTapRentgen sharedInstance] start];
+			} else {
+				[[MAGTapRentgen sharedInstance] stop];
+			}
+		} forKey:MAGDebugPanelSettingKeyRentgenRespondersEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+			if (value.boolValue) {
+				[[MAGRentgen sharedInstance] start];
+			} else {
+				[[MAGRentgen sharedInstance] stop];
+			}
+		} forKey:MAGDebugPanelSettingKeyRentgenEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+			[MAGRentgen sharedInstance].highlightAllViews = value.boolValue;
+		} forKey:MAGDebugPanelSettingKeyHighlightAllViewsEnabled defaultValue:@NO];
+	
+	[settings setReaction:^(NSNumber *value) {
+			[MAGRentgen sharedInstance].showClassCaptions = value.boolValue;
+		} forKey:MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled defaultValue:@NO];	
+	
+	// Logging.
+	[settings setReaction:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setFileLoggingEnabled:value.boolValue];
+		} forKey:MAGDebugPanelSettingKeyFileLoggingEnabled defaultValue:@NO];
+	
+	[settings setReaction:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setTtyLoggingEnabled:value.boolValue];
+		} forKey:MAGDebugPanelSettingKeyTTYLoggingEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setAslLoggingEnabled:value.boolValue];
+		} forKey:MAGDebugPanelSettingKeyASLLoggingEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+			[MAGLogging sharedInstance].remoteLoggingEnabled = value.boolValue;
+		} forKey:MAGDebugPanelSettingKeyAntennaLoggingEnabled defaultValue:@NO];
+	
+	// VC lifecycle logging.
+	[settings setReaction:^(NSNumber *value) {
+			if (value.boolValue) {
+				[MAGVCLifecycleLogging enableInitDeallocLogging];
+			} else {
+				[MAGVCLifecycleLogging disableInitDeallocLogging];
+			}
+		} forKey:MAGDebugPanelSettingKeyLogVCLifecycleEnabled defaultValue:@NO];
 }
 
 @end

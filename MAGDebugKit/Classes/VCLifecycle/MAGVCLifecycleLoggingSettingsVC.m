@@ -26,15 +26,7 @@
 - (void)setupMenuActions {
 	[self addTitle:nil];
 	
-	[self addToggleWithTitle:@"Log init/dealloc events"
-		key:MAGDebugPanelSettingKeyLogVCLifecycleEnabled
-		action:^(NSNumber *value) {
-			if (value.boolValue) {
-				[MAGVCLifecycleLogging enableInitDeallocLogging];
-			} else {
-				[MAGVCLifecycleLogging disableInitDeallocLogging];
-			}
-		}];
+	[self addToggleWithTitle:@"Log init/dealloc events" key:MAGDebugPanelSettingKeyLogVCLifecycleEnabled];
 }
 
 @end
