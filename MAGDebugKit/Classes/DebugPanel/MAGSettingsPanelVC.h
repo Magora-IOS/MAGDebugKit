@@ -27,7 +27,6 @@
 - (MAGPanelInputCell *)addInputWithTitle:(NSString *)title key:(NSString *)key action:(void(^)(NSString *value))action;
 
 - (MAGPanelPickerManager *)addPickerWithTitle:(NSString *)title key:(NSString *)key
-	options:(NSArray *)options optionRenderer:(NSString *(^)(id value))renderer
-	action:(void(^)(id value))action;
+	options:(NSArray *)options optionRenderer:(NSString *(^)(id value))renderer;
 
 @end

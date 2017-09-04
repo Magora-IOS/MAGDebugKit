@@ -109,20 +109,25 @@
 }
 
 - (MAGPanelPickerManager *)addPickerWithTitle:(NSString *)title key:(NSString *)key
-	options:(NSArray *)options optionRenderer:(NSString *(^)(id value))renderer
-	action:(void(^)(id value))action {
+	options:(NSArray *)options optionRenderer:(NSString *(^)(id value))renderer {
 
 	MAGPanelPickerCell *picker = [[MAGPanelPickerCell alloc] init];
 	picker.title = title;
-	picker.action = action;
 	picker.renderer = renderer;
 	[self.stackView addArrangedSubview:picker];
 	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
 	
 	MAGPanelPickerManager *pickerManager = [MAGPanelPickerManager managerForPickerCell:picker
 		options:options optionRenderer:renderer];
-	
 	[self.pickerManagers addObject:pickerManager];
+
+	NSNumber *storedValue = [self.settingsReactor settingForKey:key];
+	picker.value = storedValue;
+	pickerManager.value = storedValue;
+	
+	picker.action = ^(NSNumber *value) {
+		[self.settingsReactor setSetting:value forKey:key];
+	};
 	
 	return pickerManager;
 }

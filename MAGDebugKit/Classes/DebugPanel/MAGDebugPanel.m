@@ -12,6 +12,7 @@
 #import "MAGRentgen.h"
 #import "MAGTapRentgen.h"
 #import "MAGVCLifecycleLogging.h"
+#import "MAGLoggingSettingsVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -305,6 +306,11 @@
 		} forKey:MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled defaultValue:@NO];	
 	
 	// Logging.
+	[settings setReaction:^(NSNumber *value) {
+			MAGLoggingLevel level = [value unsignedIntegerValue];
+			[[MAGLogging sharedInstance] setLogLevel:ddLogLevelForLoggingLevel(level)];
+		} forKey:MAGDebugPanelSettingKeyLoggingVerbosity defaultValue:@(MAGLoggingLevelAll)];
+	
 	[settings setReaction:^(NSNumber *value) {
 			[[MAGLogging sharedInstance] setFileLoggingEnabled:value.boolValue];
 		} forKey:MAGDebugPanelSettingKeyFileLoggingEnabled defaultValue:@NO];

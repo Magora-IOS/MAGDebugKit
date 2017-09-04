@@ -2,21 +2,9 @@
 #import "MAGDebugPanelSettingsKeys.h"
 #import "MAGPanelPickerCell.h"
 #import "MAGPanelPickerManager.h"
-#import "MAGLogging.h"
 
 #import <ReactiveObjC/ReactiveObjC.h>
 
-
-typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
-	MAGLoggingLevelUndefined = 0,
-	MAGLoggingLevelOff,
-	MAGLoggingLevelError,
-	MAGLoggingLevelWarning,
-	MAGLoggingLevelInfo,
-	MAGLoggingLevelDebug,
-	MAGLoggingLevelVerbose,
-	MAGLoggingLevelAll
-};
 
 @interface MAGLoggingSettingsVC ()
 
@@ -50,17 +38,11 @@ typedef NS_ENUM(NSUInteger, MAGLoggingLevel) {
 	[self addTitle:@"Log level"];
 
 	NSArray *options = loggingLevelOptions();
-	MAGPanelPickerManager *pickerManager = [self addPickerWithTitle:@"Verbosity"
-		key:MAGDebugPanelSettingKeyLoggingVerbosity
+	[self addPickerWithTitle:@"Verbosity" key:MAGDebugPanelSettingKeyLoggingVerbosity
 		options:options optionRenderer:^NSString *(id value) {
 			MAGLoggingLevel level = [value unsignedIntegerValue];
 			return titleForLoggingLevel(level);
-		} action:^(id value) {
-			MAGLoggingLevel level = [value unsignedIntegerValue];
-			[[MAGLogging sharedInstance] setLogLevel:ddLogLevelForLoggingLevel(level)];
 		}];
-	
-	pickerManager.value = @(MAGLoggingLevelAll);
 }
 
 - (void)setupLocalSection {
