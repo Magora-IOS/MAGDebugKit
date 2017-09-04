@@ -83,10 +83,16 @@
 	self.input.placeholder = title;
 }
 
+- (void)setValue:(NSString *)value {
+	_value = value;
+	self.input.text = self.value;
+}
+
 #pragma mark - UI actions
 
 - (void)inputChanged:(UITextField *)sender {
 	if (self.action) {
+		_value = self.input.text;
 		self.action(self.input.text);
 	}
 }

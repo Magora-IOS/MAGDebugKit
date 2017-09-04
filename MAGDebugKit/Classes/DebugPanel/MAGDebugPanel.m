@@ -323,9 +323,18 @@
 			[[MAGLogging sharedInstance] setAslLoggingEnabled:value.boolValue];
 		} forKey:MAGDebugPanelSettingKeyASLLoggingEnabled defaultValue:@NO];
 
+	[settings setReaction:^(NSString *value) {
+			[MAGLogging sharedInstance].remoteLoggingHost = value;
+		} forKey:MAGDebugPanelSettingKeyAntennaLoggingHost defaultValue:nil];
+
+	[settings setReaction:^(NSString *value) {
+			[MAGLogging sharedInstance].remoteLoggingPort = @(value.integerValue);
+		} forKey:MAGDebugPanelSettingKeyAntennaLoggingPort defaultValue:nil];
+
 	[settings setReaction:^(NSNumber *value) {
 			[MAGLogging sharedInstance].remoteLoggingEnabled = value.boolValue;
 		} forKey:MAGDebugPanelSettingKeyAntennaLoggingEnabled defaultValue:@NO];
+
 	
 	// VC lifecycle logging.
 	[settings setReaction:^(NSNumber *value) {

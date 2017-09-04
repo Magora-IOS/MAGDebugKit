@@ -24,7 +24,7 @@
 
 - (MAGPanelToggleCell *)addToggleWithTitle:(NSString *)title key:(NSString *)key;
 
-- (MAGPanelInputCell *)addInputWithTitle:(NSString *)title key:(NSString *)key action:(void(^)(NSString *value))action;
+- (MAGPanelInputCell *)addInputWithTitle:(NSString *)title key:(NSString *)key;
 
 - (MAGPanelPickerManager *)addPickerWithTitle:(NSString *)title key:(NSString *)key
 	options:(NSArray *)options optionRenderer:(NSString *(^)(id value))renderer;

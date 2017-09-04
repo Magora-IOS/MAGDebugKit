@@ -56,18 +56,8 @@
 - (void)setupRemoteSection {
 	[self addTitle:@"Remote"];
 	
-	[self addInputWithTitle:@"Host"
-		key:MAGDebugPanelSettingKeyAntennaLoggingHost
-		action:^(NSString *value) {
-			[MAGLogging sharedInstance].remoteLoggingHost = value;
-		}];
-	
-	[self addInputWithTitle:@"Port"
-		key:MAGDebugPanelSettingKeyAntennaLoggingPort
-		action:^(NSString *value) {
-			[MAGLogging sharedInstance].remoteLoggingPort = @(value.integerValue);
-		}];
-
+	[self addInputWithTitle:@"Host" key:MAGDebugPanelSettingKeyAntennaLoggingHost];
+	[self addInputWithTitle:@"Port" key:MAGDebugPanelSettingKeyAntennaLoggingPort];
 	[self addToggleWithTitle:@"Enabled" key:MAGDebugPanelSettingKeyAntennaLoggingEnabled];
 }
 

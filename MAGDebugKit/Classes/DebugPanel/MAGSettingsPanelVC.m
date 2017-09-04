@@ -98,10 +98,17 @@
 	return toggle;
 }
 
-- (MAGPanelInputCell *)addInputWithTitle:(NSString *)title key:(NSString *)key action:(void(^)(NSString *value))action {
+- (MAGPanelInputCell *)addInputWithTitle:(NSString *)title key:(NSString *)key {
 	MAGPanelInputCell *input = [[MAGPanelInputCell alloc] init];
 	input.title = title;
-	input.action = action;
+
+	NSString *storedValue = [self.settingsReactor settingForKey:key];
+	input.value = storedValue;
+	
+	input.action = ^(NSString *value) {
+		[self.settingsReactor setSetting:value forKey:key];
+	};
+	
 	[self.stackView addArrangedSubview:input];
 	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
 	
