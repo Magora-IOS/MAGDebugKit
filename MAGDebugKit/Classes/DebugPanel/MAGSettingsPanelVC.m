@@ -47,6 +47,10 @@
 	self.stackView.axis = UILayoutConstraintAxisVertical;
 	
 	UIScrollView *scroller = [[UIScrollView alloc] init];
+	scroller.bounces = YES;
+	scroller.alwaysBounceVertical = YES;
+	scroller.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+	
 	[self.view addSubview:scroller];
 	[scroller mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.edges.equalTo(self.view);
