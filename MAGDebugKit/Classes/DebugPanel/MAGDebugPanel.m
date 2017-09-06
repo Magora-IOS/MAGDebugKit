@@ -4,10 +4,18 @@
 #import "MAGLoggingSettingsVC.h"
 #import "MAGSandboxBrowserVC.h"
 #import "MAGVCLifecycleLoggingSettingsVC.h"
+#import "MAGUDSettingsStorage.h"
+
+#import "MAGDebugPanelSettingsKeys.h"
+#import "MAGDebugOverview.h"
+#import "MAGLogging.h"
+#import "MAGRentgen.h"
+#import "MAGTapRentgen.h"
+#import "MAGVCLifecycleLogging.h"
+#import "MAGLoggingSettingsVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
-#import <Bohr/Bohr.h>
 
 
 @interface MAGDebugPanel ()
@@ -15,7 +23,7 @@
 @property (nonatomic) MAGDebugPanelAppearanceStyle appearanceStyle;
 @property (nonatomic) UIWindow *window;
 
-@property (nonatomic) BOTableViewSection *customActions;
+//@property (nonatomic) BOTableViewSection *customActions;
 
 @end
 
@@ -27,7 +35,11 @@
 - (instancetype)initWithAppearanceStyle:(MAGDebugPanelAppearanceStyle)appearanceStyle {
 	NSAssert(appearanceStyle != MAGDebugPanelAppearanceStyleUnknown, @"Appearance style must be defined.");
 
-	self = [super init];
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	id<MAGSettingsReactor> settings = [[MAGUDSettingsStorage alloc] initWithUserDefaults:ud];
+	[MAGDebugPanel configureReactionsFor:settings];
+
+	self = [super initWithSettings:settings];
 	if (!self) {
 		return nil;
 	}
@@ -43,8 +55,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
 	self.title = @"Settings";
+	
 	[self setupMenuActions];
 }
 
@@ -72,13 +84,13 @@
 	self.window = nil;
 }
 
-- (void)addAction:(void(^)(void))action withTitle:(NSString *)title {	
-	BOTableViewCell *cell = [BOButtonTableViewCell cellWithTitle:title key:nil
-		handler:^(BOButtonTableViewCell *cell) {
-			cell.actionBlock = action;
-		}];
-
-	[self.customActions addCell:cell];
+- (void)addAction:(void(^)(void))action withTitle:(NSString *)title {
+//	BOTableViewCell *cell = [BOButtonTableViewCell cellWithTitle:title key:nil
+//		handler:^(BOButtonTableViewCell *cell) {
+//			cell.actionBlock = action;
+//		}];
+//
+//	[self.customActions addCell:cell];
 }
 
 #pragma mark - UI actions
@@ -174,77 +186,164 @@
 }
 
 - (void)setupMenuActions {
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
-		handler:^(BOTableViewSection *section) {
-			[self setupLoggingSettingsItemInSection:section];
-		}]];
-
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
-		handler:^(BOTableViewSection *section) {
-			[self setupOverviewSettingsItemInSection:section];
-			[self setupRentgenSettingsItemInSection:section];
-			[self setupVCLifecycleSettingsItemInSection:section];
-		}]];
+	@weakify(self);
 	
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:nil
-		handler:^(BOTableViewSection *section) {
-			[self setupSandboxBrowserItemInSection:section];
-//			[self setupSandboxSharingItemInSection:section];
-//			[self setupSandboxCleaningItemInSection:section];
-		}]];
+	[self addTitle:@"Logging"];
 	
-	self.customActions = [BOTableViewSection sectionWithHeaderTitle:nil handler:nil];
-	[self addSection:self.customActions];
+	[self addButtonWithTitle:@"Logging" action:^{
+			@strongify(self);
+			[self loggingAction];
+		}];
+	
+	[self addTitle:@"Views"];
+
+	[self addButtonWithTitle:@"Overview" action:^{
+			@strongify(self);
+			[self overviewAction];
+		}];
+	
+	[self addButtonWithTitle:@"Rentgen" action:^{
+			@strongify(self);
+			[self rentgenAction];
+		}];
+
+	[self addButtonWithTitle:@"VC lifecycle" action:^{
+			@strongify(self);
+			[self vcLifecycleAction];
+		}];
+
+	[self addTitle:@"Sandbox"];
+
+	[self addButtonWithTitle:@"Disk browser" action:^{
+			@strongify(self);
+			[self sandboxBrowserAction];
+		}];
+
+//	self.customActions = [BOTableViewSection sectionWithHeaderTitle:nil handler:nil];
+//	[self addSection:self.customActions];
 }
 
-- (void)setupLoggingSettingsItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Logging" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGLoggingSettingsVC alloc] init];
-		}]];
+#pragma mark - UI actions
+
+- (void)loggingAction {
+	MAGLoggingSettingsVC *vc = [[MAGLoggingSettingsVC alloc] initWithSettings:self.settingsReactor];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
-
-- (void)setupOverviewSettingsItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Overview" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGDebugOverviewSettingsVC alloc] init];
-		}]];
+- (void)overviewAction {
+	MAGDebugOverviewSettingsVC *vc = [[MAGDebugOverviewSettingsVC alloc] initWithSettings:self.settingsReactor];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)setupVCLifecycleSettingsItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"VC lifecycle" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGVCLifecycleLoggingSettingsVC alloc] init];
-		}]];
+- (void)rentgenAction {
+	MAGRentgenSettingsVC *vc = [[MAGRentgenSettingsVC alloc] initWithSettings:self.settingsReactor];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)setupRentgenSettingsItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Rentgen mode" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGRentgenSettingsVC alloc] init];
-		}]];
+- (void)vcLifecycleAction {
+	MAGVCLifecycleLoggingSettingsVC *vc = [[MAGVCLifecycleLoggingSettingsVC alloc] initWithSettings:self.settingsReactor];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)setupSandboxBrowserItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox browser" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = [[MAGSandboxBrowserVC alloc] initWithURL:nil];
-		}]];
+- (void)sandboxBrowserAction {
+	MAGSandboxBrowserVC *vc = [[MAGSandboxBrowserVC alloc] initWithURL:nil];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)setupSandboxSharingItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox HTTP sharing" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = self;
-		}]];
-}
+#pragma mark - Private methods
 
-- (void)setupSandboxCleaningItemInSection:(BOTableViewSection *)section {
-	[section addCell:[BOTableViewCell cellWithTitle:@"Sandbox cleaning" key:nil
-		handler:^(BOTableViewCell *cell) {
-			cell.destinationViewController = self;
-		}]];
++ (void)configureReactionsFor:(id<MAGSettingsReactor>) settings {
+	typeof(settings) __weak weakSettings = settings;
+	
+	// Overview.
+	[settings setReaction:^(NSNumber *value) {
+			if (value.boolValue) {
+				NSNumber *flowValue = [weakSettings settingForKey:MAGDebugPanelSettingKeyOverviewFlowMode];
+				if (flowValue.boolValue) {
+					[MAGDebugOverview addToWindow];
+				} else {
+					[MAGDebugOverview addToStatusBar];
+				}
+			} else {
+				[MAGDebugOverview dismissSharedInstance];
+			}
+	} forKey:MAGDebugPanelSettingKeyOverviewEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+		NSNumber *enabledValue = [weakSettings settingForKey:MAGDebugPanelSettingKeyOverviewEnabled];
+		if (enabledValue.boolValue) {
+				if (value.boolValue) {
+					[MAGDebugOverview addToWindow];
+				} else {
+					[MAGDebugOverview addToStatusBar];
+				}
+		}
+	} forKey:MAGDebugPanelSettingKeyOverviewFlowMode defaultValue:@NO];
+	
+	// Rentgen.
+	[settings setReaction:^(NSNumber *value) {
+			if (value.boolValue) {
+				[[MAGTapRentgen sharedInstance] start];
+			} else {
+				[[MAGTapRentgen sharedInstance] stop];
+			}
+		} forKey:MAGDebugPanelSettingKeyRentgenRespondersEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+			if (value.boolValue) {
+				[[MAGRentgen sharedInstance] start];
+			} else {
+				[[MAGRentgen sharedInstance] stop];
+			}
+		} forKey:MAGDebugPanelSettingKeyRentgenEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+			[MAGRentgen sharedInstance].highlightAllViews = value.boolValue;
+		} forKey:MAGDebugPanelSettingKeyHighlightAllViewsEnabled defaultValue:@NO];
+	
+	[settings setReaction:^(NSNumber *value) {
+			[MAGRentgen sharedInstance].showClassCaptions = value.boolValue;
+		} forKey:MAGDebugPanelSettingKeyRentgenClassCaptionsEnabled defaultValue:@NO];	
+	
+	// Logging.
+	[settings setReaction:^(NSNumber *value) {
+			MAGLoggingLevel level = [value unsignedIntegerValue];
+			[[MAGLogging sharedInstance] setLogLevel:ddLogLevelForLoggingLevel(level)];
+		} forKey:MAGDebugPanelSettingKeyLoggingVerbosity defaultValue:@(MAGLoggingLevelAll)];
+	
+	[settings setReaction:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setFileLoggingEnabled:value.boolValue];
+		} forKey:MAGDebugPanelSettingKeyFileLoggingEnabled defaultValue:@NO];
+	
+	[settings setReaction:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setTtyLoggingEnabled:value.boolValue];
+		} forKey:MAGDebugPanelSettingKeyTTYLoggingEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSNumber *value) {
+			[[MAGLogging sharedInstance] setAslLoggingEnabled:value.boolValue];
+		} forKey:MAGDebugPanelSettingKeyASLLoggingEnabled defaultValue:@NO];
+
+	[settings setReaction:^(NSString *value) {
+			[MAGLogging sharedInstance].remoteLoggingHost = value;
+		} forKey:MAGDebugPanelSettingKeyAntennaLoggingHost defaultValue:nil];
+
+	[settings setReaction:^(NSString *value) {
+			[MAGLogging sharedInstance].remoteLoggingPort = @(value.integerValue);
+		} forKey:MAGDebugPanelSettingKeyAntennaLoggingPort defaultValue:nil];
+
+	[settings setReaction:^(NSNumber *value) {
+			[MAGLogging sharedInstance].remoteLoggingEnabled = value.boolValue;
+		} forKey:MAGDebugPanelSettingKeyAntennaLoggingEnabled defaultValue:@NO];
+
+	
+	// VC lifecycle logging.
+	[settings setReaction:^(NSNumber *value) {
+			if (value.boolValue) {
+				[MAGVCLifecycleLogging enableInitDeallocLogging];
+			} else {
+				[MAGVCLifecycleLogging disableInitDeallocLogging];
+			}
+		} forKey:MAGDebugPanelSettingKeyLogVCLifecycleEnabled defaultValue:@NO];
 }
 
 @end

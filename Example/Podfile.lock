@@ -1,5 +1,4 @@
 PODS:
-  - Bohr (3.0.0)
   - CocoaAsyncSocket (7.6.0)
   - CocoaLumberjack (3.1.0):
     - CocoaLumberjack/Default (= 3.1.0)
@@ -43,7 +42,6 @@ PODS:
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
   - MAGDebugKit (0.7.0):
-    - Bohr (~> 3.0)
     - CocoaAsyncSocket (~> 7.6)
     - CocoaLumberjack (~> 3.1)
     - libextobjc (~> 0.4)
@@ -74,11 +72,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Magora-IOS/MAGMatveevReusable.git
 
 SPEC CHECKSUMS:
-  Bohr: 17b150766e54e1fb8ff417d85b830c7caafa8b4a
   CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  MAGDebugKit: f4f865d094aeb4bbed4c49cf06f7905778ad1e16
+  MAGDebugKit: 02b5a894a5983c6c420a7820dbb8f4b09842a063
   MAGMatveevReusable: 4d875ac6429d809edf708c6b99c1bbbb6a2dc700
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0

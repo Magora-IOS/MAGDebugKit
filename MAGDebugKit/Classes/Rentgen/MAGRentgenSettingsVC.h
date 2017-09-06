@@ -1,5 +1,6 @@
-#import <Bohr/Bohr.h>
+#import <UIKit/UIKit.h>
+#import "MAGSettingsPanelVC.h"
 
 
-@interface MAGRentgenSettingsVC : BOTableViewController
+@interface MAGRentgenSettingsVC : MAGSettingsPanelVC
 @end

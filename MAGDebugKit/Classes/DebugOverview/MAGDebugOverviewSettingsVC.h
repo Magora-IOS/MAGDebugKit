@@ -1,5 +1,6 @@
-#import <Bohr/Bohr.h>
+#import "MAGSettingsPanelVC.h"
 
 
-@interface MAGDebugOverviewSettingsVC : BOTableViewController
+@interface MAGDebugOverviewSettingsVC : MAGSettingsPanelVC
+
 @end

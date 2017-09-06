@@ -1,4 +1,5 @@
-#import <Bohr/Bohr.h>
+#import <UIKit/UIKit.h>
+#import "MAGSettingsPanelVC.h"
 
 
 typedef NS_ENUM(NSUInteger, MAGDebugPanelAppearanceStyle) {
@@ -7,7 +8,7 @@ typedef NS_ENUM(NSUInteger, MAGDebugPanelAppearanceStyle) {
 };
 
 
-@interface MAGDebugPanel : BOTableViewController
+@interface MAGDebugPanel : MAGSettingsPanelVC
 
 @property (nonatomic, readonly) MAGDebugPanelAppearanceStyle appearanceStyle;
 

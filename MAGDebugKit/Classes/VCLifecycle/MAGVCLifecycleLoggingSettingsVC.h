@@ -1,6 +1,6 @@
-#import <Bohr/Bohr.h>
+#import "MAGSettingsPanelVC.h"
 
 
-@interface MAGVCLifecycleLoggingSettingsVC : BOTableViewController
+@interface MAGVCLifecycleLoggingSettingsVC : MAGSettingsPanelVC
 
 @end
