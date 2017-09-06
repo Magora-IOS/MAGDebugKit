@@ -7,6 +7,7 @@
 @class MAGPanelInputCell;
 @class MAGPanelPickerManager;
 @protocol MAGSettingsReactor;
+@protocol MAGPanelCell;
 
 
 @interface MAGSettingsPanelVC : UIViewController
@@ -28,5 +29,7 @@
 
 - (MAGPanelPickerManager *)addPickerWithTitle:(NSString *)title key:(NSString *)key
 	options:(NSArray *)options optionRenderer:(NSString *(^)(id value))renderer;
+
+- (void)removeCell:(__kindof UIView<MAGPanelCell> *)cell;
 
 @end

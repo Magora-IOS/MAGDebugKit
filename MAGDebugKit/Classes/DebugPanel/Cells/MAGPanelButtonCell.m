@@ -11,6 +11,7 @@
 
 
 @implementation MAGPanelButtonCell
+@synthesize separator;
 
 #pragma mark - Lifecycle
 

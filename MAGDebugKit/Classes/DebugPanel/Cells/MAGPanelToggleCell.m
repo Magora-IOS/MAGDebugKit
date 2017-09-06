@@ -12,6 +12,7 @@
 
 
 @implementation MAGPanelToggleCell
+@synthesize separator;
 
 #pragma mark - Lifecycle
 

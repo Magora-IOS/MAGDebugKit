@@ -1,7 +1,8 @@
 #import <UIKit/UIKit.h>
+#import "MAGPanelCell.h"
 
 
-@interface MAGPanelInputCell : UIView
+@interface MAGPanelInputCell : UIView <MAGPanelCell>
 
 @property (nonatomic) NSString *value;
 @property (nonatomic, copy) NSString *title;

@@ -1,7 +1,8 @@
 #import <UIKit/UIKit.h>
+#import "MAGPanelCell.h"
 
 
-@interface MAGPanelPickerCell : UIView
+@interface MAGPanelPickerCell : UIView <MAGPanelCell>
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic) id value;
