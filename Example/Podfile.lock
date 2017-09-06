@@ -47,22 +47,17 @@ PODS:
     - libextobjc (~> 0.4)
     - MAGMatveevReusable (= 0.3.5)
     - Masonry (~> 1.0)
-    - ReactiveObjC (~> 2.1)
-    - YKMediaPlayerKit (~> 0.0.3)
   - MAGMatveevReusable (0.3.5):
     - Masonry (~> 1.0)
   - Masonry (1.0.2)
-  - ReactiveObjC (2.1.2)
-  - YKMediaPlayerKit (0.0.3)
 
 DEPENDENCIES:
   - MAGDebugKit (from `../`)
   - MAGMatveevReusable (from `https://github.com/Magora-IOS/MAGMatveevReusable.git`)
-  - YKMediaPlayerKit (~> 0.0.3)
 
 EXTERNAL SOURCES:
   MAGDebugKit:
-    :path: "../"
+    :path: ../
   MAGMatveevReusable:
     :git: https://github.com/Magora-IOS/MAGMatveevReusable.git
 
@@ -75,12 +70,10 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  MAGDebugKit: 02b5a894a5983c6c420a7820dbb8f4b09842a063
+  MAGDebugKit: 1072f4d7a3b1965a6dfbff8965497b8c5e683fb8
   MAGMatveevReusable: 4d875ac6429d809edf708c6b99c1bbbb6a2dc700
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
-  ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0
-  YKMediaPlayerKit: fd05f28f3f684c1891f913a7712c12f86c407285
 
-PODFILE CHECKSUM: ae77ff02ff7ed94aa1e15150e1d0e99e6c66b5b6
+PODFILE CHECKSUM: 0ae1416ad2c22e3fdea64ea505a091bbce7b7552
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

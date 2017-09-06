@@ -58,3 +58,6 @@ extern NSString *const MAGDebugPanelSettingKeyAntennaLoggingPort;
 
 // Path: Sandbox -> Finder
 extern NSString *const MAGDebugPanelSettingKeySandboxFinder;
+
+// Path: Video recorder -> Autostart enabled
+extern NSString *const MAGDebugPanelSettingKeyVideoRecordAutostartEnabled;

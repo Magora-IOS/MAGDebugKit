@@ -12,6 +12,7 @@
 
 
 @implementation MAGPanelInputCell
+@synthesize separator;
 
 #pragma mark - Lifecycle
 

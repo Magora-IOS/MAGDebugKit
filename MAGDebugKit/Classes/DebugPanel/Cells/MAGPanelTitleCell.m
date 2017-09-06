@@ -11,6 +11,7 @@
 
 
 @implementation MAGPanelTitleCell
+@synthesize separator;
 
 #pragma mark - Lifecycle
 

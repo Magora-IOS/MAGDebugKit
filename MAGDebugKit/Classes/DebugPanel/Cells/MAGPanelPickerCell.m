@@ -17,6 +17,7 @@
 
 
 @implementation MAGPanelPickerCell
+@synthesize  separator;
 
 #pragma mark - Lifecycle
 

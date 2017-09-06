@@ -13,7 +13,6 @@
 #import "MAGDebugPanel.h"
 
 #import "MAGAutoVideoRecorder.h"
-#import "MAGDebugVideoPlayer.h"
 #import "MAGRealTimingVideoCreator.h"
 #import "MAGScreenshotCollector.h"
 #import "MAGVideoCreator.h"

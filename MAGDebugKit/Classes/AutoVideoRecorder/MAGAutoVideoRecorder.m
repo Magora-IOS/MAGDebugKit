@@ -15,7 +15,6 @@
 #import "MAGAutoVideoRecorder.h"
 #import "MAGScreenshotCollector.h"
 #import "MAGVideoCreator.h"
-#import "MAGDebugVideoPlayer.h"
 #import "MAGCacheCleaner.h"
 
 #define kMaxVideoLength		10*60
@@ -109,7 +108,6 @@
 	
     self.videoCreator = [MAGVideoCreator new];
     self.videoCreator.didVideoCreationFinishedBlock = ^(NSURL *url, NSError *error) {
-        [[MAGDebugVideoPlayer sharedInstance] playOverWindowVideoWithURL:url];
     };
 	self.status = RecordingStatusPreparing;
 	[[MAGScreenshotCollector sharedInstance] configureCollectioningWithQuality:ScreenshotQualityX1 desiredTakingFPS:ScreenshotTakingFPS15 completion:^(ScreenshotTakingFPS desiredTakingFPS, CGFloat scale) {

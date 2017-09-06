@@ -1,5 +1,6 @@
 #import "MAGSettingsPanelVC.h"
 #import "MAGPanelGeometry.h"
+#import "MAGPanelCell.h"
 #import "MAGPanelButtonCell.h"
 #import "MAGPanelSeparator.h"
 #import "MAGPanelTitleCell.h"
@@ -84,7 +85,7 @@
 	button.title = title;
 	button.action = action;
 	[self.stackView addArrangedSubview:button];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	[self addSeparatorFor:button];
 	
 	return button;
 }
@@ -97,7 +98,7 @@
 	toggle.value = storedValue;
 	
 	[self.stackView addArrangedSubview:toggle];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	[self addSeparatorFor:toggle];
 
 	toggle.action = ^(NSNumber *value) {
 		[self.settingsReactor setSetting:value forKey:key];
@@ -124,7 +125,7 @@
 	};
 	
 	[self.stackView addArrangedSubview:input];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	[self addSeparatorFor:input];
 	
 	[self.respondersManager addViews:@[input]];
 	
@@ -138,7 +139,7 @@
 	picker.title = title;
 	picker.renderer = renderer;
 	[self.stackView addArrangedSubview:picker];
-	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	[self addSeparatorFor:picker];
 	
 	MAGPanelPickerManager *pickerManager = [MAGPanelPickerManager managerForPickerCell:picker
 		options:options optionRenderer:renderer];
@@ -153,6 +154,20 @@
 	};
 	
 	return pickerManager;
+}
+
+- (void)removeCell:(__kindof UIView<MAGPanelCell> *)cell {
+	[cell.separator removeFromSuperview];
+	[cell removeFromSuperview];
+}
+
+#pragma mark - Private methods
+
+- (MAGPanelSeparator *)addSeparatorFor:(id<MAGPanelCell>)cell {
+	MAGPanelSeparator *separator = [MAGPanelSeparator new];
+	[self.stackView addArrangedSubview:separator];
+	cell.separator = separator;
+	return separator;
 }
 
 @end
