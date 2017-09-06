@@ -8,13 +8,14 @@
 #import "MAGPanelPickerCell.h"
 #import "MAGPanelPickerManager.h"
 #import "MAGSettingsReactor.h"
-
+#import "MAGDebugPanelRespondersManager.h"
 #import <Masonry/Masonry.h>
 
 
 @interface MAGSettingsPanelVC ()
 
 @property (nonatomic) id<MAGSettingsReactor> settingsReactor;
+@property (nonatomic) MAGDebugPanelRespondersManager *respondersManager;
 
 @property (nonatomic) UIStackView *stackView;
 @property (nonatomic) NSMutableArray *pickerManagers;
@@ -49,7 +50,7 @@
 	UIScrollView *scroller = [[UIScrollView alloc] init];
 	scroller.bounces = YES;
 	scroller.alwaysBounceVertical = YES;
-	scroller.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+	scroller.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
 	
 	[self.view addSubview:scroller];
 	[scroller mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,6 +62,9 @@
 			make.edges.equalTo(scroller);
 			make.width.equalTo(self.view);
 		}];
+	
+	self.respondersManager = [[MAGDebugPanelRespondersManager alloc] init];
+	self.respondersManager.scrollView = scroller;
 	
 	self.pickerManagers = [[NSMutableArray alloc] init];
 }
@@ -112,9 +116,17 @@
 	input.action = ^(NSString *value) {
 		[self.settingsReactor setSetting:value forKey:key];
 	};
+
+	__typeof__(self) weakSelf = self;
+	input.returnKeyAction = ^{
+		__typeof__(weakSelf) strongSelf = weakSelf;
+		[strongSelf.respondersManager setFocusToNextView];
+	};
 	
 	[self.stackView addArrangedSubview:input];
 	[self.stackView addArrangedSubview:[MAGPanelSeparator new]];
+	
+	[self.respondersManager addViews:@[input]];
 	
 	return input;
 }

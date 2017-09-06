@@ -3,7 +3,7 @@
 #import <Masonry/Masonry.h>
 
 
-@interface MAGPanelInputCell ()
+@interface MAGPanelInputCell () <UITextFieldDelegate>
 
 @property (nonatomic) UILabel *label;
 @property (nonatomic) UITextField *input;
@@ -55,6 +55,7 @@
 	self.input.placeholder = self.title;
 	self.input.textAlignment = NSTextAlignmentRight;
 	self.input.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+	self.input.delegate = self;
 	[self.input addTarget:self action:@selector(inputChanged:) forControlEvents:UIControlEventEditingChanged];
 	[self addSubview:self.input];
 
@@ -88,6 +89,28 @@
 	self.input.text = self.value;
 }
 
+#pragma mark - UIResponder methods
+
+- (BOOL)canBecomeFirstResponder {
+	return self.input.canBecomeFirstResponder;
+}
+
+- (BOOL)becomeFirstResponder {
+	return [self.input becomeFirstResponder];
+}
+
+- (BOOL)isFirstResponder {
+	return self.input.isFirstResponder;
+}
+
+- (BOOL)canResignFirstResponder {
+	return self.input.canResignFirstResponder;
+}
+
+- (BOOL)resignFirstResponder {
+	return [self.input resignFirstResponder];
+}
+
 #pragma mark - UI actions
 
 - (void)inputChanged:(UITextField *)sender {
@@ -95,6 +118,14 @@
 		_value = self.input.text;
 		self.action(self.input.text);
 	}
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if (self.returnKeyAction) {
+		self.returnKeyAction();
+	}
+	
+	return NO;
 }
 
 @end
