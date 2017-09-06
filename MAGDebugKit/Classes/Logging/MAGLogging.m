@@ -91,6 +91,20 @@
 	}
 }
 
+- (void)setRemoteLoggingHost:(NSString *)remoteLoggingHost {
+	_remoteLoggingHost = [remoteLoggingHost copy];
+	if (self.remoteLoggingEnabled) {
+		[self refreshConnection];
+	}
+}
+
+- (void)setRemoteLoggingPort:(NSNumber *)remoteLoggingPort {
+	_remoteLoggingPort = remoteLoggingPort;
+	if (self.remoteLoggingEnabled) {
+		[self refreshConnection];
+	}
+}
+
 - (void)setRemoteLoggingEnabled:(BOOL)remoteLoggingEnabled {
 	if (_remoteLoggingEnabled == remoteLoggingEnabled) {
 		return;
@@ -98,6 +112,26 @@
 	
 	_remoteLoggingEnabled = remoteLoggingEnabled;
 	
+	[self refreshConnection];
+}
+
+- (void)setRemoteLoggingDictionary:(NSDictionary *)dict {
+	_remoteLoggingDictionary = dict;
+	[self updatePermanentLogValuesFromDictionary];
+}
+
+- (void)updatePermanentLogValuesFromDictionary {
+	if (self.remoteLogger && self.remoteLogger.logFormatter) {
+		for (NSString *key in self.remoteLoggingDictionary) {
+			[self.remoteLogFormatter
+				setPermanentLogValue:self.remoteLoggingDictionary[key] field:key];
+		}
+	}
+}
+
+#pragma mark - Private methods
+
+- (void)refreshConnection {
 	[DDLog removeLogger:self.remoteLogger];
 	self.remoteLogger = nil;
 
@@ -124,20 +158,6 @@
 		self.remoteLogger.logFormatter = nil;
 		self.remoteLogFormatter = nil;
 		self.remoteLogger = nil;
-	}
-}
-
-- (void)setRemoteLoggingDictionary:(NSDictionary *)dict {
-	_remoteLoggingDictionary = dict;
-	[self updatePermanentLogValuesFromDictionary];
-}
-
-- (void)updatePermanentLogValuesFromDictionary {
-	if (self.remoteLogger && self.remoteLogger.logFormatter) {
-		for (NSString *key in self.remoteLoggingDictionary) {
-			[self.remoteLogFormatter
-				setPermanentLogValue:self.remoteLoggingDictionary[key] field:key];
-		}
 	}
 }
 
