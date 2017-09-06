@@ -23,7 +23,7 @@
 @property (nonatomic) MAGDebugPanelAppearanceStyle appearanceStyle;
 @property (nonatomic) UIWindow *window;
 
-//@property (nonatomic) BOTableViewSection *customActions;
+@property (nonatomic) BOOL hasCustomActions;
 
 @end
 
@@ -85,12 +85,12 @@
 }
 
 - (void)addAction:(void(^)(void))action withTitle:(NSString *)title {
-//	BOTableViewCell *cell = [BOButtonTableViewCell cellWithTitle:title key:nil
-//		handler:^(BOButtonTableViewCell *cell) {
-//			cell.actionBlock = action;
-//		}];
-//
-//	[self.customActions addCell:cell];
+	[self loadViewIfNeeded];
+
+	if (!self.hasCustomActions) {
+		[self addTitle:@"Custom actions"];
+	}
+	[self addButtonWithTitle:title action:action];
 }
 
 #pragma mark - UI actions
