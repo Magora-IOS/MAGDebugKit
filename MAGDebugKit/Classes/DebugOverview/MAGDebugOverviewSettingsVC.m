@@ -3,8 +3,6 @@
 
 #import "MAGDebugOverview.h"
 
-#import <ReactiveObjC/ReactiveObjC.h>
-
 
 @interface MAGDebugOverviewSettingsVC ()
 @end
