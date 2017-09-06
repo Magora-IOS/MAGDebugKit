@@ -41,7 +41,11 @@
 
 - (void)setSetting:(id)value forKey:(NSString *)key {
 	[self.ud setObject:value forKey:key];
-	self.reactions[key](value);
+	
+	void(^reaction)(id) = self.reactions[key];
+	if (reaction) {
+		reaction(value);
+	}
 }
 
 - (id)settingForKey:(NSString *)key {
