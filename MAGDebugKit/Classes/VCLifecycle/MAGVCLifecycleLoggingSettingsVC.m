@@ -2,8 +2,6 @@
 #import "MAGDebugPanelSettingsKeys.h"
 #import "MAGVCLifecycleLogging.h"
 
-#import <ReactiveObjC/ReactiveObjC.h>
-
 
 @interface MAGVCLifecycleLoggingSettingsVC ()
 

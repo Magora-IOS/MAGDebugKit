@@ -1,6 +1,6 @@
 #import "MAGRemoteLogger.h"
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
-#import <ReactiveObjC/ReactiveObjC.h>
+#import <libextobjc/extobjc.h>
 
 
 static NSTimeInterval const idleConnection = 10.0;

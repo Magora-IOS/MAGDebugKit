@@ -8,8 +8,7 @@
 
 #import "MAGAppDelegate.h"
 #import <MAGDebugKit/MAGDebugKit.h>
-#import <ReactiveObjC/ReactiveObjC.h>
-
+#import <libextobjc/extobjc.h>
 #import "MAGAutoVideoRecorder.h"
 
 

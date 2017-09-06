@@ -3,8 +3,6 @@
 #import "MAGRentgen.h"
 #import "MAGTapRentgen.h"
 
-#import <ReactiveObjC/ReactiveObjC.h>
-
 
 @implementation MAGRentgenSettingsVC
 

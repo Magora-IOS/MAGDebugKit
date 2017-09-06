@@ -3,8 +3,6 @@
 #import "MAGPanelPickerCell.h"
 #import "MAGPanelPickerManager.h"
 
-#import <ReactiveObjC/ReactiveObjC.h>
-
 
 @interface MAGLoggingSettingsVC ()
 
