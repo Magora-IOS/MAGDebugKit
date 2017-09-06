@@ -13,6 +13,8 @@
 #import "MAGTapRentgen.h"
 #import "MAGVCLifecycleLogging.h"
 #import "MAGLoggingSettingsVC.h"
+#import "MAGAutoVideoRecorder.h"
+#import "MAGVideoRecorderSettingsVC.h"
 
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
@@ -218,9 +220,13 @@
 			@strongify(self);
 			[self sandboxBrowserAction];
 		}];
+	
+	[self addTitle:@"Video recorder"];
 
-//	self.customActions = [BOTableViewSection sectionWithHeaderTitle:nil handler:nil];
-//	[self addSection:self.customActions];
+	[self addButtonWithTitle:@"Video recorder" action:^{
+			@strongify(self);
+			[self videoRecorderAction];
+		}];
 }
 
 #pragma mark - UI actions
@@ -247,6 +253,12 @@
 
 - (void)sandboxBrowserAction {
 	MAGSandboxBrowserVC *vc = [[MAGSandboxBrowserVC alloc] initWithURL:nil];
+	[self.navigationController pushViewController:vc animated:YES];
+}
+
+
+- (void)videoRecorderAction {
+	MAGVideoRecorderSettingsVC *vc = [[MAGVideoRecorderSettingsVC alloc] initWithSettings:self.settingsReactor];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -344,6 +356,13 @@
 				[MAGVCLifecycleLogging disableInitDeallocLogging];
 			}
 		} forKey:MAGDebugPanelSettingKeyLogVCLifecycleEnabled defaultValue:@NO];
+	
+	// Video recorder.
+	NSNumber *shouldStart = [settings settingForKey:MAGDebugPanelSettingKeyVideoRecordAutostartEnabled];
+	if (shouldStart.boolValue) {
+		MAGAutoVideoRecorder *recorder = [MAGAutoVideoRecorder sharedInstance];
+		[recorder startVideoRecording];
+	}
 }
 
 @end

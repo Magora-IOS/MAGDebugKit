@@ -20,3 +20,5 @@ NSString *const MAGDebugPanelSettingKeyAntennaLoggingHost = @"MAGDebugPanelSetti
 NSString *const MAGDebugPanelSettingKeyAntennaLoggingPort = @"MAGDebugPanelSettingKeyAntennaLoggingPort";
 
 NSString *const MAGDebugPanelSettingKeySandboxFinder = @"MAGDebugPanelSettingKeySandboxFinder";
+
+NSString *const MAGDebugPanelSettingKeyVideoRecordAutostartEnabled = @"MAGDebugPanelSettingKeyVideoRecordAutostartEnabled";
