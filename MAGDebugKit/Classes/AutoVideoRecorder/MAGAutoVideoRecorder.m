@@ -1,17 +1,7 @@
-
-
-
-
-
-
-
-
-
 //#import <ExceptionHandling/NSExceptionHandler.h>
 
 #import <libextobjc/EXTScope.h>
-#import <MAGMatveevReusable/MAGTapDetector.h>
-
+#import <MAGMatveevReusable/MAGCommonDefines.h>
 #import "MAGAutoVideoRecorder.h"
 #import "MAGScreenshotCollector.h"
 #import "MAGVideoCreator.h"
@@ -20,13 +10,14 @@
 #define kMaxVideoLength		10*60
 #define kMaxStorableVideoCount		15
 
+
 @interface MAGAutoVideoRecorder ()
 
+@property (readwrite, nonatomic) RecordingStatus status;
 @property (strong, nonatomic) MAGVideoCreator *videoCreator;
-@property (strong, nonatomic) MAGTapDetector *tapDetector;
-@property (strong, nonatomic) UIView *statusView;
 
 @end
+
 
 @implementation MAGAutoVideoRecorder
 
@@ -48,11 +39,6 @@
 }
 
 - (void)prepareAll {
-
-	UIWindow *w = [UIApplication sharedApplication].keyWindow;
-	CGSize size = [UIScreen mainScreen].bounds.size;
-	self.statusView = [[UIView alloc] initWithFrame:CGRectMake(size.width - 10, 0, 10, 10)];
-	[w addSubview:self.statusView];
 	self.status= RecordingStatusIdle;
 
 //	[[NSExceptionHandler defaultExceptionHandler] setExceptionHandlingMask:NSLogAndHandleEveryExceptionMask];
@@ -64,42 +50,6 @@
     signal(SIGFPE, SignalHandler);
     signal(SIGBUS, SignalHandler);
     signal(SIGPIPE, SignalHandler);
-	
-	self.tapDetector = [MAGTapDetector new];
-	[self.tapDetector attachToTargetView:[UIApplication sharedApplication].keyWindow];
-	self.tapDetector.recognizer.numberOfTapsRequired = 3;
-	@weakify(self);
-	self.tapDetector.didTappedBlock = ^(CGPoint point) {
-		@strongify(self);
-		NSLog(@"VIDEO CREATION STOPPED");
-		[self stop];
-		self.tapDetector.didTappedBlock = nil;
-	};
-}
-
-- (void)setStatus:(RecordingStatus)status {
-	_status = status;
-	switch (status) {
-		case RecordingStatusPreparing:{
-			self.statusView.backgroundColor = [UIColor yellowColor];
-		}break;
-			
-		case RecordingStatusRecording:{
-			self.statusView.backgroundColor = [UIColor greenColor];
-		}break;
-
-		case RecordingStatusSaving:{
-			self.statusView.backgroundColor = [UIColor purpleColor];
-		}break;
-			
-		case RecordingStatusIdle:{
-			self.statusView.backgroundColor = [UIColor lightGrayColor];
-		}break;
-			
-		default:
-			break;
-	}
-	[self.statusView setNeedsDisplay];
 }
 
 - (void)startVideoRecording {
