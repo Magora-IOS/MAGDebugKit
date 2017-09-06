@@ -163,15 +163,19 @@
 
 	
 	[self.videoWriterInput markAsFinished];
-	[self.videoWriter finishWriting];
+	[self.videoWriter finishWritingWithCompletionHandler:^{
+		[self completeFinish];
+	}];
+}
+
+- (void)completeFinish {
 	NSLog(@"Write Ended");
 	
 	NSTimeInterval videoLength = [self.finishedDate timeIntervalSinceDate:self.startDate];
-//	CGFloat videoLength = self.currentFrameTime.value / self.currentFrameTime.timescale;
 	NSLog(@"VIDEO TIME LENGTH %@",@(videoLength).stringValue);
 	
 	unsigned long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.videoOutputPath error:nil] fileSize];
-	CGFloat mbSize = (CGFloat)fileSize / (1024.0*1024.0);
+	CGFloat mbSize __unused = (CGFloat)fileSize / (1024.0*1024.0);
 	NSLog(@"Video creation finished. Result:\n\nDESIRED FPS %@\nfilesize: %@  mb\nvideopath: %@", @(self.takingFPS).stringValue, @(mbSize).stringValue, self.videoOutputPath);
 	NSURL *resultVideoURL = [NSURL fileURLWithPath:self.videoOutputPath];
 	

@@ -52,7 +52,7 @@
 	[self addSubview:self.label];
 
 	self.toggle = [[UISwitch alloc] init];
-	self.toggle.on = self.value;
+	self.toggle.on = self.value.boolValue;
 	[self.toggle addTarget:self action:@selector(switchToggle:) forControlEvents:UIControlEventValueChanged];
 	[self addSubview:self.toggle];
 

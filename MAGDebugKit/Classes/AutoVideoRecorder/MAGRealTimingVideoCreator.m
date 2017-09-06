@@ -32,12 +32,16 @@
 
 @property (strong, nonatomic) NSString *videoOutputPath;
 @property (strong, nonatomic) NSError *currentError;
-
+@property (strong, nonatomic) NSURL *rawVideoURL;
+@property (copy, nonatomic) VideoBlock completion;
 @end
 
 @implementation MAGRealTimingVideoCreator
 
 - (void)createVideoFromPreparedVideoURL:(NSURL *)rawVideoURL frameTimes:(NSArray <NSValue *> *)frameTimes videoLength:(CGFloat)videoLength imageSize:(CGSize)imageSize contextScaleWhereThemCreated:(CGFloat)contextScale completion:(VideoBlock)completion {
+	
+	self.rawVideoURL = rawVideoURL;
+	self.completion = completion;
 	
 	self.realTakingFPS = (CGFloat)frameTimes.count / videoLength;
 	
@@ -59,6 +63,7 @@
 	
 	AVAssetReader *reader = [[AVAssetReader alloc] initWithAsset:asset error:&error];
 	AVAssetTrack *videoTrack = [[asset tracksWithMediaType:AVMediaTypeVideo] lastObject];
+	self.currentError = error;
 	
 	NSDictionary *readerOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
 										  [NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange], kCVPixelBufferPixelFormatTypeKey,
@@ -85,6 +90,7 @@
 	AVAssetWriter *writer = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:self.videoOutputPath]
 													  fileType:AVFileTypeMPEG4
 														 error:&error];
+	self.currentError = error;
 //														 NSNumber *dataRate = videoTrack.estimatedDataRate;
 	NSNumber *rate = @(videoTrack.estimatedDataRate);
 	NSLog(@"ESTIMATED DATA RATE %@", rate.stringValue);
@@ -146,18 +152,22 @@
 	}
 	
 	[writerInput markAsFinished];
-	[writer finishWriting];
-	
+	[writer finishWritingWithCompletionHandler:^{
+		[self completeFinish];
+	}];
+}
+
+- (void)completeFinish {
 	unsigned long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.videoOutputPath error:nil] fileSize];
-	CGFloat mbSize = (CGFloat)fileSize / (1024.0*1024.0);
+	CGFloat mbSize __unused = (CGFloat)fileSize / (1024.0*1024.0);
 	NSLog(@"Video creation finished. Result:\n\nREAL FPS %@\nfilesize: %@  mb\nvideopath: %@", @(self.realTakingFPS).stringValue, @(mbSize).stringValue, self.videoOutputPath);
-	self.currentError = error;
+	
 	NSURL *outputURL = [NSURL fileURLWithPath:self.videoOutputPath];
 	
 	if ([MAGFileSystem fileWithPathExists:[outputURL path]]) {//		remove temp video
-		[[NSFileManager defaultManager] removeItemAtURL:rawVideoURL error:nil];
+		[[NSFileManager defaultManager] removeItemAtURL:self.rawVideoURL error:nil];
 	}
-	RUN_BLOCK(completion, outputURL, self.currentError);
+	RUN_BLOCK(self.completion, outputURL, self.currentError);
 }
 
 @end
